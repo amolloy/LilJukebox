@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MediaPlayer/MediaPlayer.h>
 
 @class ASMFlipsideViewController;
 
@@ -14,10 +15,11 @@
 - (void)flipsideViewControllerDidFinish:(ASMFlipsideViewController *)controller;
 @end
 
-@interface ASMFlipsideViewController : UIViewController
+@interface ASMFlipsideViewController : UIViewController <MPMediaPickerControllerDelegate>
 
 @property (assign, nonatomic) id <ASMFlipsideViewControllerDelegate> delegate;
 
-- (IBAction)done:(id)sender;
+-(IBAction)done:(id)sender;
+-(IBAction)selectMusicButtonPressed:(UIButton*)sender;
 
 @end
