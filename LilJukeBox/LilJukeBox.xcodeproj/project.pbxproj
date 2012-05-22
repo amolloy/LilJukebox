@@ -1,0 +1,313 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		B431EA73156B25220067E5C4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B431EA72156B25220067E5C4 /* UIKit.framework */; };
+		B431EA75156B25220067E5C4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B431EA74156B25220067E5C4 /* Foundation.framework */; };
+		B431EA77156B25220067E5C4 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B431EA76156B25220067E5C4 /* CoreGraphics.framework */; };
+		B431EA7D156B25220067E5C4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B431EA7B156B25220067E5C4 /* InfoPlist.strings */; };
+		B431EA7F156B25220067E5C4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B431EA7E156B25220067E5C4 /* main.m */; };
+		B431EA83156B25220067E5C4 /* ASMAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B431EA82156B25220067E5C4 /* ASMAppDelegate.m */; };
+		B431EA86156B25220067E5C4 /* ASMMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B431EA85156B25220067E5C4 /* ASMMainViewController.m */; };
+		B431EA89156B25220067E5C4 /* ASMFlipsideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B431EA88156B25220067E5C4 /* ASMFlipsideViewController.m */; };
+		B431EA8C156B25220067E5C4 /* ASMMainViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = B431EA8A156B25220067E5C4 /* ASMMainViewController_iPhone.xib */; };
+		B431EA8F156B25220067E5C4 /* ASMMainViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = B431EA8D156B25220067E5C4 /* ASMMainViewController_iPad.xib */; };
+		B431EA92156B25220067E5C4 /* ASMFlipsideViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B431EA90156B25220067E5C4 /* ASMFlipsideViewController.xib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		B431EA6E156B25220067E5C4 /* LilJukeBox.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LilJukeBox.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B431EA72156B25220067E5C4 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		B431EA74156B25220067E5C4 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		B431EA76156B25220067E5C4 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		B431EA7A156B25220067E5C4 /* LilJukeBox-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "LilJukeBox-Info.plist"; sourceTree = "<group>"; };
+		B431EA7C156B25220067E5C4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		B431EA7E156B25220067E5C4 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		B431EA80156B25220067E5C4 /* LilJukeBox-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LilJukeBox-Prefix.pch"; sourceTree = "<group>"; };
+		B431EA81156B25220067E5C4 /* ASMAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ASMAppDelegate.h; sourceTree = "<group>"; };
+		B431EA82156B25220067E5C4 /* ASMAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ASMAppDelegate.m; sourceTree = "<group>"; };
+		B431EA84156B25220067E5C4 /* ASMMainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ASMMainViewController.h; sourceTree = "<group>"; };
+		B431EA85156B25220067E5C4 /* ASMMainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ASMMainViewController.m; sourceTree = "<group>"; };
+		B431EA87156B25220067E5C4 /* ASMFlipsideViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ASMFlipsideViewController.h; sourceTree = "<group>"; };
+		B431EA88156B25220067E5C4 /* ASMFlipsideViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ASMFlipsideViewController.m; sourceTree = "<group>"; };
+		B431EA8B156B25220067E5C4 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ASMMainViewController_iPhone.xib; sourceTree = "<group>"; };
+		B431EA8E156B25220067E5C4 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ASMMainViewController_iPad.xib; sourceTree = "<group>"; };
+		B431EA91156B25220067E5C4 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ASMFlipsideViewController.xib; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		B431EA6B156B25220067E5C4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B431EA73156B25220067E5C4 /* UIKit.framework in Frameworks */,
+				B431EA75156B25220067E5C4 /* Foundation.framework in Frameworks */,
+				B431EA77156B25220067E5C4 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		B431EA63156B25220067E5C4 = {
+			isa = PBXGroup;
+			children = (
+				B431EA78156B25220067E5C4 /* LilJukeBox */,
+				B431EA71156B25220067E5C4 /* Frameworks */,
+				B431EA6F156B25220067E5C4 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		B431EA6F156B25220067E5C4 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B431EA6E156B25220067E5C4 /* LilJukeBox.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		B431EA71156B25220067E5C4 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B431EA72156B25220067E5C4 /* UIKit.framework */,
+				B431EA74156B25220067E5C4 /* Foundation.framework */,
+				B431EA76156B25220067E5C4 /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B431EA78156B25220067E5C4 /* LilJukeBox */ = {
+			isa = PBXGroup;
+			children = (
+				B431EA81156B25220067E5C4 /* ASMAppDelegate.h */,
+				B431EA82156B25220067E5C4 /* ASMAppDelegate.m */,
+				B431EA84156B25220067E5C4 /* ASMMainViewController.h */,
+				B431EA85156B25220067E5C4 /* ASMMainViewController.m */,
+				B431EA87156B25220067E5C4 /* ASMFlipsideViewController.h */,
+				B431EA88156B25220067E5C4 /* ASMFlipsideViewController.m */,
+				B431EA8A156B25220067E5C4 /* ASMMainViewController_iPhone.xib */,
+				B431EA8D156B25220067E5C4 /* ASMMainViewController_iPad.xib */,
+				B431EA90156B25220067E5C4 /* ASMFlipsideViewController.xib */,
+				B431EA79156B25220067E5C4 /* Supporting Files */,
+			);
+			path = LilJukeBox;
+			sourceTree = "<group>";
+		};
+		B431EA79156B25220067E5C4 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				B431EA7A156B25220067E5C4 /* LilJukeBox-Info.plist */,
+				B431EA7B156B25220067E5C4 /* InfoPlist.strings */,
+				B431EA7E156B25220067E5C4 /* main.m */,
+				B431EA80156B25220067E5C4 /* LilJukeBox-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		B431EA6D156B25220067E5C4 /* LilJukeBox */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B431EA95156B25220067E5C4 /* Build configuration list for PBXNativeTarget "LilJukeBox" */;
+			buildPhases = (
+				B431EA6A156B25220067E5C4 /* Sources */,
+				B431EA6B156B25220067E5C4 /* Frameworks */,
+				B431EA6C156B25220067E5C4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = LilJukeBox;
+			productName = LilJukeBox;
+			productReference = B431EA6E156B25220067E5C4 /* LilJukeBox.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		B431EA65156B25220067E5C4 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = ASM;
+				LastUpgradeCheck = 0430;
+				ORGANIZATIONNAME = "Andy Molloy";
+			};
+			buildConfigurationList = B431EA68156B25220067E5C4 /* Build configuration list for PBXProject "LilJukeBox" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = B431EA63156B25220067E5C4;
+			productRefGroup = B431EA6F156B25220067E5C4 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				B431EA6D156B25220067E5C4 /* LilJukeBox */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		B431EA6C156B25220067E5C4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B431EA7D156B25220067E5C4 /* InfoPlist.strings in Resources */,
+				B431EA8C156B25220067E5C4 /* ASMMainViewController_iPhone.xib in Resources */,
+				B431EA8F156B25220067E5C4 /* ASMMainViewController_iPad.xib in Resources */,
+				B431EA92156B25220067E5C4 /* ASMFlipsideViewController.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		B431EA6A156B25220067E5C4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B431EA7F156B25220067E5C4 /* main.m in Sources */,
+				B431EA83156B25220067E5C4 /* ASMAppDelegate.m in Sources */,
+				B431EA86156B25220067E5C4 /* ASMMainViewController.m in Sources */,
+				B431EA89156B25220067E5C4 /* ASMFlipsideViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		B431EA7B156B25220067E5C4 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B431EA7C156B25220067E5C4 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		B431EA8A156B25220067E5C4 /* ASMMainViewController_iPhone.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B431EA8B156B25220067E5C4 /* en */,
+			);
+			name = ASMMainViewController_iPhone.xib;
+			sourceTree = "<group>";
+		};
+		B431EA8D156B25220067E5C4 /* ASMMainViewController_iPad.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B431EA8E156B25220067E5C4 /* en */,
+			);
+			name = ASMMainViewController_iPad.xib;
+			sourceTree = "<group>";
+		};
+		B431EA90156B25220067E5C4 /* ASMFlipsideViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B431EA91156B25220067E5C4 /* en */,
+			);
+			name = ASMFlipsideViewController.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		B431EA93156B25220067E5C4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		B431EA94156B25220067E5C4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		B431EA96156B25220067E5C4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "LilJukeBox/LilJukeBox-Prefix.pch";
+				INFOPLIST_FILE = "LilJukeBox/LilJukeBox-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		B431EA97156B25220067E5C4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "LilJukeBox/LilJukeBox-Prefix.pch";
+				INFOPLIST_FILE = "LilJukeBox/LilJukeBox-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		B431EA68156B25220067E5C4 /* Build configuration list for PBXProject "LilJukeBox" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B431EA93156B25220067E5C4 /* Debug */,
+				B431EA94156B25220067E5C4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B431EA95156B25220067E5C4 /* Build configuration list for PBXNativeTarget "LilJukeBox" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B431EA96156B25220067E5C4 /* Debug */,
+				B431EA97156B25220067E5C4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = B431EA65156B25220067E5C4 /* Project object */;
+}
