@@ -18,6 +18,7 @@
 		B431EA8C156B25220067E5C4 /* ASMMainViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = B431EA8A156B25220067E5C4 /* ASMMainViewController_iPhone.xib */; };
 		B431EA8F156B25220067E5C4 /* ASMMainViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = B431EA8D156B25220067E5C4 /* ASMMainViewController_iPad.xib */; };
 		B431EA92156B25220067E5C4 /* ASMFlipsideViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B431EA90156B25220067E5C4 /* ASMFlipsideViewController.xib */; };
+		B438934E156B2B3E001D6B6D /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B438934D156B2B3E001D6B6D /* MediaPlayer.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 		B431EA8B156B25220067E5C4 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ASMMainViewController_iPhone.xib; sourceTree = "<group>"; };
 		B431EA8E156B25220067E5C4 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ASMMainViewController_iPad.xib; sourceTree = "<group>"; };
 		B431EA91156B25220067E5C4 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ASMFlipsideViewController.xib; sourceTree = "<group>"; };
+		B438934D156B2B3E001D6B6D /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -45,6 +47,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B438934E156B2B3E001D6B6D /* MediaPlayer.framework in Frameworks */,
 				B431EA73156B25220067E5C4 /* UIKit.framework in Frameworks */,
 				B431EA75156B25220067E5C4 /* Foundation.framework in Frameworks */,
 				B431EA77156B25220067E5C4 /* CoreGraphics.framework in Frameworks */,
@@ -57,6 +60,7 @@
 		B431EA63156B25220067E5C4 = {
 			isa = PBXGroup;
 			children = (
+				B438934D156B2B3E001D6B6D /* MediaPlayer.framework */,
 				B431EA78156B25220067E5C4 /* LilJukeBox */,
 				B431EA71156B25220067E5C4 /* Frameworks */,
 				B431EA6F156B25220067E5C4 /* Products */,
@@ -224,7 +228,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				ARCHS = (
+					armv6,
+					"$(ARCHS_STANDARD_32_BIT)",
+				);
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -249,7 +256,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				ARCHS = (
+					armv6,
+					"$(ARCHS_STANDARD_32_BIT)",
+				);
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -268,10 +278,13 @@
 		B431EA96156B25220067E5C4 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "LilJukeBox/LilJukeBox-Prefix.pch";
 				INFOPLIST_FILE = "LilJukeBox/LilJukeBox-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 3.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -279,10 +292,13 @@
 		B431EA97156B25220067E5C4 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "LilJukeBox/LilJukeBox-Prefix.pch";
 				INFOPLIST_FILE = "LilJukeBox/LilJukeBox-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 3.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -306,6 +322,7 @@
 				B431EA97156B25220067E5C4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
