@@ -2,7 +2,7 @@
 //  ASMFlipsideViewController.m
 //  LilJukeBox
 //
-//  Created by Andy Molloy on 5/21/12.
+//  Created by Andrew Molloy on 5/24/12.
 //  Copyright (c) 2012 Andy Molloy. All rights reserved.
 //
 
@@ -16,68 +16,115 @@
 
 @synthesize delegate = _delegate;
 
--(id)initWithNibName:(NSString*)nibNameOrNil bundle:(NSBundle*)nibBundleOrNil
+- (id)initWithStyle:(UITableViewStyle)style
 {
-   self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-   if (self) 
-   {
-      self.contentSizeForViewInPopover = CGSizeMake(320.0, 480.0);
-   }
-   return self;
+    self = [super initWithStyle:style];
+    if (self) {
+        // Custom initialization
+    }
+    return self;
 }
 
--(void)viewDidLoad
+- (void)viewDidLoad
 {
-   [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+    [super viewDidLoad];
+
+    // Uncomment the following line to preserve selection between presentations.
+    // self.clearsSelectionOnViewWillAppear = NO;
+ 
+    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
+    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
--(void)viewDidUnload
+- (void)viewDidUnload
 {
-   [super viewDidUnload];
-   // Release any retained subviews of the main view.
+    [super viewDidUnload];
+    // Release any retained subviews of the main view.
+    // e.g. self.myOutlet = nil;
 }
 
--(BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
-   if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) 
-   {
-      return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
-   }
-   else 
-   {
-      return YES;
-   }
+    return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
-#pragma mark - Actions
+#pragma mark - Table view data source
 
--(IBAction)done:(id)sender
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-   [self.delegate flipsideViewControllerDidFinish:self];
+#warning Potentially incomplete method implementation.
+    // Return the number of sections.
+    return 0;
 }
 
--(IBAction)selectMusicButtonPressed:(UIButton *)sender 
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-   MPMediaPickerController* picker = [[MPMediaPickerController alloc] initWithMediaTypes: MPMediaTypeAnyAudio];
-   
-   [picker setDelegate:self];
-   [picker setAllowsPickingMultipleItems:YES];
-   picker.prompt = NSLocalizedString (@"Add songs to play",
-                                      "Prompt in media item picker");
-   
-   [self presentModalViewController:picker animated: YES];
-   [picker release];
+#warning Incomplete method implementation.
+    // Return the number of rows in the section.
+    return 0;
 }
 
--(void)mediaPicker:(MPMediaPickerController*)mediaPicker didPickMediaItems:(MPMediaItemCollection*)mediaItemCollection
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-   if ([mediaItemCollection count] > 10)
-   {
-      NSLog(@"Picked too many");
-   }
-   
-   NSLog(@"Picked:");
-   NSLog(@"%@", mediaItemCollection);
+    static NSString *CellIdentifier = @"Cell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    
+    // Configure the cell...
+    
+    return cell;
 }
+
+/*
+// Override to support conditional editing of the table view.
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    // Return NO if you do not want the specified item to be editable.
+    return YES;
+}
+*/
+
+/*
+// Override to support editing the table view.
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        // Delete the row from the data source
+        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+    }   
+    else if (editingStyle == UITableViewCellEditingStyleInsert) {
+        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+    }   
+}
+*/
+
+/*
+// Override to support rearranging the table view.
+- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
+{
+}
+*/
+
+/*
+// Override to support conditional rearranging of the table view.
+- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    // Return NO if you do not want the item to be re-orderable.
+    return YES;
+}
+*/
+
+#pragma mark - Table view delegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    // Navigation logic may go here. Create and push another view controller.
+    /*
+     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
+     // ...
+     // Pass the selected object to the new view controller.
+     [self.navigationController pushViewController:detailViewController animated:YES];
+     [detailViewController release];
+     */
+}
+
 @end

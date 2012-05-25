@@ -14,11 +14,11 @@
 		B431EA7F156B25220067E5C4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B431EA7E156B25220067E5C4 /* main.m */; };
 		B431EA83156B25220067E5C4 /* ASMAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B431EA82156B25220067E5C4 /* ASMAppDelegate.m */; };
 		B431EA86156B25220067E5C4 /* ASMMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B431EA85156B25220067E5C4 /* ASMMainViewController.m */; };
-		B431EA89156B25220067E5C4 /* ASMFlipsideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B431EA88156B25220067E5C4 /* ASMFlipsideViewController.m */; };
 		B431EA8C156B25220067E5C4 /* ASMMainViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = B431EA8A156B25220067E5C4 /* ASMMainViewController_iPhone.xib */; };
 		B431EA8F156B25220067E5C4 /* ASMMainViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = B431EA8D156B25220067E5C4 /* ASMMainViewController_iPad.xib */; };
-		B431EA92156B25220067E5C4 /* ASMFlipsideViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B431EA90156B25220067E5C4 /* ASMFlipsideViewController.xib */; };
 		B438934E156B2B3E001D6B6D /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B438934D156B2B3E001D6B6D /* MediaPlayer.framework */; };
+		B4DB0979156F1CDD0002FB99 /* ASMFlipsideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4DB0977156F1CDD0002FB99 /* ASMFlipsideViewController.m */; };
+		B4DB097B156FBFCB0002FB99 /* ASMFlipsideViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4DB097D156FBFCB0002FB99 /* ASMFlipsideViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,12 +34,12 @@
 		B431EA82156B25220067E5C4 /* ASMAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ASMAppDelegate.m; sourceTree = "<group>"; };
 		B431EA84156B25220067E5C4 /* ASMMainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ASMMainViewController.h; sourceTree = "<group>"; };
 		B431EA85156B25220067E5C4 /* ASMMainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ASMMainViewController.m; sourceTree = "<group>"; };
-		B431EA87156B25220067E5C4 /* ASMFlipsideViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ASMFlipsideViewController.h; sourceTree = "<group>"; };
-		B431EA88156B25220067E5C4 /* ASMFlipsideViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ASMFlipsideViewController.m; sourceTree = "<group>"; };
 		B431EA8B156B25220067E5C4 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ASMMainViewController_iPhone.xib; sourceTree = "<group>"; };
 		B431EA8E156B25220067E5C4 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ASMMainViewController_iPad.xib; sourceTree = "<group>"; };
-		B431EA91156B25220067E5C4 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ASMFlipsideViewController.xib; sourceTree = "<group>"; };
 		B438934D156B2B3E001D6B6D /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		B4DB0976156F1CDD0002FB99 /* ASMFlipsideViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASMFlipsideViewController.h; sourceTree = "<group>"; };
+		B4DB0977156F1CDD0002FB99 /* ASMFlipsideViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASMFlipsideViewController.m; sourceTree = "<group>"; };
+		B4DB097C156FBFCB0002FB99 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ASMFlipsideViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,11 +92,11 @@
 				B431EA82156B25220067E5C4 /* ASMAppDelegate.m */,
 				B431EA84156B25220067E5C4 /* ASMMainViewController.h */,
 				B431EA85156B25220067E5C4 /* ASMMainViewController.m */,
-				B431EA87156B25220067E5C4 /* ASMFlipsideViewController.h */,
-				B431EA88156B25220067E5C4 /* ASMFlipsideViewController.m */,
 				B431EA8A156B25220067E5C4 /* ASMMainViewController_iPhone.xib */,
 				B431EA8D156B25220067E5C4 /* ASMMainViewController_iPad.xib */,
-				B431EA90156B25220067E5C4 /* ASMFlipsideViewController.xib */,
+				B4DB0976156F1CDD0002FB99 /* ASMFlipsideViewController.h */,
+				B4DB0977156F1CDD0002FB99 /* ASMFlipsideViewController.m */,
+				B4DB097D156FBFCB0002FB99 /* ASMFlipsideViewController.xib */,
 				B431EA79156B25220067E5C4 /* Supporting Files */,
 			);
 			path = LilJukeBox;
@@ -168,7 +168,7 @@
 				B431EA7D156B25220067E5C4 /* InfoPlist.strings in Resources */,
 				B431EA8C156B25220067E5C4 /* ASMMainViewController_iPhone.xib in Resources */,
 				B431EA8F156B25220067E5C4 /* ASMMainViewController_iPad.xib in Resources */,
-				B431EA92156B25220067E5C4 /* ASMFlipsideViewController.xib in Resources */,
+				B4DB097B156FBFCB0002FB99 /* ASMFlipsideViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -182,7 +182,7 @@
 				B431EA7F156B25220067E5C4 /* main.m in Sources */,
 				B431EA83156B25220067E5C4 /* ASMAppDelegate.m in Sources */,
 				B431EA86156B25220067E5C4 /* ASMMainViewController.m in Sources */,
-				B431EA89156B25220067E5C4 /* ASMFlipsideViewController.m in Sources */,
+				B4DB0979156F1CDD0002FB99 /* ASMFlipsideViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -213,10 +213,10 @@
 			name = ASMMainViewController_iPad.xib;
 			sourceTree = "<group>";
 		};
-		B431EA90156B25220067E5C4 /* ASMFlipsideViewController.xib */ = {
+		B4DB097D156FBFCB0002FB99 /* ASMFlipsideViewController.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				B431EA91156B25220067E5C4 /* en */,
+				B4DB097C156FBFCB0002FB99 /* en */,
 			);
 			name = ASMFlipsideViewController.xib;
 			sourceTree = "<group>";
