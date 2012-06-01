@@ -7,11 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MediaPlayer/MediaPlayer.h>
 
 @interface ASMSongCollection : NSObject {
-    NSMutableArray* songIdentifiers;
+    NSArray* mSongs;
 }
 
++ (ASMSongCollection*)sharedSongCollection;
 
+- (void)setSongsWithCollection:(MPMediaItemCollection*)collection;
+
+@property (retain, readonly, nonatomic) NSArray* songs;
 
 @end
