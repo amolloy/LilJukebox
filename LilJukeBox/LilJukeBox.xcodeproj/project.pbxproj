@@ -7,16 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B431EA73156B25220067E5C4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B431EA72156B25220067E5C4 /* UIKit.framework */; };
-		B431EA75156B25220067E5C4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B431EA74156B25220067E5C4 /* Foundation.framework */; };
-		B431EA77156B25220067E5C4 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B431EA76156B25220067E5C4 /* CoreGraphics.framework */; };
+		B431EA73156B25220067E5C4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B431EA72156B25220067E5C4 /* UIKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		B431EA75156B25220067E5C4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B431EA74156B25220067E5C4 /* Foundation.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		B431EA77156B25220067E5C4 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B431EA76156B25220067E5C4 /* CoreGraphics.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		B431EA7D156B25220067E5C4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B431EA7B156B25220067E5C4 /* InfoPlist.strings */; };
 		B431EA7F156B25220067E5C4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B431EA7E156B25220067E5C4 /* main.m */; };
 		B431EA83156B25220067E5C4 /* ASMAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B431EA82156B25220067E5C4 /* ASMAppDelegate.m */; };
 		B431EA86156B25220067E5C4 /* ASMMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B431EA85156B25220067E5C4 /* ASMMainViewController.m */; };
 		B431EA8C156B25220067E5C4 /* ASMMainViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = B431EA8A156B25220067E5C4 /* ASMMainViewController_iPhone.xib */; };
 		B431EA8F156B25220067E5C4 /* ASMMainViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = B431EA8D156B25220067E5C4 /* ASMMainViewController_iPad.xib */; };
-		B438934E156B2B3E001D6B6D /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B438934D156B2B3E001D6B6D /* MediaPlayer.framework */; };
+		B438934E156B2B3E001D6B6D /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B438934D156B2B3E001D6B6D /* MediaPlayer.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		B47C08BB1578524C0099A7E8 /* ASMSongCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = B47C08BA1578524C0099A7E8 /* ASMSongCollection.m */; };
 		B47C08BF1578F9190099A7E8 /* UIDevice+SafeUserInterfaceIdiom.m in Sources */ = {isa = PBXBuildFile; fileRef = B47C08BE1578F9190099A7E8 /* UIDevice+SafeUserInterfaceIdiom.m */; };
 		B4DB0979156F1CDD0002FB99 /* ASMFlipsideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4DB0977156F1CDD0002FB99 /* ASMFlipsideViewController.m */; };
@@ -46,6 +46,7 @@
 		B4DB0976156F1CDD0002FB99 /* ASMFlipsideViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASMFlipsideViewController.h; sourceTree = "<group>"; };
 		B4DB0977156F1CDD0002FB99 /* ASMFlipsideViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASMFlipsideViewController.m; sourceTree = "<group>"; };
 		B4DB097C156FBFCB0002FB99 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ASMFlipsideViewController.xib; sourceTree = "<group>"; };
+		B4FE3864157951B50083A502 /* LilJukeBox.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = LilJukeBox.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +95,7 @@
 		B431EA78156B25220067E5C4 /* LilJukeBox */ = {
 			isa = PBXGroup;
 			children = (
+				B4FE3864157951B50083A502 /* LilJukeBox.entitlements */,
 				B431EA81156B25220067E5C4 /* ASMAppDelegate.h */,
 				B431EA82156B25220067E5C4 /* ASMAppDelegate.m */,
 				B4DB0976156F1CDD0002FB99 /* ASMFlipsideViewController.h */,
@@ -150,7 +152,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = ASM;
-				LastUpgradeCheck = 0430;
+				LastUpgradeCheck = 0440;
 				ORGANIZATIONNAME = "Andy Molloy";
 			};
 			buildConfigurationList = B431EA68156B25220067E5C4 /* Build configuration list for PBXProject "LilJukeBox" */;
@@ -254,9 +256,23 @@
 					"$(inherited)",
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_THUMB_SUPPORT = NO;
+				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_FIELD_INITIALIZERS = YES;
+				GCC_WARN_ABOUT_MISSING_NEWLINE = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_CHECK_SWITCH_STATEMENTS = YES;
+				GCC_WARN_INITIALIZER_NOT_FULLY_BRACKETED = YES;
+				GCC_WARN_MISSING_PARENTHESES = YES;
+				GCC_WARN_SHADOW = YES;
+				GCC_WARN_SIGN_COMPARE = YES;
+				GCC_WARN_TYPECHECK_CALLS_TO_PRINTF = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_LABEL = YES;
+				GCC_WARN_UNUSED_VALUE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				SDKROOT = iphoneos;
@@ -275,12 +291,27 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_THUMB_SUPPORT = NO;
+				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_FIELD_INITIALIZERS = YES;
+				GCC_WARN_ABOUT_MISSING_NEWLINE = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_CHECK_SWITCH_STATEMENTS = YES;
+				GCC_WARN_INITIALIZER_NOT_FULLY_BRACKETED = YES;
+				GCC_WARN_MISSING_PARENTHESES = YES;
+				GCC_WARN_SHADOW = YES;
+				GCC_WARN_SIGN_COMPARE = YES;
+				GCC_WARN_TYPECHECK_CALLS_TO_PRINTF = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_LABEL = YES;
+				GCC_WARN_UNUSED_VALUE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				RUN_CLANG_STATIC_ANALYZER = YES;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -290,15 +321,17 @@
 		B431EA96156B25220067E5C4 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_WARN_OBJC_IMPLICIT_ATOMIC_PROPERTIES = YES;
+				CLANG_WARN_SUSPICIOUS_IMPLICIT_CONVERSION = YES;
+				CODE_SIGN_ENTITLEMENTS = LilJukeBox/LilJukeBox.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "LilJukeBox/LilJukeBox-Prefix.pch";
+				GCC_THUMB_SUPPORT = NO;
+				GCC_WARN_PEDANTIC = YES;
 				INFOPLIST_FILE = "LilJukeBox/LilJukeBox-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 3.1;
-				OTHER_LDFLAGS = (
-					"-weak_library",
-					/usr/lib/libSystem.B.dylib,
-				);
+				OTHER_LDFLAGS = "-weak-lSystem";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
@@ -308,15 +341,17 @@
 		B431EA97156B25220067E5C4 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_WARN_OBJC_IMPLICIT_ATOMIC_PROPERTIES = YES;
+				CLANG_WARN_SUSPICIOUS_IMPLICIT_CONVERSION = YES;
+				CODE_SIGN_ENTITLEMENTS = LilJukeBox/LilJukeBox.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "LilJukeBox/LilJukeBox-Prefix.pch";
+				GCC_THUMB_SUPPORT = NO;
+				GCC_WARN_PEDANTIC = YES;
 				INFOPLIST_FILE = "LilJukeBox/LilJukeBox-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 3.1;
-				OTHER_LDFLAGS = (
-					"-weak_library",
-					/usr/lib/libSystem.B.dylib,
-				);
+				OTHER_LDFLAGS = "-weak-lSystem";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
