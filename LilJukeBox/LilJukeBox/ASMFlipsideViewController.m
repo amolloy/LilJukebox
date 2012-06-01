@@ -7,9 +7,11 @@
 //
 
 #import "ASMFlipsideViewController.h"
+#import "ASMSongCollection.h"
 
 @interface ASMFlipsideViewController ()
 - (void)addSongs:(id)sender;
+- (void)done:(id)sender;
 @end
 
 @implementation ASMFlipsideViewController
@@ -41,6 +43,12 @@
                                                                                          action:@selector(addSongs:)] autorelease];
     
     self.navigationItem.rightBarButtonItem = addSongsButtonItem;
+
+    UIBarButtonItem* doneButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone
+                                                                                     target:self
+                                                                                     action:@selector(done:)] autorelease];
+    
+    self.navigationItem.leftBarButtonItem = doneButtonItem;
 }
 
 - (void)viewDidUnload
@@ -59,26 +67,35 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
-    // Return the number of sections.
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
-    // Return the number of rows in the section.
-    return 0;
+    return [[[ASMSongCollection sharedSongCollection] songs] count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
+    static NSString *CellIdentifier = @"SongCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+
+    if (nil == cell)
+    {
+        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier] autorelease];
+    }
     
-    // Configure the cell...
+    MPMediaItem* item = [[[ASMSongCollection sharedSongCollection] songs] objectAtIndex:indexPath.row];
+    
+    cell.textLabel.text = [item valueForProperty:MPMediaItemPropertyTitle];
+    cell.detailTextLabel.text = [item valueForProperty:MPMediaItemPropertyArtist];    
     
     return cell;
+}
+
+- (void)done:(id)sender
+{
+    [self.delegate flipsideViewControllerDidFinish:self];
 }
 
 - (void)addSongs:(id)sender
@@ -96,7 +113,11 @@
 
 - (void)mediaPicker: (MPMediaPickerController *)mediaPicker didPickMediaItems:(MPMediaItemCollection *)mediaItemCollection
 {
+    [self.navigationController dismissModalViewControllerAnimated:YES];
     
+    [[ASMSongCollection sharedSongCollection] setSongsWithCollection:mediaItemCollection];
+    
+    [self.tableView reloadData];
 }
 
 /*
