@@ -9,17 +9,19 @@
 #import "ASMFlipsideViewController.h"
 
 @interface ASMFlipsideViewController ()
-
+- (void)addSongs:(id)sender;
 @end
 
 @implementation ASMFlipsideViewController
 
 @synthesize delegate = _delegate;
+@synthesize mediaPickerController = _mediaPickerController;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
-    if (self) {
+    if (self)
+    {
         // Custom initialization
     }
     return self;
@@ -32,8 +34,13 @@
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    self.editing = YES;
+    
+    UIBarButtonItem* addSongsButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
+                                                                                         target:self
+                                                                                         action:@selector(addSongs:)] autorelease];
+    
+    self.navigationItem.rightBarButtonItem = addSongsButtonItem;
 }
 
 - (void)viewDidUnload
@@ -72,6 +79,24 @@
     // Configure the cell...
     
     return cell;
+}
+
+- (void)addSongs:(id)sender
+{
+    if (nil == self.mediaPickerController)
+    {
+        self.mediaPickerController = [[[MPMediaPickerController alloc] initWithMediaTypes:MPMediaTypeAnyAudio] autorelease];
+        self.mediaPickerController.allowsPickingMultipleItems = YES;
+        self.mediaPickerController.prompt = NSLocalizedString(@"Please pick up to 10 songs", @"Pick 10 Songs");
+        self.mediaPickerController.delegate = self;
+    }
+    
+    [self.navigationController presentModalViewController:self.mediaPickerController animated:YES];
+}
+
+- (void)mediaPicker: (MPMediaPickerController *)mediaPicker didPickMediaItems:(MPMediaItemCollection *)mediaItemCollection
+{
+    
 }
 
 /*
