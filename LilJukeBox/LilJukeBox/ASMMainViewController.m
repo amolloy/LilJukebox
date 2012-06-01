@@ -7,6 +7,7 @@
 //
 
 #import "ASMMainViewController.h"
+#import "UIDevice+SafeUserInterfaceIdiom.h"
 
 @interface ASMMainViewController ()
 
@@ -30,47 +31,68 @@
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
-   if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
-       return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
-   } else {
-       return YES;
-   }
+    if ([[UIDevice currentDevice] safeUserInterfaceIdiom] == UISafeUserInterfaceIdiomPhone)
+    {
+        return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
+    }
+    else
+    {
+        return YES;
+    }
 }
 
 #pragma mark - Flipside View Controller
 
 - (void)flipsideViewControllerDidFinish:(ASMFlipsideViewController *)controller
 {
-    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+    if ([[UIDevice currentDevice] safeUserInterfaceIdiom] == UISafeUserInterfaceIdiomPhone)
+    {
         [self dismissModalViewControllerAnimated:YES];
-    } else {
+    }
+    else
+    {
         [self.flipsidePopoverController dismissPopoverAnimated:YES];
     }
 }
 
 - (void)dealloc
 {
-   [_flipsidePopoverController release];
+    [_flipsidePopoverController release];
     [super dealloc];
 }
 
 - (IBAction)showInfo:(id)sender
 {
-    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+    if ([[UIDevice currentDevice] safeUserInterfaceIdiom] == UISafeUserInterfaceIdiomPhone)
+    {
         ASMFlipsideViewController *controller = [[[ASMFlipsideViewController alloc] initWithNibName:@"ASMFlipsideViewController" bundle:nil] autorelease];
         controller.delegate = self;
         controller.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
-        [self presentModalViewController:controller animated:YES];
-    } else {
-        if (!self.flipsidePopoverController) {
+        
+        UINavigationController *navController = [[[UINavigationController alloc] initWithRootViewController:controller] autorelease];
+        navController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+        
+        [self presentModalViewController:navController animated:YES];
+    }
+    else
+    {
+        if (!self.flipsidePopoverController)
+        {
             ASMFlipsideViewController *controller = [[[ASMFlipsideViewController alloc] initWithNibName:@"ASMFlipsideViewController" bundle:nil] autorelease];
             controller.delegate = self;
-            
-            self.flipsidePopoverController = [[[UIPopoverController alloc] initWithContentViewController:controller] autorelease];
+
+            UINavigationController *navController = [[[UINavigationController alloc] initWithRootViewController:controller] autorelease];
+            navController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+
+            self.flipsidePopoverController = [[[UIPopoverController alloc] initWithContentViewController:navController] autorelease];
         }
-        if ([self.flipsidePopoverController isPopoverVisible]) {
+        
+        if ([self.flipsidePopoverController isPopoverVisible])
+        {
             [self.flipsidePopoverController dismissPopoverAnimated:YES];
-        } else {
+        }
+        else
+        {
             [self.flipsidePopoverController presentPopoverFromBarButtonItem:sender permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
         }
     }
