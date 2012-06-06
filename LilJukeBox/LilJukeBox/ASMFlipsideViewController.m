@@ -14,6 +14,8 @@
 - (void)done:(id)sender;
 - (void)deleteAllSongs:(id)sender;
 
+- (void)handleSaveButton;
+
 @property (retain, nonatomic) UIActionSheet* deleteActionSheet;
 @property (retain, nonatomic) UIBarButtonItem* trashButton;
 @end
@@ -81,6 +83,13 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
+- (void)setEditing:(BOOL)editing animated:(BOOL)animated
+{
+    [super setEditing:editing animated:animated];
+    
+    [self handleSaveButton];
+}
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -94,16 +103,16 @@
     
     if (songCount > 10)
     {
-        self.navigationItem.leftBarButtonItem.enabled = NO;
         self.navigationItem.title = NSLocalizedString(@"Too many songs selected, please remove some.", @"Message when there are too many songs selected");
         self.editing = YES;
     }
     else
     {
-        self.navigationItem.leftBarButtonItem.enabled = YES;
         self.navigationItem.title = @"";
     }
-    
+
+    [self handleSaveButton];
+
     return songCount;
 }
 
@@ -203,5 +212,11 @@
     [self.tableView reloadData];
 }
 
-
+- (void)handleSaveButton
+{
+    NSInteger songCount = [[[ASMSongCollection sharedSongCollection] songs] count];
+    BOOL isEditing = self.editing;
+    
+    self.navigationItem.leftBarButtonItem.enabled = !isEditing && (songCount <= 10);
+}
 @end
