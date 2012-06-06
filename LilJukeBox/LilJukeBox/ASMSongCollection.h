@@ -16,6 +16,9 @@
 + (ASMSongCollection*)sharedSongCollection;
 
 - (void)setSongsWithCollection:(MPMediaItemCollection*)collection;
+- (void)mergeSongsWithCollection:(MPMediaItemCollection*)collection;
+- (void)removeSongAtIndex:(NSUInteger)index;
+- (void)moveSongFromIndex:(NSUInteger)srcIndex toIndex:(NSUInteger)destIndex;
 
 @property (retain, readonly, nonatomic) NSArray* songs;
 

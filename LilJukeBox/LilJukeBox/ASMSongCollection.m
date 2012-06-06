@@ -13,6 +13,8 @@ static ASMSongCollection *sSharedSongCollection = nil;
 
 @interface ASMSongCollection ()
 @property (retain, nonatomic) NSArray* songs;
+
+- (void)updateUserDefaults;
 @end
 
 @implementation ASMSongCollection
@@ -61,6 +63,21 @@ static ASMSongCollection *sSharedSongCollection = nil;
 {
     self.songs = collection.items;
     
+    [self updateUserDefaults];
+}
+
+- (void)mergeSongsWithCollection:(MPMediaItemCollection*)collection
+{
+    NSMutableSet* mergedItems = [NSMutableSet setWithArray:collection.items];
+    [mergedItems addObjectsFromArray:self.songs];
+    
+    self.songs = [mergedItems allObjects];
+
+    [self updateUserDefaults];
+}
+
+- (void)updateUserDefaults
+{
     NSMutableArray* identifiers = [NSMutableArray arrayWithCapacity:[self.songs count]];
     
     for (MPMediaItem* item in self.songs)
@@ -70,6 +87,41 @@ static ASMSongCollection *sSharedSongCollection = nil;
     
     [[NSUserDefaults standardUserDefaults] setObject:identifiers
                                               forKey:kSongIdentifiersKey];
+}
+
+- (void)removeSongAtIndex:(NSUInteger)index
+{
+    NSMutableArray* mutableSongs = [self.songs mutableCopy];
+    [mutableSongs removeObjectAtIndex:index];
+    self.songs = [[mutableSongs copy] autorelease];
+    [mutableSongs release];
+    
+    [self updateUserDefaults];
+}
+
+- (void)moveSongFromIndex:(NSUInteger)srcIndex toIndex:(NSUInteger)destIndex
+{
+    if (srcIndex != destIndex)
+    {
+        NSMutableArray* mutableSongs = [self.songs mutableCopy];
+        
+        id obj = [[mutableSongs objectAtIndex:srcIndex] retain];
+        [mutableSongs removeObjectAtIndex:srcIndex];
+        if (destIndex >= [mutableSongs count])
+        {
+            [mutableSongs addObject:obj];
+        }
+        else
+        {
+            [mutableSongs insertObject:obj atIndex:destIndex];
+        }
+        [obj release];
+        
+        self.songs = [[mutableSongs copy] autorelease];
+        [mutableSongs release];
+
+        [self updateUserDefaults];
+    }
 }
 
 #pragma mark Singleton
