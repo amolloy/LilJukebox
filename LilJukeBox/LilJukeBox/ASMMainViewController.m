@@ -62,6 +62,17 @@
                         self.songButton8,
                         self.songButton9,
                         nil];
+    
+    self.songButton0 = nil;
+    self.songButton1 = nil;
+    self.songButton2 = nil;
+    self.songButton3 = nil;
+    self.songButton4 = nil;
+    self.songButton5 = nil;
+    self.songButton6 = nil;
+    self.songButton7 = nil;
+    self.songButton8 = nil;
+    self.songButton9 = nil;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -92,9 +103,8 @@
 
 - (void)viewDidUnload
 {
-    [self setSongButton0:nil];
     [super viewDidUnload];
-    // Release any retained subviews of the main view.
+    self.songButtons = nil;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
