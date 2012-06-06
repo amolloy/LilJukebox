@@ -19,6 +19,7 @@
 - (void)mergeSongsWithCollection:(MPMediaItemCollection*)collection;
 - (void)removeSongAtIndex:(NSUInteger)index;
 - (void)moveSongFromIndex:(NSUInteger)srcIndex toIndex:(NSUInteger)destIndex;
+- (void)removeAllSongs;
 
 @property (retain, readonly, nonatomic) NSArray* songs;
 

@@ -124,6 +124,12 @@ static ASMSongCollection *sSharedSongCollection = nil;
     }
 }
 
+- (void)removeAllSongs
+{
+    self.songs = [NSArray array];
+    [self updateUserDefaults];
+}
+
 #pragma mark Singleton
 
 + (ASMSongCollection*)sharedSongCollection
