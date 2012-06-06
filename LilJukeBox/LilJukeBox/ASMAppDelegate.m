@@ -11,6 +11,8 @@
 #import "ASMMainViewController.h"
 #import "UIDevice+SafeUserInterfaceIdiom.h"
 
+#import "TestFlight.h"
+
 @implementation ASMAppDelegate
 
 @synthesize window = _window;
@@ -27,7 +29,9 @@
 {
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
 
-    
+//#ifndef DEBUG
+    [TestFlight takeOff:@"f9c26f9e4cb3abbf9be9d58ddec27442_OTc0ODEyMDEyLTA2LTA2IDE0OjU3OjI2LjMzOTU2NA"];
+//#endif
     
     // Override point for customization after application launch.
     if (UISafeUserInterfaceIdiomPhone == [[UIDevice currentDevice] safeUserInterfaceIdiom])
@@ -46,10 +50,8 @@
     else
     {
         UIView* theView = self.mainViewController.view;
-        
-        NSLog(@"%@", theView);
-        
         [self.window addSubview:theView];
+        [self.mainViewController.view setFrame:[[UIScreen mainScreen] applicationFrame]];
     }
     
     [self.window makeKeyAndVisible];
