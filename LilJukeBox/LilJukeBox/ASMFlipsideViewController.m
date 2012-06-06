@@ -36,19 +36,33 @@
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
-    self.editing = YES;
-    
-    UIBarButtonItem* addSongsButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
-                                                                                         target:self
-                                                                                         action:@selector(addSongs:)] autorelease];
-    
-    self.navigationItem.rightBarButtonItem = addSongsButtonItem;
+    self.navigationItem.rightBarButtonItem = self.editButtonItem;
 
     UIBarButtonItem* doneButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone
                                                                                      target:self
                                                                                      action:@selector(done:)] autorelease];
     
     self.navigationItem.leftBarButtonItem = doneButtonItem;
+    
+    self.navigationController.toolbarHidden = NO;
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    UIBarButtonItem* addSongsButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
+                                                                                         target:self
+                                                                                         action:@selector(addSongs:)] autorelease];
+    UIBarButtonItem* flexibleSpace1 = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
+                                                                                     target:nil
+                                                                                     action:nil] autorelease];
+    UIBarButtonItem* flexibleSpace2 = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
+                                                                                     target:nil
+                                                                                     action:nil] autorelease];
+    
+    NSArray* toolbarItems = [NSArray arrayWithObjects:flexibleSpace1, addSongsButtonItem, flexibleSpace2, nil];
+    [self setToolbarItems:toolbarItems animated:NO];
 }
 
 - (void)viewDidUnload
@@ -115,62 +129,35 @@
 {
     [self.navigationController dismissModalViewControllerAnimated:YES];
     
-    [[ASMSongCollection sharedSongCollection] setSongsWithCollection:mediaItemCollection];
+    [[ASMSongCollection sharedSongCollection] mergeSongsWithCollection:mediaItemCollection];
     
     [self.tableView reloadData];
 }
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
+    if (editingStyle == UITableViewCellEditingStyleDelete)
+    {
+        [[ASMSongCollection sharedSongCollection] removeSongAtIndex:indexPath.row];
+        
+        [tableView beginUpdates];
+        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        [tableView endUpdates];
+    }
 }
-*/
 
-/*
-// Override to support rearranging the table view.
 - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
 {
+    [[ASMSongCollection sharedSongCollection] moveSongFromIndex:fromIndexPath.row
+                                                        toIndex:toIndexPath.row];
 }
-*/
 
-/*
-// Override to support conditional rearranging of the table view.
 - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Return NO if you do not want the item to be re-orderable.
     return YES;
 }
-*/
 
 #pragma mark - Table view delegate
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     [detailViewController release];
-     */
-}
 
 @end
