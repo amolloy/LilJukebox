@@ -15,7 +15,7 @@
 - (void)flipsideViewControllerDidFinish:(ASMFlipsideViewController *)controller;
 @end
 
-@interface ASMFlipsideViewController : UITableViewController <MPMediaPickerControllerDelegate>
+@interface ASMFlipsideViewController : UITableViewController <MPMediaPickerControllerDelegate, UIActionSheetDelegate>
 
 @property (assign, nonatomic) id <ASMFlipsideViewControllerDelegate> delegate;
 @property (retain, nonatomic) MPMediaPickerController* mediaPickerController;

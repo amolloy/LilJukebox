@@ -12,12 +12,18 @@
 @interface ASMFlipsideViewController ()
 - (void)addSongs:(id)sender;
 - (void)done:(id)sender;
+- (void)deleteAllSongs:(id)sender;
+
+@property (retain, nonatomic) UIActionSheet* deleteActionSheet;
+@property (retain, nonatomic) UIBarButtonItem* trashButton;
 @end
 
 @implementation ASMFlipsideViewController
 
 @synthesize delegate = _delegate;
 @synthesize mediaPickerController = _mediaPickerController;
+@synthesize deleteActionSheet = _deleteActionSheet;
+@synthesize trashButton = _trashButton;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -38,7 +44,7 @@
  
     self.navigationItem.rightBarButtonItem = self.editButtonItem;
 
-    UIBarButtonItem* doneButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone
+    UIBarButtonItem* doneButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave
                                                                                      target:self
                                                                                      action:@selector(done:)] autorelease];
     
@@ -51,25 +57,23 @@
 {
     [super viewWillAppear:animated];
     
+    self.trashButton = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemTrash
+                                                                      target:self
+                                                                      action:@selector(deleteAllSongs:)] autorelease];
+    UIBarButtonItem* flexibleSpace = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
+                                                                                    target:nil
+                                                                                    action:nil] autorelease];
     UIBarButtonItem* addSongsButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
                                                                                          target:self
                                                                                          action:@selector(addSongs:)] autorelease];
-    UIBarButtonItem* flexibleSpace1 = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
-                                                                                     target:nil
-                                                                                     action:nil] autorelease];
-    UIBarButtonItem* flexibleSpace2 = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
-                                                                                     target:nil
-                                                                                     action:nil] autorelease];
     
-    NSArray* toolbarItems = [NSArray arrayWithObjects:flexibleSpace1, addSongsButtonItem, flexibleSpace2, nil];
+    NSArray* toolbarItems = [NSArray arrayWithObjects:self.trashButton, flexibleSpace, addSongsButtonItem, nil];
     [self setToolbarItems:toolbarItems animated:NO];
 }
 
 - (void)viewDidUnload
 {
     [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -86,7 +90,21 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [[[ASMSongCollection sharedSongCollection] songs] count];
+    NSInteger songCount = [[[ASMSongCollection sharedSongCollection] songs] count];
+    
+    if (songCount > 10)
+    {
+        self.navigationItem.leftBarButtonItem.enabled = NO;
+        self.navigationItem.title = NSLocalizedString(@"Too many songs selected, please remove some.", @"Message when there are too many songs selected");
+        self.editing = YES;
+    }
+    else
+    {
+        self.navigationItem.leftBarButtonItem.enabled = YES;
+        self.navigationItem.title = @"";
+    }
+    
+    return songCount;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -105,33 +123,6 @@
     cell.detailTextLabel.text = [item valueForProperty:MPMediaItemPropertyArtist];    
     
     return cell;
-}
-
-- (void)done:(id)sender
-{
-    [self.delegate flipsideViewControllerDidFinish:self];
-}
-
-- (void)addSongs:(id)sender
-{
-    if (nil == self.mediaPickerController)
-    {
-        self.mediaPickerController = [[[MPMediaPickerController alloc] initWithMediaTypes:MPMediaTypeAnyAudio] autorelease];
-        self.mediaPickerController.allowsPickingMultipleItems = YES;
-        self.mediaPickerController.prompt = NSLocalizedString(@"Please pick up to 10 songs", @"Pick 10 Songs");
-        self.mediaPickerController.delegate = self;
-    }
-    
-    [self.navigationController presentModalViewController:self.mediaPickerController animated:YES];
-}
-
-- (void)mediaPicker: (MPMediaPickerController *)mediaPicker didPickMediaItems:(MPMediaItemCollection *)mediaItemCollection
-{
-    [self.navigationController dismissModalViewControllerAnimated:YES];
-    
-    [[ASMSongCollection sharedSongCollection] mergeSongsWithCollection:mediaItemCollection];
-    
-    [self.tableView reloadData];
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
@@ -157,7 +148,60 @@
     return YES;
 }
 
-#pragma mark - Table view delegate
+- (void)done:(id)sender
+{
+    [self.delegate flipsideViewControllerDidFinish:self];
+}
+
+- (void)addSongs:(id)sender
+{
+    if (nil == self.mediaPickerController)
+    {
+        self.mediaPickerController = [[[MPMediaPickerController alloc] initWithMediaTypes:MPMediaTypeAnyAudio] autorelease];
+        self.mediaPickerController.allowsPickingMultipleItems = YES;
+        self.mediaPickerController.prompt = NSLocalizedString(@"Please pick up to 10 songs", @"Pick 10 Songs");
+        self.mediaPickerController.delegate = self;
+    }
+    
+    [self.navigationController presentModalViewController:self.mediaPickerController animated:YES];
+}
+
+- (void)deleteAllSongs:(id)sender
+{
+    self.deleteActionSheet = [[[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"Remove all songs, are you sure?", @"Prompt to delete all songs")
+                                                             delegate:self
+                                                    cancelButtonTitle:NSLocalizedString(@"No", @"Decline to remove all songs")
+                                               destructiveButtonTitle:NSLocalizedString(@"Yes", @"Accept to remove all songs")
+                                                    otherButtonTitles:nil] autorelease];
+
+    if ([self.deleteActionSheet respondsToSelector:@selector(showFromBarButtonItem:animated:)])
+    {
+        [self.deleteActionSheet showFromBarButtonItem:self.trashButton
+                                             animated:YES];
+    }
+    else
+    {
+        [self.deleteActionSheet showFromToolbar:self.navigationController.toolbar];
+    }
+}
+
+- (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex
+{
+    if (0 == buttonIndex)
+    {
+        [[ASMSongCollection sharedSongCollection] removeAllSongs];
+        [self.tableView reloadData];
+    }
+}
+
+- (void)mediaPicker: (MPMediaPickerController *)mediaPicker didPickMediaItems:(MPMediaItemCollection *)mediaItemCollection
+{
+    [self.navigationController dismissModalViewControllerAnimated:YES];
+    
+    [[ASMSongCollection sharedSongCollection] mergeSongsWithCollection:mediaItemCollection];
+    
+    [self.tableView reloadData];
+}
 
 
 @end
