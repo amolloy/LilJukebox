@@ -19,7 +19,7 @@ static ASMSongCollection *sSharedSongCollection = nil;
 
 @implementation ASMSongCollection
 
-@synthesize songs = mSongs;
+@synthesize songs = _songs;
 
 - (id)init
 {
@@ -57,6 +57,12 @@ static ASMSongCollection *sSharedSongCollection = nil;
     }
     
     return self;
+}
+
+- (void)dealloc
+{
+    self.songs = nil;
+    [super dealloc];
 }
 
 - (void)setSongsWithCollection:(MPMediaItemCollection*)collection
@@ -128,6 +134,11 @@ static ASMSongCollection *sSharedSongCollection = nil;
 {
     self.songs = [NSArray array];
     [self updateUserDefaults];
+}
+
+- (NSInteger)songCount
+{
+    return [self.songs count];
 }
 
 #pragma mark Singleton

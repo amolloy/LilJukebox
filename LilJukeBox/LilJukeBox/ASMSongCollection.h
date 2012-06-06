@@ -9,9 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <MediaPlayer/MediaPlayer.h>
 
-@interface ASMSongCollection : NSObject {
-    NSArray* mSongs;
-}
+@interface ASMSongCollection : NSObject
 
 + (ASMSongCollection*)sharedSongCollection;
 
@@ -20,6 +18,7 @@
 - (void)removeSongAtIndex:(NSUInteger)index;
 - (void)moveSongFromIndex:(NSUInteger)srcIndex toIndex:(NSUInteger)destIndex;
 - (void)removeAllSongs;
+- (NSInteger)songCount;
 
 @property (retain, readonly, nonatomic) NSArray* songs;
 
