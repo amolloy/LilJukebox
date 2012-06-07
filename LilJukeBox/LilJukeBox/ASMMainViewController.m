@@ -11,7 +11,11 @@
 #import "ASMSongCollection.h"
 #import <MediaPlayer/MediaPlayer.h>
 
+NSString* kHideConfigUserDefaultsKey = @"HideConfig";
+
 @interface ASMMainViewController ()
+
+@property (retain, nonatomic) IBOutlet UIButton *flipViewButton;
 
 @property (retain, nonatomic) IBOutlet UIButton *songButton0;
 @property (retain, nonatomic) IBOutlet UIButton *songButton1;
@@ -31,6 +35,8 @@
 @end
 
 @implementation ASMMainViewController
+
+@synthesize flipViewButton = _flipViewButton;
 
 @synthesize songButton0 = _songButton0;
 @synthesize songButton1 = _songButton1;
@@ -99,6 +105,8 @@
         [button setTitle:title
                 forState:UIControlStateNormal];
     }
+    
+    self.flipViewButton.hidden = [[NSUserDefaults standardUserDefaults] boolForKey:kHideConfigUserDefaultsKey];
 }
 
 - (void)viewDidUnload
