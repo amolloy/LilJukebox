@@ -8,17 +8,28 @@
 
 #import "ASMFlipsideViewController.h"
 #import "ASMSongCollection.h"
+#import "ASMMainViewController.h"
+
+enum 
+{
+   kSongsSection,
+   kConfigurationSection,
+   
+   kNumSections
+};
 
 @interface ASMFlipsideViewController ()
 - (void)addSongs:(id)sender;
 - (void)done:(id)sender;
 - (void)deleteAllSongs:(id)sender;
+- (void)configSwitchChanged:(UISwitch*)sender;
 
 - (void)setupButtonStates;
 
 @property (retain, nonatomic) UIActionSheet* deleteActionSheet;
 @property (retain, nonatomic) UIBarButtonItem* trashButton;
 @property (retain, nonatomic) UIBarButtonItem* addButton;
+@property (retain, nonatomic) UISwitch* hideConfigSwitch;
 
 @end
 
@@ -29,6 +40,7 @@
 @synthesize deleteActionSheet = _deleteActionSheet;
 @synthesize trashButton = _trashButton;
 @synthesize addButton = _addButton;
+@synthesize hideConfigSwitch = _hideConfigSwitch;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -44,9 +56,6 @@
 {
     [super viewDidLoad];
 
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
     self.navigationItem.rightBarButtonItem = self.editButtonItem;
 
     UIBarButtonItem* doneButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave
@@ -86,6 +95,7 @@
     self.addButton = nil;
     self.mediaPickerController = nil;
     self.deleteActionSheet = nil;
+    self.hideConfigSwitch = nil;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -104,42 +114,117 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 1;
+    return kNumSections;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    NSInteger songCount = [[ASMSongCollection sharedSongCollection] songCount];
+    NSInteger numRows = 0;
     
-    if (songCount > 10)
+    switch (section) 
     {
-        self.navigationItem.title = NSLocalizedString(@"Too many songs selected, please remove some.", @"Message when there are too many songs selected");
-        self.editing = YES;
-    }
-    else
-    {
-        self.navigationItem.title = @"";
-    }
+        case kSongsSection:
+        {
+            NSInteger songCount = [[ASMSongCollection sharedSongCollection] songCount];
+            
+            if (songCount > 10)
+            {
+                self.navigationItem.title = NSLocalizedString(@"Too many songs selected, please remove some.", @"Message when there are too many songs selected");
+                self.editing = YES;
+            }
+            else
+            {
+                self.navigationItem.title = @"";
+            }
+            
+            [self setupButtonStates];
 
-    [self setupButtonStates];
+		    numRows = songCount;
+            
+		    break;
+        }
+            
+        case kConfigurationSection:
+        {
+            numRows = 2;
+            
+            break;
+        }
+            
+        default:
+        {
+		    break;
+        }
+    }
+   
 
-    return songCount;
+    return numRows;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"SongCell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-
-    if (nil == cell)
+    UITableViewCell* cell = nil;
+    
+    switch (indexPath.section)
     {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier] autorelease];
+        case kSongsSection:
+        {
+            static NSString *SongCellIdentifier = @"SongCell";
+            cell = [tableView dequeueReusableCellWithIdentifier:SongCellIdentifier];
+            
+            if (nil == cell)
+            {
+                cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:SongCellIdentifier] autorelease];
+            }
+            
+            MPMediaItem* item = [[[ASMSongCollection sharedSongCollection] songs] objectAtIndex:indexPath.row];
+            
+            cell.textLabel.text = [item valueForProperty:MPMediaItemPropertyTitle];
+            cell.detailTextLabel.text = [item valueForProperty:MPMediaItemPropertyArtist];
+            
+            break;
+        }
+            
+        case kConfigurationSection:
+        {
+            if (0 == indexPath.row)
+            {
+                static NSString *ConfigCellIdentifier = @"ConfigCell";
+                cell = [tableView dequeueReusableCellWithIdentifier:ConfigCellIdentifier];
+                
+                if (nil == cell)
+                {
+                    cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:ConfigCellIdentifier] autorelease];
+                }
+                
+                if (nil == self.hideConfigSwitch)
+                {
+                    self.hideConfigSwitch = [[UISwitch alloc] initWithFrame:CGRectZero];
+                    [self.hideConfigSwitch addTarget:self
+                                              action:@selector(configSwitchChanged:)
+                                    forControlEvents:UIControlEventValueChanged];
+                }
+                
+                self.hideConfigSwitch.on = [[NSUserDefaults standardUserDefaults] boolForKey:kHideConfigUserDefaultsKey];
+                
+                cell.accessoryView = self.hideConfigSwitch;
+                cell.textLabel.text = NSLocalizedString(@"Hide Configuration Button", @"Hide Configuration Button");
+            }
+            else if (1 == indexPath.row)
+            {
+                static NSString *ConfigDescCellIdentifier = @"ConfigDescCell";
+                cell = [tableView dequeueReusableCellWithIdentifier:ConfigDescCellIdentifier];
+                
+                if (nil == cell)
+                {
+                    cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:ConfigDescCellIdentifier] autorelease];
+                }
+                
+                cell.textLabel.text = NSLocalizedString(@"To re-enable the configuration button, visit the Settings app.", @"How to re-enable the config button");
+            }
+            break;
+        }
     }
-    
-    MPMediaItem* item = [[[ASMSongCollection sharedSongCollection] songs] objectAtIndex:indexPath.row];
-    
-    cell.textLabel.text = [item valueForProperty:MPMediaItemPropertyTitle];
-    cell.detailTextLabel.text = [item valueForProperty:MPMediaItemPropertyArtist];    
     
     return cell;
 }
@@ -164,7 +249,26 @@
 
 - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return YES;
+    BOOL canMove = NO;
+    
+    if (kSongsSection == indexPath.section)
+    {
+        canMove = YES;
+    }
+    
+    return canMove;
+}
+
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    BOOL canEdit = NO;
+    
+    if (kSongsSection == indexPath.section)
+    {
+        canEdit = YES;
+    }
+    
+    return canEdit;
 }
 
 - (void)done:(id)sender
@@ -253,4 +357,12 @@
     self.addButton.enabled = (songCount < 10);
     self.trashButton.enabled = (songCount > 0);
 }
+
+- (void)configSwitchChanged:(UISwitch*)sender
+{
+    [[NSUserDefaults standardUserDefaults] setBool:self.hideConfigSwitch.on
+                                            forKey:kHideConfigUserDefaultsKey];
+}
+
+
 @end
