@@ -8,7 +8,7 @@
 
 #import "ASMSongCollection.h"
 
-static NSString* kSongIdentifiersKey = @"kSongIdentifiersKey";
+static NSString* kSongIdentifiersKey = @"SongIdentifiers";
 static ASMSongCollection *sSharedSongCollection = nil;
 
 @interface ASMSongCollection ()
