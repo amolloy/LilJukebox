@@ -27,11 +27,15 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    NSMutableDictionary* appDefaults = [[NSMutableDictionary alloc] init];
+    [appDefaults setObject:[NSNumber numberWithBool:NO] forKey:kHideConfigUserDefaultsKey];
+    [[NSUserDefaults standardUserDefaults] registerDefaults:appDefaults];
+    
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
 
-//#ifndef DEBUG
+#ifndef DEBUG
     [TestFlight takeOff:@"f9c26f9e4cb3abbf9be9d58ddec27442_OTc0ODEyMDEyLTA2LTA2IDE0OjU3OjI2LjMzOTU2NA"];
-//#endif
+#endif
     
     // Override point for customization after application launch.
     if (UISafeUserInterfaceIdiomPhone == [[UIDevice currentDevice] safeUserInterfaceIdiom])
