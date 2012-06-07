@@ -199,7 +199,7 @@ enum
                 
                 if (nil == self.hideConfigSwitch)
                 {
-                    self.hideConfigSwitch = [[UISwitch alloc] initWithFrame:CGRectZero];
+                    self.hideConfigSwitch = [[[UISwitch alloc] initWithFrame:CGRectZero] autorelease];
                     [self.hideConfigSwitch addTarget:self
                                               action:@selector(configSwitchChanged:)
                                     forControlEvents:UIControlEventValueChanged];

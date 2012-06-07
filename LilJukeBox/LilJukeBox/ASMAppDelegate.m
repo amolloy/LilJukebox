@@ -27,7 +27,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    NSMutableDictionary* appDefaults = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary* appDefaults = [NSMutableDictionary dictionaryWithCapacity:1];
     [appDefaults setObject:[NSNumber numberWithBool:NO] forKey:kHideConfigUserDefaultsKey];
     [[NSUserDefaults standardUserDefaults] registerDefaults:appDefaults];
     
