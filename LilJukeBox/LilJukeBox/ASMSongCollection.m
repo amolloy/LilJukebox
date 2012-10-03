@@ -21,6 +21,37 @@ static ASMSongCollection *sSharedSongCollection = nil;
 
 @synthesize songs = _songs;
 
++ (NSUInteger)maxSongs
+{
+	return 5;
+}
+
++ (UIColor*)colorForSongIndex:(NSUInteger)i
+{
+	UIColor* c = nil;
+	
+	switch (i)
+	{
+		case 0:
+			c = [UIColor redColor];
+			break;
+		case 1:
+			c = [UIColor blueColor];
+			break;
+		case 2:
+			c = [UIColor greenColor];
+			break;
+		case 3:
+			c = [UIColor yellowColor];
+			break;
+		case 4:
+			c = [UIColor purpleColor];
+			break;
+	}
+	
+	return c;
+}
+
 - (id)init
 {
     self = [super init];
