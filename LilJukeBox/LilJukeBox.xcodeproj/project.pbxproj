@@ -18,6 +18,9 @@
 		B431EA86156B25220067E5C4 /* ASMMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B431EA85156B25220067E5C4 /* ASMMainViewController.m */; };
 		B431EA8C156B25220067E5C4 /* ASMMainViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = B431EA8A156B25220067E5C4 /* ASMMainViewController_iPhone.xib */; };
 		B438934E156B2B3E001D6B6D /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B438934D156B2B3E001D6B6D /* MediaPlayer.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		B4430844161CEA1D000DB146 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = B4430843161CEA1D000DB146 /* Default.png */; };
+		B4430846161CEA25000DB146 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B4430845161CEA25000DB146 /* Default@2x.png */; };
+		B4430848161CEA27000DB146 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B4430847161CEA27000DB146 /* Default-568h@2x.png */; };
 		B47C08BB1578524C0099A7E8 /* ASMSongCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = B47C08BA1578524C0099A7E8 /* ASMSongCollection.m */; };
 		B47C08BF1578F9190099A7E8 /* UIDevice+SafeUserInterfaceIdiom.m in Sources */ = {isa = PBXBuildFile; fileRef = B47C08BE1578F9190099A7E8 /* UIDevice+SafeUserInterfaceIdiom.m */; };
 		B4C3DACA158047AC000CE38A /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B4C3DAC9158047AC000CE38A /* Settings.bundle */; };
@@ -43,6 +46,9 @@
 		B431EA8B156B25220067E5C4 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ASMMainViewController_iPhone.xib; sourceTree = "<group>"; };
 		B431EA8E156B25220067E5C4 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ASMMainViewController_iPad.xib; sourceTree = "<group>"; };
 		B438934D156B2B3E001D6B6D /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		B4430843161CEA1D000DB146 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = ../Default.png; sourceTree = "<group>"; };
+		B4430845161CEA25000DB146 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "../Default@2x.png"; sourceTree = "<group>"; };
+		B4430847161CEA27000DB146 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "../Default-568h@2x.png"; sourceTree = "<group>"; };
 		B47C08B91578524C0099A7E8 /* ASMSongCollection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASMSongCollection.h; sourceTree = "<group>"; };
 		B47C08BA1578524C0099A7E8 /* ASMSongCollection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASMSongCollection.m; sourceTree = "<group>"; };
 		B47C08BD1578F9190099A7E8 /* UIDevice+SafeUserInterfaceIdiom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIDevice+SafeUserInterfaceIdiom.h"; sourceTree = "<group>"; };
@@ -134,6 +140,9 @@
 		B431EA79156B25220067E5C4 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				B4430847161CEA27000DB146 /* Default-568h@2x.png */,
+				B4430845161CEA25000DB146 /* Default@2x.png */,
+				B4430843161CEA1D000DB146 /* Default.png */,
 				B431EA7A156B25220067E5C4 /* LilJukeBox-Info.plist */,
 				B431EA7B156B25220067E5C4 /* InfoPlist.strings */,
 				B431EA7E156B25220067E5C4 /* main.m */,
@@ -198,6 +207,9 @@
 				B431EA8C156B25220067E5C4 /* ASMMainViewController_iPhone.xib in Resources */,
 				B4DB097B156FBFCB0002FB99 /* ASMFlipsideViewController.xib in Resources */,
 				B4C3DACA158047AC000CE38A /* Settings.bundle in Resources */,
+				B4430844161CEA1D000DB146 /* Default.png in Resources */,
+				B4430846161CEA25000DB146 /* Default@2x.png in Resources */,
+				B4430848161CEA27000DB146 /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
