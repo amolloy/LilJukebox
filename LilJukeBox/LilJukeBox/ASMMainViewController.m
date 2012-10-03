@@ -10,25 +10,16 @@
 #import "UIDevice+SafeUserInterfaceIdiom.h"
 #import "ASMSongCollection.h"
 #import <MediaPlayer/MediaPlayer.h>
+#import <QuartzCore/QuartzCore.h>
 
 NSString* kHideConfigUserDefaultsKey = @"HideConfig";
 
 @interface ASMMainViewController ()
 
 @property (retain, nonatomic) IBOutlet UIButton *flipViewButton;
-
-@property (retain, nonatomic) IBOutlet UIButton *songButton0;
-@property (retain, nonatomic) IBOutlet UIButton *songButton1;
-@property (retain, nonatomic) IBOutlet UIButton *songButton2;
-@property (retain, nonatomic) IBOutlet UIButton *songButton3;
-@property (retain, nonatomic) IBOutlet UIButton *songButton4;
-@property (retain, nonatomic) IBOutlet UIButton *songButton5;
-@property (retain, nonatomic) IBOutlet UIButton *songButton6;
-@property (retain, nonatomic) IBOutlet UIButton *songButton7;
-@property (retain, nonatomic) IBOutlet UIButton *songButton8;
-@property (retain, nonatomic) IBOutlet UIButton *songButton9;
-
 @property (retain, nonatomic) NSArray* songButtons;
+@property (retain, nonatomic) IBOutlet UIView *containerView;
+@property (retain, nonatomic) IBOutlet UIView *infoContainerView;
 
 - (IBAction)songButtonPressed:(UIButton *)sender;
 
@@ -38,47 +29,32 @@ NSString* kHideConfigUserDefaultsKey = @"HideConfig";
 
 @synthesize flipViewButton = _flipViewButton;
 
-@synthesize songButton0 = _songButton0;
-@synthesize songButton1 = _songButton1;
-@synthesize songButton2 = _songButton2;
-@synthesize songButton3 = _songButton3;
-@synthesize songButton4 = _songButton4;
-@synthesize songButton5 = _songButton5;
-@synthesize songButton6 = _songButton6;
-@synthesize songButton7 = _songButton7;
-@synthesize songButton8 = _songButton8;
-@synthesize songButton9 = _songButton9;
-@synthesize songButtons = _songButtons;
-
 @synthesize flipsidePopoverController = _flipsidePopoverController;
 
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
-
-    self.songButtons = [NSArray arrayWithObjects:
-                        self.songButton0,
-                        self.songButton1,
-                        self.songButton2,
-                        self.songButton3,
-                        self.songButton4,
-                        self.songButton5,
-                        self.songButton6,
-                        self.songButton7,
-                        self.songButton8,
-                        self.songButton9,
-                        nil];
-    
-    self.songButton0 = nil;
-    self.songButton1 = nil;
-    self.songButton2 = nil;
-    self.songButton3 = nil;
-    self.songButton4 = nil;
-    self.songButton5 = nil;
-    self.songButton6 = nil;
-    self.songButton7 = nil;
-    self.songButton8 = nil;
-    self.songButton9 = nil;
+	[super viewDidLoad];
+	
+	NSMutableArray* buttons = [NSMutableArray arrayWithCapacity:[ASMSongCollection maxSongs]];
+	
+	for (NSUInteger i = 0; i < [ASMSongCollection maxSongs]; ++i)
+	{
+		UIView* songButton = [self.view viewWithTag:i + 1]; // Start tags at 1
+		[buttons addObject:songButton];
+		
+		songButton.backgroundColor = [ASMSongCollection colorForSongIndex:i];
+		songButton.layer.cornerRadius = songButton.frame.size.width / 2;
+	}
+	
+	self.songButtons = [buttons copy];
+	
+	self.containerView.layer.cornerRadius = 10;
+	self.containerView.layer.borderColor = [UIColor darkGrayColor].CGColor;
+	self.containerView.layer.borderWidth = 5;
+	
+	self.infoContainerView.layer.cornerRadius = 10;
+	self.infoContainerView.layer.borderColor = [UIColor darkGrayColor].CGColor;
+	self.infoContainerView.layer.borderWidth = 5;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -86,24 +62,22 @@ NSString* kHideConfigUserDefaultsKey = @"HideConfig";
     NSArray* songs = [[ASMSongCollection sharedSongCollection] songs];
     NSUInteger songCount = [songs count];
     
-    for (NSUInteger i = 0; i < 10; ++i)
+    for (NSUInteger i = 0; i < [ASMSongCollection maxSongs]; ++i)
     {
         UIButton* button = [self.songButtons objectAtIndex:i];
 
         BOOL songAvailable = (i < songCount);
         
         button.enabled = songAvailable;
-        
-        NSString* title = @"";
-        
-        if (songAvailable)
-        {
-            MPMediaItem* item = [songs objectAtIndex:i];
-            title = [item valueForProperty:MPMediaItemPropertyTitle];
-        }
-
-        [button setTitle:title
-                forState:UIControlStateNormal];
+		
+		if (songAvailable)
+		{
+			button.backgroundColor = [ASMSongCollection colorForSongIndex:i];
+		}
+		else
+		{
+			button.backgroundColor = [UIColor darkGrayColor];
+		}
     }
     
     self.flipViewButton.hidden = [[NSUserDefaults standardUserDefaults] boolForKey:kHideConfigUserDefaultsKey];
@@ -111,20 +85,20 @@ NSString* kHideConfigUserDefaultsKey = @"HideConfig";
 
 - (void)viewDidUnload
 {
+	[self setContainerView:nil];
+	[self setInfoContainerView:nil];
     [super viewDidUnload];
     self.songButtons = nil;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
-    if ([[UIDevice currentDevice] safeUserInterfaceIdiom] == UISafeUserInterfaceIdiomPhone)
-    {
-        return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
-    }
-    else
-    {
-        return YES;
-    }
+	return UIInterfaceOrientationIsLandscape(interfaceOrientation);
+}
+
+- (BOOL)shouldAutorotate
+{
+	return NO;
 }
 
 #pragma mark - Flipside View Controller
@@ -143,8 +117,10 @@ NSString* kHideConfigUserDefaultsKey = @"HideConfig";
 
 - (void)dealloc
 {
-    [_flipsidePopoverController release];
-    [_songButton0 release];
+    [self.flipsidePopoverController release];
+    [self.songButtons release];
+	[_containerView release];
+	[_infoContainerView release];
     [super dealloc];
 }
 
@@ -188,9 +164,17 @@ NSString* kHideConfigUserDefaultsKey = @"HideConfig";
 - (IBAction)songButtonPressed:(UIButton *)sender
 {
     NSUInteger tag = sender.tag;
-    NSArray* songs = [[ASMSongCollection sharedSongCollection] songs];
-    
-    MPMediaItem* item = [songs objectAtIndex:tag];
+    NSUInteger songIndex = tag - 1;
+	
+	NSArray* songs = [[ASMSongCollection sharedSongCollection] songs];
+	
+	if (tag > [songs count])
+	{
+		NSLog(@"Selected invalid button, shouldn't be possible");
+		return;
+	}
+
+    MPMediaItem* item = [songs objectAtIndex:songIndex];
     
     [self dismissModalViewControllerAnimated: YES];
 
