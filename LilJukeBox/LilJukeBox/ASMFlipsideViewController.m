@@ -127,7 +127,7 @@ enum
         {
             NSUInteger songCount = [[ASMSongCollection sharedSongCollection] songCount];
             
-            if (songCount > [ASMSongCollection maxSongs])
+            if (songCount > 10000) // TODO
             {
                 self.navigationItem.title = NSLocalizedString(@"Too many songs selected, please remove some.", @"Message when there are too many songs selected");
                 self.editing = YES;
@@ -283,8 +283,8 @@ enum
         self.mediaPickerController = [[[MPMediaPickerController alloc] initWithMediaTypes:MPMediaTypeAnyAudio] autorelease];
         self.mediaPickerController.allowsPickingMultipleItems = YES;
         
-        NSInteger songCount = [[ASMSongCollection sharedSongCollection] songCount];
-        NSInteger songsRemaining = [ASMSongCollection maxSongs] - songCount;
+//        NSInteger songCount = [[ASMSongCollection sharedSongCollection] songCount];
+        NSInteger songsRemaining = 10000;// TODO [ASMSongCollection maxSongs] - songCount;
         if (songsRemaining < 0)
         {
             songsRemaining = 0;
@@ -351,11 +351,14 @@ enum
 - (void)setupButtonStates
 {
     NSInteger songCount = [[ASMSongCollection sharedSongCollection] songCount];
-    BOOL isEditing = self.editing;
-    
+	// TODO
+	/*
+	 BOOL isEditing = self.editing;
+	 
     self.navigationItem.leftBarButtonItem.enabled = !isEditing && (songCount <= [ASMSongCollection maxSongs]);
     self.addButton.enabled = (songCount < [ASMSongCollection maxSongs]);
-    self.trashButton.enabled = (songCount > 0);
+	 */
+	 self.trashButton.enabled = (songCount > 0);
 }
 
 - (void)configSwitchChanged:(UISwitch*)sender
