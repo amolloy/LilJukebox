@@ -12,8 +12,8 @@
 @interface ASMSongCollection : NSObject
 
 + (ASMSongCollection*)sharedSongCollection;
-+ (NSUInteger)maxSongs;
 + (UIColor*)colorForSongIndex:(NSUInteger)i;
++ (UIColor*)hightlightColorForSongIndex:(NSUInteger)i;
 
 - (void)setSongsWithCollection:(MPMediaItemCollection*)collection;
 - (void)mergeSongsWithCollection:(MPMediaItemCollection*)collection;

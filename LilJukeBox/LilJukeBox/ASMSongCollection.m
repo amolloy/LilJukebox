@@ -11,6 +11,28 @@
 static NSString* kSongIdentifiersKey = @"SongIdentifiers";
 static ASMSongCollection *sSharedSongCollection = nil;
 
+@interface UIColor (Crayons)
++(id)crayonColorWithRedGreenBlue:(NSInteger)c;
+@end
+
+@implementation UIColor (Crayons)
++(id)crayonColorWithRedGreenBlue:(NSInteger)c
+{
+	unsigned char rgb[3];
+	for(NSInteger i = 0; i < 3; ++i)
+	{
+		rgb[2-i] = c & 0xFF;
+		c >>= 8;
+	}
+	
+	return [UIColor colorWithRed:rgb[0] / (float)0xFF
+						   green:rgb[1] / (float)0xFF
+							blue:rgb[2] / (float)0xFF
+						   alpha:1];
+}
+@end
+
+
 @interface ASMSongCollection ()
 @property (retain, nonatomic) NSArray* songs;
 
@@ -21,35 +43,38 @@ static ASMSongCollection *sSharedSongCollection = nil;
 
 @synthesize songs = _songs;
 
-+ (NSUInteger)maxSongs
-{
-	return 5;
-}
-
 + (UIColor*)colorForSongIndex:(NSUInteger)i
 {
-	UIColor* c = nil;
-	
-	switch (i)
+	static NSArray* sSongColors = nil;
+	if (nil == sSongColors)
 	{
-		case 0:
-			c = [UIColor redColor];
-			break;
-		case 1:
-			c = [UIColor blueColor];
-			break;
-		case 2:
-			c = [UIColor greenColor];
-			break;
-		case 3:
-			c = [UIColor yellowColor];
-			break;
-		case 4:
-			c = [UIColor purpleColor];
-			break;
+		sSongColors = [@[
+					   [UIColor crayonColorWithRedGreenBlue:0xECEABE],
+					   [UIColor crayonColorWithRedGreenBlue:0xCDC5C2],
+					   [UIColor crayonColorWithRedGreenBlue:0xB0B7C6],
+					   [UIColor crayonColorWithRedGreenBlue:0xFF9BAA],
+					   [UIColor crayonColorWithRedGreenBlue:0xC5E384],
+					   [UIColor crayonColorWithRedGreenBlue:0x77DDE7],
+					   [UIColor crayonColorWithRedGreenBlue:0x1CAC78],
+					   [UIColor crayonColorWithRedGreenBlue:0xFF43A4],
+					   [UIColor crayonColorWithRedGreenBlue:0x80DAEB],
+					   [UIColor crayonColorWithRedGreenBlue:0xFFB653],
+					   [UIColor crayonColorWithRedGreenBlue:0x9D81BA],
+					   [UIColor crayonColorWithRedGreenBlue:0xE7C697],
+					   ] retain];
 	}
 	
-	return c;
+	return [sSongColors objectAtIndex:i];
+}
+
++ (UIColor*)hightlightColorForSongIndex:(NSUInteger)i
+{
+	UIColor* baseColor = [self colorForSongIndex:i];
+	const CGFloat* components = CGColorGetComponents(baseColor.CGColor);
+	return [UIColor colorWithRed:components[0] * 0.90f
+						   green:components[1] * 0.90f
+							blue:components[2] * 0.90f
+						   alpha:components[3] * 0.90f];
 }
 
 - (id)init
