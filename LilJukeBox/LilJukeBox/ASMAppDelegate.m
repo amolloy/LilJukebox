@@ -11,8 +11,6 @@
 #import "ASMMainViewController.h"
 #import "UIDevice+SafeUserInterfaceIdiom.h"
 
-#import "TestFlight.h"
-
 @implementation ASMAppDelegate
 
 @synthesize window = _window;
@@ -33,10 +31,6 @@
     
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
 
-#ifndef DEBUG
-    [TestFlight takeOff:@"f9c26f9e4cb3abbf9be9d58ddec27442_OTc0ODEyMDEyLTA2LTA2IDE0OjU3OjI2LjMzOTU2NA"];
-#endif
-    
 #if 1
 	self.mainViewController = [[[ASMMainViewController alloc] initWithNibName:@"ASMMainViewController_iPhone" bundle:nil] autorelease];
 #else
