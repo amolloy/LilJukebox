@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		B41B336B157FDF6000168F54 /* libSystem.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B41B336A157FDF6000168F54 /* libSystem.dylib */; settings = {ATTRIBUTES = (Weak, ); }; };
-		B41B3371157FDF8300168F54 /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B41B336D157FDF7400168F54 /* libTestFlight.a */; };
 		B41B3373157FE11200168F54 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B41B3372157FE11200168F54 /* libz.dylib */; };
 		B431EA73156B25220067E5C4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B431EA72156B25220067E5C4 /* UIKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		B431EA75156B25220067E5C4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B431EA74156B25220067E5C4 /* Foundation.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
@@ -18,7 +17,6 @@
 		B431EA83156B25220067E5C4 /* ASMAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B431EA82156B25220067E5C4 /* ASMAppDelegate.m */; };
 		B431EA86156B25220067E5C4 /* ASMMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B431EA85156B25220067E5C4 /* ASMMainViewController.m */; };
 		B431EA8C156B25220067E5C4 /* ASMMainViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = B431EA8A156B25220067E5C4 /* ASMMainViewController_iPhone.xib */; };
-		B431EA8F156B25220067E5C4 /* ASMMainViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = B431EA8D156B25220067E5C4 /* ASMMainViewController_iPad.xib */; };
 		B438934E156B2B3E001D6B6D /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B438934D156B2B3E001D6B6D /* MediaPlayer.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		B47C08BB1578524C0099A7E8 /* ASMSongCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = B47C08BA1578524C0099A7E8 /* ASMSongCollection.m */; };
 		B47C08BF1578F9190099A7E8 /* UIDevice+SafeUserInterfaceIdiom.m in Sources */ = {isa = PBXBuildFile; fileRef = B47C08BE1578F9190099A7E8 /* UIDevice+SafeUserInterfaceIdiom.m */; };
@@ -29,10 +27,6 @@
 
 /* Begin PBXFileReference section */
 		B41B336A157FDF6000168F54 /* libSystem.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libSystem.dylib; path = usr/lib/libSystem.dylib; sourceTree = SDKROOT; };
-		B41B336D157FDF7400168F54 /* libTestFlight.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libTestFlight.a; sourceTree = "<group>"; };
-		B41B336E157FDF7400168F54 /* README.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
-		B41B336F157FDF7400168F54 /* release_notes.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = release_notes.txt; sourceTree = "<group>"; };
-		B41B3370157FDF7400168F54 /* TestFlight.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestFlight.h; sourceTree = "<group>"; };
 		B41B3372157FE11200168F54 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		B431EA6E156B25220067E5C4 /* liljukebox.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = liljukebox.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B431EA72156B25220067E5C4 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -66,7 +60,6 @@
 			files = (
 				B41B3373157FE11200168F54 /* libz.dylib in Frameworks */,
 				B41B336B157FDF6000168F54 /* libSystem.dylib in Frameworks */,
-				B41B3371157FDF8300168F54 /* libTestFlight.a in Frameworks */,
 				B438934E156B2B3E001D6B6D /* MediaPlayer.framework in Frameworks */,
 				B431EA73156B25220067E5C4 /* UIKit.framework in Frameworks */,
 				B431EA75156B25220067E5C4 /* Foundation.framework in Frameworks */,
@@ -80,22 +73,9 @@
 		B41B3368157FDF1000168F54 /* Third Party */ = {
 			isa = PBXGroup;
 			children = (
-				B41B336C157FDF7400168F54 /* TestFlight */,
 			);
 			name = "Third Party";
 			path = LilJukeBox;
-			sourceTree = "<group>";
-		};
-		B41B336C157FDF7400168F54 /* TestFlight */ = {
-			isa = PBXGroup;
-			children = (
-				B41B336D157FDF7400168F54 /* libTestFlight.a */,
-				B41B336E157FDF7400168F54 /* README.txt */,
-				B41B336F157FDF7400168F54 /* release_notes.txt */,
-				B41B3370157FDF7400168F54 /* TestFlight.h */,
-			);
-			name = TestFlight;
-			path = ../../../ThirdParty/TestFlight;
 			sourceTree = "<group>";
 		};
 		B431EA63156B25220067E5C4 = {
@@ -140,9 +120,9 @@
 				B431EA84156B25220067E5C4 /* ASMMainViewController.h */,
 				B431EA85156B25220067E5C4 /* ASMMainViewController.m */,
 				B431EA8D156B25220067E5C4 /* ASMMainViewController_iPad.xib */,
-				B431EA8A156B25220067E5C4 /* ASMMainViewController_iPhone.xib */,
 				B47C08B91578524C0099A7E8 /* ASMSongCollection.h */,
 				B47C08BA1578524C0099A7E8 /* ASMSongCollection.m */,
+				B431EA8A156B25220067E5C4 /* ASMMainViewController_iPhone.xib */,
 				B431EA79156B25220067E5C4 /* Supporting Files */,
 				B47C08BD1578F9190099A7E8 /* UIDevice+SafeUserInterfaceIdiom.h */,
 				B47C08BE1578F9190099A7E8 /* UIDevice+SafeUserInterfaceIdiom.m */,
@@ -216,7 +196,6 @@
 			files = (
 				B431EA7D156B25220067E5C4 /* InfoPlist.strings in Resources */,
 				B431EA8C156B25220067E5C4 /* ASMMainViewController_iPhone.xib in Resources */,
-				B431EA8F156B25220067E5C4 /* ASMMainViewController_iPad.xib in Resources */,
 				B4DB097B156FBFCB0002FB99 /* ASMFlipsideViewController.xib in Resources */,
 				B4C3DACA158047AC000CE38A /* Settings.bundle in Resources */,
 			);
@@ -280,10 +259,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = (
-					armv6,
-					"$(ARCHS_STANDARD_32_BIT)",
-				);
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -322,10 +297,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = (
-					armv6,
-					"$(ARCHS_STANDARD_32_BIT)",
-				);
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -367,7 +338,7 @@
 				GCC_THUMB_SUPPORT = NO;
 				GCC_WARN_PEDANTIC = YES;
 				INFOPLIST_FILE = "LilJukeBox/LilJukeBox-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 3.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../../ThirdParty/TestFlight\"",
@@ -375,6 +346,7 @@
 				OTHER_LDFLAGS = "-weak-lSystem";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -390,7 +362,7 @@
 				GCC_THUMB_SUPPORT = NO;
 				GCC_WARN_PEDANTIC = YES;
 				INFOPLIST_FILE = "LilJukeBox/LilJukeBox-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 3.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../../ThirdParty/TestFlight\"",
@@ -398,6 +370,7 @@
 				OTHER_LDFLAGS = "-weak-lSystem";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -406,10 +379,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = (
-					armv6,
-					"$(ARCHS_STANDARD_32_BIT)",
-				);
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -452,7 +421,7 @@
 				GCC_THUMB_SUPPORT = NO;
 				GCC_WARN_PEDANTIC = YES;
 				INFOPLIST_FILE = "LilJukeBox/LilJukeBox-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 3.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../../ThirdParty/TestFlight\"",
@@ -461,6 +430,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "42C2076A-BA40-4D4E-BF9C-114AF31925F3";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = "Ad Hoc";

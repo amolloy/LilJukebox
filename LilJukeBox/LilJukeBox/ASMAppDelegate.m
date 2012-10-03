@@ -37,6 +37,9 @@
     [TestFlight takeOff:@"f9c26f9e4cb3abbf9be9d58ddec27442_OTc0ODEyMDEyLTA2LTA2IDE0OjU3OjI2LjMzOTU2NA"];
 #endif
     
+#if 1
+	self.mainViewController = [[[ASMMainViewController alloc] initWithNibName:@"ASMMainViewController_iPhone" bundle:nil] autorelease];
+#else
     // Override point for customization after application launch.
     if (UISafeUserInterfaceIdiomPhone == [[UIDevice currentDevice] safeUserInterfaceIdiom])
     {
@@ -46,6 +49,7 @@
     {
         self.mainViewController = [[[ASMMainViewController alloc] initWithNibName:@"ASMMainViewController_iPad" bundle:nil] autorelease];
     }
+#endif
     
     if ([self.window respondsToSelector:@selector(setRootViewController:)])
     {
