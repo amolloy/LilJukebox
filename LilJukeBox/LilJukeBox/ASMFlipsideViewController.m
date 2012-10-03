@@ -125,9 +125,9 @@ enum
     {
         case kSongsSection:
         {
-            NSInteger songCount = [[ASMSongCollection sharedSongCollection] songCount];
+            NSUInteger songCount = [[ASMSongCollection sharedSongCollection] songCount];
             
-            if (songCount > 10)
+            if (songCount > [ASMSongCollection maxSongs])
             {
                 self.navigationItem.title = NSLocalizedString(@"Too many songs selected, please remove some.", @"Message when there are too many songs selected");
                 self.editing = YES;
@@ -284,7 +284,7 @@ enum
         self.mediaPickerController.allowsPickingMultipleItems = YES;
         
         NSInteger songCount = [[ASMSongCollection sharedSongCollection] songCount];
-        NSInteger songsRemaining = 10 - songCount;
+        NSInteger songsRemaining = [ASMSongCollection maxSongs] - songCount;
         if (songsRemaining < 0)
         {
             songsRemaining = 0;
@@ -353,8 +353,8 @@ enum
     NSInteger songCount = [[ASMSongCollection sharedSongCollection] songCount];
     BOOL isEditing = self.editing;
     
-    self.navigationItem.leftBarButtonItem.enabled = !isEditing && (songCount <= 10);
-    self.addButton.enabled = (songCount < 10);
+    self.navigationItem.leftBarButtonItem.enabled = !isEditing && (songCount <= [ASMSongCollection maxSongs]);
+    self.addButton.enabled = (songCount < [ASMSongCollection maxSongs]);
     self.trashButton.enabled = (songCount > 0);
 }
 
