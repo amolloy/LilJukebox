@@ -16,7 +16,7 @@ NSString* kHideConfigUserDefaultsKey = @"HideConfig";
 
 enum {
 	kButtonSize = 64,
-	kMinButtonSpacing = 10,
+	kMinButtonSpacing = 6,
 };
 
 @interface ASMMainViewController ()
@@ -54,9 +54,14 @@ enum {
 	{
 		[button removeFromSuperview];
 	}
-
+	
 	NSInteger maxButtons = (NSInteger)floorf(self.buttonContainerView.frame.size.width / (CGFloat)(kButtonSize + kMinButtonSpacing));
 	NSInteger numButtons = [[ASMSongCollection sharedSongCollection] songCount];
+	
+#ifdef FAKE_FOR_SCREENSHOTS
+	numButtons = 10000;
+#endif
+	
 	if (numButtons > maxButtons)
 	{
 		numButtons = maxButtons;
@@ -215,6 +220,13 @@ enum {
 		}
 	}
 }
+
+-(void)viewWillLayoutSubviews
+{
+	[super viewWillLayoutSubviews];
+	[self setupSongButtons];
+}
+
 
 @end
 
