@@ -42,6 +42,7 @@ static ASMSongCollection *sSharedSongCollection = nil;
 @implementation ASMSongCollection
 
 @synthesize songs = _songs;
+@synthesize playableSongCount = _playableSongCount;
 
 + (UIColor*)colorForSongIndex:(NSUInteger)i
 {

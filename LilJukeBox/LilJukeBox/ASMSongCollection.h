@@ -23,5 +23,6 @@
 - (NSInteger)songCount;
 
 @property (retain, readonly, nonatomic) NSArray* songs;
+@property (nonatomic, assign) NSUInteger playableSongCount;
 
 @end
