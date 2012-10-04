@@ -12,6 +12,7 @@
 #import <MediaPlayer/MediaPlayer.h>
 #import <QuartzCore/QuartzCore.h>
 
+NSString* kShowAlbumArtwork = @"ShowAlbumArtwork";
 NSString* kHideConfigUserDefaultsKey = @"HideConfig";
 
 enum {
@@ -26,6 +27,9 @@ enum {
 @property (retain, nonatomic) IBOutlet UIView *containerView;
 @property (retain, nonatomic) IBOutlet UIView *infoContainerView;
 @property (retain, nonatomic) IBOutlet UIView *buttonContainerView;
+@property (retain, nonatomic) IBOutlet UIImageView *albumArtworkView;
+@property (retain, nonatomic) IBOutlet UILabel *artistNameLabel;
+@property (retain, nonatomic) IBOutlet UILabel *songNameLabel;
 
 - (void)songButtonPressed:(UIButton *)sender;
 - (void)songButtonChangedState:(UIButton *)sender;
@@ -70,6 +74,8 @@ enum {
 	
 	NSMutableArray* buttons = [NSMutableArray arrayWithCapacity:numButtons];
 	
+	static BOOL sFirstRun = YES;
+	
 	for (NSInteger i = 0; i < numButtons; ++i)
 	{
 		UIButton* button = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -89,9 +95,23 @@ enum {
 		
 		[buttons addObject:button];
 		[self.buttonContainerView addSubview:button];
+		
+		if (sFirstRun)
+		{
+			button.alpha = 0;
+			[UIView beginAnimations:@"fade in buttons" context:nil];
+			[UIView setAnimationDuration:1];
+			button.alpha = 1;
+			[UIView commitAnimations];
+		}
 	}
-	
+
 	self.songButtons = [[buttons copy] autorelease];
+
+	if (sFirstRun)
+	{
+		sFirstRun = NO;
+	}
 	
 	[ASMSongCollection sharedSongCollection].playableSongCount = maxButtons;
 }
@@ -107,13 +127,25 @@ enum {
 	self.infoContainerView.layer.cornerRadius = 10;
 	self.infoContainerView.layer.borderColor = [UIColor darkGrayColor].CGColor;
 	self.infoContainerView.layer.borderWidth = 5;
+	
+	self.songNameLabel.text = @"";
+	self.artistNameLabel.text = @"";
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     self.flipViewButton.hidden = [[NSUserDefaults standardUserDefaults] boolForKey:kHideConfigUserDefaultsKey];
 	
-	[self setupSongButtons];
+	static BOOL sFirstRun = YES;
+	if (sFirstRun)
+	{
+		sFirstRun = NO;
+		self.flipViewButton.alpha = 0;
+		[UIView beginAnimations:@"fade in buttons" context:nil];
+		[UIView setAnimationDuration:1];
+		self.flipViewButton.alpha = 1;
+		[UIView commitAnimations];
+	}
 }
 
 - (void)viewDidUnload
@@ -121,6 +153,9 @@ enum {
 	[self setContainerView:nil];
 	[self setInfoContainerView:nil];
 	[self setButtonContainerView:nil];
+	[self setAlbumArtworkView:nil];
+	[self setArtistNameLabel:nil];
+	[self setSongNameLabel:nil];
     [super viewDidUnload];
     self.songButtons = nil;
 }
@@ -151,6 +186,9 @@ enum {
 	[_containerView release];
 	[_infoContainerView release];
 	[_buttonContainerView release];
+	[_albumArtworkView release];
+	[_artistNameLabel release];
+	[_songNameLabel release];
     [super dealloc];
 }
 
@@ -213,6 +251,60 @@ enum {
     MPMusicPlayerController* appMusicPlayer = [MPMusicPlayerController applicationMusicPlayer];
     [appMusicPlayer setQueueWithItemCollection:collection];
     [appMusicPlayer play];
+
+	BOOL showAlbumArtwork = [[NSUserDefaults standardUserDefaults] boolForKey:kShowAlbumArtwork];
+
+	MPMediaItemArtwork* artwork = [item valueForKey:MPMediaItemPropertyArtwork];
+	showAlbumArtwork&= artwork != nil;
+	
+	if (showAlbumArtwork)
+	{
+		CGFloat labelsX = CGRectGetMaxX(self.albumArtworkView.frame) + 10;
+		CGFloat labelsWidth = self.infoContainerView.frame.size.width - 10 - labelsX;
+		
+		[UIView beginAnimations:@"move in" context:nil];
+		CGRect workRect = self.artistNameLabel.frame;
+		workRect.origin.x = labelsX;
+		workRect.size.width = labelsWidth;
+		self.artistNameLabel.frame = workRect;
+		
+		workRect = self.songNameLabel.frame;
+		workRect.origin.x = labelsX;
+		workRect.size.width = labelsWidth;
+		self.songNameLabel.frame = workRect;
+		
+		self.albumArtworkView.alpha = 1;
+		[UIView commitAnimations];
+		
+		self.albumArtworkView.image = [artwork imageWithSize:self.albumArtworkView.frame.size];
+	}
+	else
+	{
+		CGFloat labelsX = 10;
+		CGFloat labelsWidth = self.infoContainerView.frame.size.width - 10 - labelsX;
+		
+		[UIView beginAnimations:@"move in" context:nil];
+		CGRect workRect = self.artistNameLabel.frame;
+		workRect.origin.x = labelsX;
+		workRect.size.width = labelsWidth;
+		self.artistNameLabel.frame = workRect;
+		
+		workRect = self.songNameLabel.frame;
+		workRect.origin.x = labelsX;
+		workRect.size.width = labelsWidth;
+		self.songNameLabel.frame = workRect;
+
+		self.albumArtworkView.alpha = 0;
+		[UIView commitAnimations];
+	}
+	
+	NSString* artistName = [item valueForKey:MPMediaItemPropertyArtist];
+	if (!artistName) artistName = @"";
+	self.artistNameLabel.text = artistName;
+	
+	NSString* songName = [item valueForKey:MPMediaItemPropertyTitle];
+	if (!songName) songName = @"";
+	self.songNameLabel.text = songName;
 	
 	for (UIButton* button in self.songButtons)
 	{
