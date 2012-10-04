@@ -25,6 +25,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+	[[UIApplication sharedApplication] setIdleTimerDisabled: YES];
+	
     NSMutableDictionary* appDefaults = [NSMutableDictionary dictionaryWithCapacity:1];
     [appDefaults setObject:[NSNumber numberWithBool:NO] forKey:kHideConfigUserDefaultsKey];
     [[NSUserDefaults standardUserDefaults] registerDefaults:appDefaults];
