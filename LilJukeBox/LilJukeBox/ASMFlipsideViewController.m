@@ -25,6 +25,7 @@ enum
 - (void)configSwitchChanged:(UISwitch*)sender;
 
 - (void)setupButtonStates;
+- (UIImage*)imageForRow:(NSUInteger)row;
 
 @property (retain, nonatomic) UIActionSheet* deleteActionSheet;
 @property (retain, nonatomic) UIBarButtonItem* trashButton;
@@ -87,6 +88,27 @@ enum
     [self setupButtonStates];
 }
 
+- (UIImage*)imageForRow:(NSUInteger)row
+{
+	UIImage* img = nil;
+	
+	if (row < [ASMSongCollection sharedSongCollection].playableSongCount)
+	{
+		UIGraphicsBeginImageContextWithOptions(CGSizeMake(30, 30),
+											   NO,
+											   [UIScreen mainScreen].scale);
+		CGContextRef ctx = UIGraphicsGetCurrentContext();
+		CGContextSetFillColorWithColor(ctx, [ASMSongCollection colorForSongIndex:row].CGColor);
+		CGContextFillEllipseInRect(ctx, CGRectMake(0, 0, 30, 30));
+		
+		img = UIGraphicsGetImageFromCurrentImageContext();
+		
+		UIGraphicsEndImageContext();
+	}
+	
+	return img;
+}
+
 - (void)viewDidUnload
 {
     [super viewDidUnload];
@@ -100,7 +122,7 @@ enum
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+	return UIInterfaceOrientationIsLandscape(interfaceOrientation);
 }
 
 - (void)setEditing:(BOOL)editing animated:(BOOL)animated
@@ -125,29 +147,13 @@ enum
     {
         case kSongsSection:
         {
-            NSUInteger songCount = [[ASMSongCollection sharedSongCollection] songCount];
-            
-            if (songCount > 10000) // TODO
-            {
-                self.navigationItem.title = NSLocalizedString(@"Too many songs selected, please remove some.", @"Message when there are too many songs selected");
-                self.editing = YES;
-            }
-            else
-            {
-                self.navigationItem.title = @"";
-            }
-            
-            [self setupButtonStates];
-
-		    numRows = songCount;
-            
-		    break;
+            numRows = [[ASMSongCollection sharedSongCollection] songCount];
+            break;
         }
             
         case kConfigurationSection:
         {
             numRows = 2;
-            
             break;
         }
             
@@ -181,7 +187,8 @@ enum
             
             cell.textLabel.text = [item valueForProperty:MPMediaItemPropertyTitle];
             cell.detailTextLabel.text = [item valueForProperty:MPMediaItemPropertyArtist];
-            
+            cell.imageView.image = [self imageForRow:indexPath.row];
+			
             break;
         }
             
@@ -241,10 +248,24 @@ enum
     }
 }
 
+- (void)resetCellImages
+{
+	for (NSInteger i = 0; i < [[ASMSongCollection sharedSongCollection] songCount]; ++i)
+	{
+		UITableViewCell* cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection:0]];
+		cell.imageView.image = [self imageForRow:i];
+	}
+}
+
 - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
 {
     [[ASMSongCollection sharedSongCollection] moveSongFromIndex:fromIndexPath.row
                                                         toIndex:toIndexPath.row];
+	[NSTimer scheduledTimerWithTimeInterval:0
+									 target:self
+								   selector:@selector(resetCellImages)
+								   userInfo:nil
+									repeats:NO];
 }
 
 - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
@@ -282,18 +303,6 @@ enum
     {
         self.mediaPickerController = [[[MPMediaPickerController alloc] initWithMediaTypes:MPMediaTypeAnyAudio] autorelease];
         self.mediaPickerController.allowsPickingMultipleItems = YES;
-        
-//        NSInteger songCount = [[ASMSongCollection sharedSongCollection] songCount];
-        NSInteger songsRemaining = 10000;// TODO [ASMSongCollection maxSongs] - songCount;
-        if (songsRemaining < 0)
-        {
-            songsRemaining = 0;
-        }
-        
-        NSString* promptFmt = NSLocalizedString(@"Please pick up to %1$i songs", @"Pick 10 Songs");
-        NSString* prompt = [NSString stringWithFormat:promptFmt,songsRemaining];
-        
-        self.mediaPickerController.prompt = prompt;
         self.mediaPickerController.delegate = self;
     }
     
@@ -351,13 +360,6 @@ enum
 - (void)setupButtonStates
 {
     NSInteger songCount = [[ASMSongCollection sharedSongCollection] songCount];
-	// TODO
-	/*
-	 BOOL isEditing = self.editing;
-	 
-    self.navigationItem.leftBarButtonItem.enabled = !isEditing && (songCount <= [ASMSongCollection maxSongs]);
-    self.addButton.enabled = (songCount < [ASMSongCollection maxSongs]);
-	 */
 	 self.trashButton.enabled = (songCount > 0);
 }
 
