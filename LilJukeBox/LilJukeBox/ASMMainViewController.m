@@ -92,6 +92,8 @@ enum {
 	}
 	
 	self.songButtons = [[buttons copy] autorelease];
+	
+	[ASMSongCollection sharedSongCollection].playableSongCount = maxButtons;
 }
 
 - (void)viewDidLoad
