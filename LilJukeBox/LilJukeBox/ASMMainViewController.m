@@ -130,6 +130,11 @@ enum {
 	
 	self.songNameLabel.text = @"";
 	self.artistNameLabel.text = @"";
+	
+	self.albumArtworkView.layer.cornerRadius = 5;
+	self.albumArtworkView.layer.borderColor = [UIColor blackColor].CGColor;
+	self.albumArtworkView.layer.borderWidth = 2;
+	self.albumArtworkView.alpha = 0;
 }
 
 - (void)viewWillAppear:(BOOL)animated
