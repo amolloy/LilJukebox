@@ -29,7 +29,7 @@
 	
     NSMutableDictionary* appDefaults = [NSMutableDictionary dictionaryWithCapacity:1];
     [appDefaults setObject:[NSNumber numberWithBool:NO] forKey:kHideConfigUserDefaultsKey];
-	[appDefaults setObject:[NSNumber numberWithBool:YES] forKey:kShowAlbumArtwork];
+	[appDefaults setObject:[NSNumber numberWithBool:YES] forKey:kShowAlbumArtworkKey];
     [[NSUserDefaults standardUserDefaults] registerDefaults:appDefaults];
     
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
