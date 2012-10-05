@@ -8,7 +8,7 @@
 
 #import "ASMFlipsideViewController.h"
 
-extern NSString* kShowAlbumArtwork;
+extern NSString* kShowAlbumArtworkKey;
 extern NSString* kHideConfigUserDefaultsKey;
 
 @interface ASMMainViewController : UIViewController <ASMFlipsideViewControllerDelegate>

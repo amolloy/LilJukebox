@@ -12,7 +12,7 @@
 #import <MediaPlayer/MediaPlayer.h>
 #import <QuartzCore/QuartzCore.h>
 
-NSString* kShowAlbumArtwork = @"ShowAlbumArtwork";
+NSString* kShowAlbumArtworkKey = @"ShowAlbumArtwork";
 NSString* kHideConfigUserDefaultsKey = @"HideConfig";
 
 enum {
@@ -30,6 +30,7 @@ enum {
 @property (retain, nonatomic) IBOutlet UIImageView *albumArtworkView;
 @property (retain, nonatomic) IBOutlet UILabel *artistNameLabel;
 @property (retain, nonatomic) IBOutlet UILabel *songNameLabel;
+@property (retain, nonatomic) IBOutlet UILabel *helpLabel;
 
 - (void)songButtonPressed:(UIButton *)sender;
 - (void)songButtonChangedState:(UIButton *)sender;
@@ -112,6 +113,26 @@ enum {
 	{
 		sFirstRun = NO;
 	}
+
+	self.helpLabel.text = @"";
+	if (0 == numButtons)
+	{
+		if (self.flipViewButton.hidden)
+		{
+			self.helpLabel.text = NSLocalizedString(@"To add songs, enable configuration in the Settings app.", @"Prompt to parents when there are no songs and the configure button has been hidden.");
+			self.helpLabel.textAlignment = UITextAlignmentCenter;
+		}
+		else
+		{
+			self.helpLabel.text = NSLocalizedString(@"Parents: Tap here to add songs:", @"Prompt to parents when there are no songs and the configure button is visible.");
+			self.helpLabel.textAlignment = UITextAlignmentRight;
+		}
+		
+		[UIView beginAnimations:@"fade in" context:nil];
+		[UIView setAnimationDuration:1];
+		self.helpLabel.alpha = 1;
+		[UIView commitAnimations];
+	}
 	
 	[ASMSongCollection sharedSongCollection].playableSongCount = maxButtons;
 }
@@ -135,6 +156,8 @@ enum {
 	self.albumArtworkView.layer.borderColor = [UIColor blackColor].CGColor;
 	self.albumArtworkView.layer.borderWidth = 2;
 	self.albumArtworkView.alpha = 0;
+
+	self.helpLabel.alpha = 0;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -151,18 +174,6 @@ enum {
 		self.flipViewButton.alpha = 1;
 		[UIView commitAnimations];
 	}
-}
-
-- (void)viewDidUnload
-{
-	[self setContainerView:nil];
-	[self setInfoContainerView:nil];
-	[self setButtonContainerView:nil];
-	[self setAlbumArtworkView:nil];
-	[self setArtistNameLabel:nil];
-	[self setSongNameLabel:nil];
-    [super viewDidUnload];
-    self.songButtons = nil;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -182,6 +193,8 @@ enum {
     {
         [self.flipsidePopoverController dismissPopoverAnimated:YES];
     }
+	
+	[self setupSongButtons];
 }
 
 - (void)dealloc
@@ -194,6 +207,7 @@ enum {
 	[_albumArtworkView release];
 	[_artistNameLabel release];
 	[_songNameLabel release];
+	[_helpLabel release];
     [super dealloc];
 }
 
@@ -257,10 +271,11 @@ enum {
     [appMusicPlayer setQueueWithItemCollection:collection];
     [appMusicPlayer play];
 
-	BOOL showAlbumArtwork = [[NSUserDefaults standardUserDefaults] boolForKey:kShowAlbumArtwork];
+	BOOL showAlbumArtwork = [[NSUserDefaults standardUserDefaults] boolForKey:kShowAlbumArtworkKey];
 
 	MPMediaItemArtwork* artwork = [item valueForKey:MPMediaItemPropertyArtwork];
-	showAlbumArtwork&= artwork != nil;
+	UIImage* artworkImage = [artwork imageWithSize:self.albumArtworkView.frame.size];
+	showAlbumArtwork&= artworkImage != nil;
 	
 	if (showAlbumArtwork)
 	{
@@ -281,7 +296,7 @@ enum {
 		self.albumArtworkView.alpha = 1;
 		[UIView commitAnimations];
 		
-		self.albumArtworkView.image = [artwork imageWithSize:self.albumArtworkView.frame.size];
+		self.albumArtworkView.image = artworkImage;
 	}
 	else
 	{
