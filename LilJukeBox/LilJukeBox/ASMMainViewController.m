@@ -95,6 +95,22 @@ enum {
 		 forControlEvents:UIControlEventAllTouchEvents];
 		
 		[buttons addObject:button];
+		
+		
+		NSArray* songs = [[ASMSongCollection sharedSongCollection] songs];
+		MPMediaItem* item = [songs objectAtIndex:i];
+		
+		NSString* artistName = [item valueForKey:MPMediaItemPropertyArtist];
+		if (!artistName) artistName = NSLocalizedString(@"Uknown artist", @"assistive description for an artist with an unknown name.");
+		
+		NSString* songName = [item valueForKey:MPMediaItemPropertyTitle];
+		if (!songName) songName = NSLocalizedString(@"Uknown song", @"assistive description for song with an unknown title.");
+		
+		NSString* assistiveDesc = [NSString stringWithFormat:NSLocalizedString(@"Play %1$@ by %2$@", @"Assistive description for song buttons. %1$@ is the song title, %2$@ is the artist's name"),
+								   songName,
+								   artistName];
+		button.accessibilityLabel = assistiveDesc;
+
 		[self.buttonContainerView addSubview:button];
 		
 		if (sFirstRun)
@@ -163,6 +179,7 @@ enum {
 - (void)viewWillAppear:(BOOL)animated
 {
     self.flipViewButton.hidden = [[NSUserDefaults standardUserDefaults] boolForKey:kHideConfigUserDefaultsKey];
+	self.flipViewButton.accessibilityLabel = NSLocalizedString(@"Settings", @"Accessibility label for settings button, spoken aloud");
 	
 	static BOOL sFirstRun = YES;
 	if (sFirstRun)
