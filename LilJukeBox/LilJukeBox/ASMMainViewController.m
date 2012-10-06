@@ -80,7 +80,15 @@ enum {
 	for (NSInteger i = 0; i < numButtons; ++i)
 	{
 		UIButton* button = [UIButton buttonWithType:UIButtonTypeCustom];
-		button.frame = CGRectMake(i * buttonXInc, 0, kButtonSize, kButtonSize);
+		
+		if (numButtons == 1)
+		{
+			button.frame = CGRectMake(self.buttonContainerView.frame.size.width / 2 - kButtonSize / 2, 0, kButtonSize, kButtonSize);
+		}
+		else
+		{
+			button.frame = CGRectMake(i * buttonXInc, 0, kButtonSize, kButtonSize);
+		}
 		button.tag = i + 1;
 		[self songButtonChangedState:button];
 		
