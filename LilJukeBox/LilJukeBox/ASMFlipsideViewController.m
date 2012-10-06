@@ -31,6 +31,8 @@ enum
 @property (retain, nonatomic) UIBarButtonItem* trashButton;
 @property (retain, nonatomic) UIBarButtonItem* addButton;
 @property (retain, nonatomic) UISwitch* hideConfigSwitch;
+@property (retain, nonatomic) IBOutlet UIView *helpView;
+@property (retain, nonatomic) IBOutlet UILabel *helpLabel;
 
 @end
 
@@ -66,6 +68,8 @@ enum
     self.navigationItem.leftBarButtonItem = doneButtonItem;
     
     self.navigationController.toolbarHidden = NO;
+	
+	self.tableView.backgroundView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"WhiteLinen"]] autorelease];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -86,6 +90,8 @@ enum
     [self setToolbarItems:toolbarItems animated:NO];
     
     [self setupButtonStates];
+
+	self.helpLabel.text = NSLocalizedString(@"Tap the plus to select songs.", @"Prompt to press the + symbol to add songs");
 }
 
 - (UIImage*)imageForRow:(NSUInteger)row
@@ -111,6 +117,8 @@ enum
 
 - (void)viewDidUnload
 {
+	[self setHelpView:nil];
+	[self setHelpLabel:nil];
     [super viewDidUnload];
     
     self.trashButton = nil;
@@ -348,6 +356,8 @@ enum
     [self.tableView reloadData];
     
     self.mediaPickerController = nil;
+	
+	[self setupButtonStates];
 }
 
 - (void)mediaPickerDidCancel:(MPMediaPickerController *)mediaPicker
@@ -360,7 +370,25 @@ enum
 - (void)setupButtonStates
 {
     NSInteger songCount = [[ASMSongCollection sharedSongCollection] songCount];
-	 self.trashButton.enabled = (songCount > 0);
+	self.trashButton.enabled = (songCount > 0);
+	
+	if ([[ASMSongCollection sharedSongCollection] songCount] == 0)
+	{
+		[self.tableView.backgroundView addSubview:self.helpView];
+		CGRect helpViewFrame = self.helpView.frame;
+		helpViewFrame.origin = CGPointMake(CGRectGetMaxX(self.tableView.frame) - 40 - helpViewFrame.size.width,
+										   CGRectGetMaxY(self.tableView.frame) - helpViewFrame.size.height);
+		self.helpView.frame = helpViewFrame;
+		
+		self.helpView.alpha = 0;
+		[UIView beginAnimations:@"fade in" context:nil];
+		self.helpView.alpha = 1;
+		[UIView commitAnimations];
+	}
+	else
+	{
+		[self.helpView removeFromSuperview];
+	}
 }
 
 - (void)configSwitchChanged:(UISwitch*)sender
@@ -370,4 +398,9 @@ enum
 }
 
 
+- (void)dealloc {
+	[_helpView release];
+	[_helpLabel release];
+	[super dealloc];
+}
 @end
