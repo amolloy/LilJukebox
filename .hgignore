@@ -1,0 +1,4 @@
+syntax: glob
+LilJukeBox/build
+*.pbxuser
+*.perspectivev3
