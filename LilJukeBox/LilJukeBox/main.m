@@ -12,7 +12,9 @@
 
 int main(int argc, char *argv[])
 {
-   @autoreleasepool {
-       return UIApplicationMain(argc, argv, nil, NSStringFromClass([ASMAppDelegate class]));
-   }
+	NSAutoreleasePool* ap = [[NSAutoreleasePool alloc] init];
+	int result = UIApplicationMain(argc, argv, nil, NSStringFromClass([ASMAppDelegate class]));
+	[ap release];
+	
+	return result;
 }

@@ -10,10 +10,9 @@
 
 @class ASMMainViewController;
 
-@interface ASMAppDelegate : UIResponder <UIApplicationDelegate>
+@interface ASMAppDelegate : UIResponder <UIApplicationDelegate> 
 
-@property (strong, nonatomic) UIWindow *window;
-
-@property (strong, nonatomic) ASMMainViewController *mainViewController;
+@property (retain, nonatomic) UIWindow *window;
+@property (retain, nonatomic) ASMMainViewController *mainViewController;
 
 @end

@@ -49,20 +49,20 @@ static ASMSongCollection *sSharedSongCollection = nil;
 	static NSArray* sSongColors = nil;
 	if (nil == sSongColors)
 	{
-		sSongColors = [@[
-					   [UIColor crayonColorWithRedGreenBlue:0xECEABE],
-					   [UIColor crayonColorWithRedGreenBlue:0xCDC5C2],
-					   [UIColor crayonColorWithRedGreenBlue:0xB0B7C6],
-					   [UIColor crayonColorWithRedGreenBlue:0xFF9BAA],
-					   [UIColor crayonColorWithRedGreenBlue:0xC5E384],
-					   [UIColor crayonColorWithRedGreenBlue:0x77DDE7],
-					   [UIColor crayonColorWithRedGreenBlue:0x1CAC78],
-					   [UIColor crayonColorWithRedGreenBlue:0xFF43A4],
-					   [UIColor crayonColorWithRedGreenBlue:0x80DAEB],
-					   [UIColor crayonColorWithRedGreenBlue:0xFFB653],
-					   [UIColor crayonColorWithRedGreenBlue:0x9D81BA],
-					   [UIColor crayonColorWithRedGreenBlue:0xE7C697],
-					   ] retain];
+		sSongColors = [[NSArray arrayWithObjects:
+						[UIColor crayonColorWithRedGreenBlue:0xECEABE],
+						[UIColor crayonColorWithRedGreenBlue:0xCDC5C2],
+						[UIColor crayonColorWithRedGreenBlue:0xB0B7C6],
+						[UIColor crayonColorWithRedGreenBlue:0xFF9BAA],
+						[UIColor crayonColorWithRedGreenBlue:0xC5E384],
+						[UIColor crayonColorWithRedGreenBlue:0x77DDE7],
+						[UIColor crayonColorWithRedGreenBlue:0x1CAC78],
+						[UIColor crayonColorWithRedGreenBlue:0xFF43A4],
+						[UIColor crayonColorWithRedGreenBlue:0x80DAEB],
+						[UIColor crayonColorWithRedGreenBlue:0xFFB653],
+						[UIColor crayonColorWithRedGreenBlue:0x9D81BA],
+						[UIColor crayonColorWithRedGreenBlue:0xE7C697],
+						nil] retain];
 	}
 	
 	return [sSongColors objectAtIndex:i];
@@ -152,10 +152,10 @@ static ASMSongCollection *sSharedSongCollection = nil;
                                               forKey:kSongIdentifiersKey];
 }
 
-- (void)removeSongAtIndex:(NSUInteger)index
+- (void)removeSongAtIndex:(NSUInteger)idx
 {
     NSMutableArray* mutableSongs = [self.songs mutableCopy];
-    [mutableSongs removeObjectAtIndex:index];
+    [mutableSongs removeObjectAtIndex:idx];
     self.songs = [[mutableSongs copy] autorelease];
     [mutableSongs release];
     

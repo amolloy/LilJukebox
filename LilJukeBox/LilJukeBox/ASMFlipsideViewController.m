@@ -38,12 +38,14 @@ enum
 
 @implementation ASMFlipsideViewController
 
-@synthesize delegate = _delegate;
-@synthesize mediaPickerController = _mediaPickerController;
-@synthesize deleteActionSheet = _deleteActionSheet;
-@synthesize trashButton = _trashButton;
-@synthesize addButton = _addButton;
-@synthesize hideConfigSwitch = _hideConfigSwitch;
+@synthesize delegate;
+@synthesize mediaPickerController;
+@synthesize deleteActionSheet;
+@synthesize trashButton;
+@synthesize addButton;
+@synthesize hideConfigSwitch;
+@synthesize helpView;
+@synthesize helpLabel;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -397,10 +399,13 @@ enum
                                             forKey:kHideConfigUserDefaultsKey];
 }
 
-
 - (void)dealloc {
-	[_helpView release];
-	[_helpLabel release];
+	[self.deleteActionSheet release];
+	[self.trashButton release];
+	[self.addButton release];
+	[self.hideConfigSwitch release];
+	[self.helpView release];
+	[self.helpLabel release];
 	[super dealloc];
 }
 @end

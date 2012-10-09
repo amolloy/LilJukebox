@@ -39,6 +39,17 @@ enum {
 
 @implementation ASMMainViewController
 
+@synthesize flipViewButton;
+@synthesize songButtons;
+@synthesize containerView;
+@synthesize infoContainerView;
+@synthesize buttonContainerView;
+@synthesize albumArtworkView;
+@synthesize artistNameLabel;
+@synthesize songNameLabel;
+@synthesize helpLabel;
+@synthesize flipsidePopoverController;
+
 - (void)songButtonChangedState:(UIButton*)sender
 {
 	if (sender.isHighlighted)
@@ -226,13 +237,13 @@ enum {
 {
     [self.flipsidePopoverController release];
     [self.songButtons release];
-	[_containerView release];
-	[_infoContainerView release];
-	[_buttonContainerView release];
-	[_albumArtworkView release];
-	[_artistNameLabel release];
-	[_songNameLabel release];
-	[_helpLabel release];
+	[self.containerView release];
+	[self.infoContainerView release];
+	[self.buttonContainerView release];
+	[self.albumArtworkView release];
+	[self.artistNameLabel release];
+	[self.songNameLabel release];
+	[self.helpLabel release];
     [super dealloc];
 }
 
@@ -362,10 +373,9 @@ enum {
 
 -(void)viewWillLayoutSubviews
 {
-	[super viewWillLayoutSubviews];
+	[super performSelector:@selector(viewWillLayoutSubviews)];
 	[self setupSongButtons];
 }
-
 
 @end
 
