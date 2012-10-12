@@ -400,12 +400,12 @@ enum
 }
 
 - (void)dealloc {
-	[self.deleteActionSheet release];
-	[self.trashButton release];
-	[self.addButton release];
-	[self.hideConfigSwitch release];
-	[self.helpView release];
-	[self.helpLabel release];
+	self.deleteActionSheet = nil;
+	self.trashButton = nil;
+	self.addButton = nil;
+	self.hideConfigSwitch = nil;
+	self.helpView = nil;
+	self.helpLabel = nil;
 	[super dealloc];
 }
 @end
