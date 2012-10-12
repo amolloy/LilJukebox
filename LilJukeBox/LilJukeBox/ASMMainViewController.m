@@ -373,7 +373,6 @@ enum {
 
 -(void)viewWillLayoutSubviews
 {
-	[super performSelector:@selector(viewWillLayoutSubviews)];
 	[self setupSongButtons];
 }
 
