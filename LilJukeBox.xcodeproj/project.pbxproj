@@ -13,6 +13,7 @@
 		B41107D9161FC5D900658F8C /* HelpArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B41107D7161FC5D900658F8C /* HelpArrow@2x.png */; };
 		B41B336B157FDF6000168F54 /* libSystem.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B41B336A157FDF6000168F54 /* libSystem.dylib */; settings = {ATTRIBUTES = (Weak, ); }; };
 		B41B3373157FE11200168F54 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B41B3372157FE11200168F54 /* libz.dylib */; };
+		B43002FE1629E189004B9E75 /* ASMMainViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = B431EA8D156B25220067E5C4 /* ASMMainViewController_iPad.xib */; };
 		B431EA73156B25220067E5C4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B431EA72156B25220067E5C4 /* UIKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		B431EA75156B25220067E5C4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B431EA74156B25220067E5C4 /* Foundation.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		B431EA77156B25220067E5C4 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B431EA76156B25220067E5C4 /* CoreGraphics.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
@@ -226,6 +227,7 @@
 				B41107D4161FC39600658F8C /* WhiteLinen@2x.png in Resources */,
 				B41107D8161FC5D900658F8C /* HelpArrow.png in Resources */,
 				B41107D9161FC5D900658F8C /* HelpArrow@2x.png in Resources */,
+				B43002FE1629E189004B9E75 /* ASMMainViewController_iPad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -381,7 +383,7 @@
 				);
 				OTHER_LDFLAGS = "-weak-lSystem";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -402,7 +404,7 @@
 				);
 				OTHER_LDFLAGS = "-weak-lSystem";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -462,7 +464,7 @@
 				);
 				OTHER_LDFLAGS = "-weak-lSystem";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = "Ad Hoc";
