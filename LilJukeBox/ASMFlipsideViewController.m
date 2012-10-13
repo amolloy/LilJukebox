@@ -146,19 +146,6 @@ enum
 	return img;
 }
 
-- (void)viewDidUnload
-{
-	[self setHelpView:nil];
-	[self setHelpLabel:nil];
-    [super viewDidUnload];
-    
-    self.trashButton = nil;
-    self.addButton = nil;
-    self.mediaPickerController = nil;
-    self.deleteActionSheet = nil;
-    self.hideConfigSwitch = nil;
-}
-
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
 	return UIInterfaceOrientationIsLandscape(interfaceOrientation);
