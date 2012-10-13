@@ -210,6 +210,8 @@ enum {
 		self.flipViewButton.alpha = 1;
 		[UIView commitAnimations];
 	}
+	
+	[self setupSongButtons];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
