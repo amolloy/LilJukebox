@@ -190,7 +190,14 @@ enum
             
         case kConfigurationSection:
         {
-            numRows = 2;
+			if (self.hideConfigSwitch.on)
+			{
+				numRows = 2;
+			}
+			else
+			{
+				numRows = 1;
+			}
             break;
         }
             
@@ -426,6 +433,7 @@ enum
 {
     [[NSUserDefaults standardUserDefaults] setBool:self.hideConfigSwitch.on
                                             forKey:kHideConfigUserDefaultsKey];
+	[self.tableView reloadData];
 }
 
 - (void)dealloc {
