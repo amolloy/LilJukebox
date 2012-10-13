@@ -105,9 +105,19 @@ enum
 	
 	if (row < [ASMSongCollection sharedSongCollection].playableSongCount)
 	{
-		UIGraphicsBeginImageContextWithOptions(CGSizeMake(30, 30),
-											   NO,
-											   [UIScreen mainScreen].scale);
+		const CGSize imageSize = { 30, 30 };
+		
+		if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)])
+		{
+			UIGraphicsBeginImageContextWithOptions(imageSize,
+												   NO,
+												   [UIScreen mainScreen].scale);
+		}
+		else
+		{
+			UIGraphicsBeginImageContext(imageSize);
+		}
+		
 		CGContextRef ctx = UIGraphicsGetCurrentContext();
 		CGContextSetFillColorWithColor(ctx, [ASMSongCollection colorForSongIndex:row].CGColor);
 		CGContextFillEllipseInRect(ctx, CGRectMake(0, 0, 30, 30));
