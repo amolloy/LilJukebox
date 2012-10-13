@@ -16,9 +16,14 @@ NSString* kShowAlbumArtworkKey = @"ShowAlbumArtwork";
 NSString* kHideConfigUserDefaultsKey = @"HideConfig";
 
 enum {
-	kButtonSize = 64,
-	kMinButtonSpacing = 6,
+	kiPhoneButtonSize = 64,
+	kiPhoneMinButtonSpacing = 6,
+	
+	kiPadButtonSize = 130,
+	kiPadMinButtonSpacing = 20,
 };
+
+//#define FAKE_FOR_SCREENSHOTS 1
 
 @interface ASMMainViewController ()
 
@@ -66,12 +71,44 @@ enum {
 
 - (void)setupSongButtons
 {
+	if ([[UIDevice currentDevice] safeUserInterfaceIdiom] == UISafeUserInterfaceIdiomPhone)
+	{
+		[self setupSongButtonsiPhone];
+	}
+	else
+	{
+		[self setupSongButtonsiPad];
+	}
+	
+	self.helpLabel.text = @"";
+	if (0 == [self.songButtons count])
+	{
+		if (self.flipViewButton.hidden)
+		{
+			self.helpLabel.text = NSLocalizedString(@"To add songs, enable configuration in the Settings app.", @"Prompt to parents when there are no songs and the configure button has been hidden.");
+			self.helpLabel.textAlignment = UITextAlignmentCenter;
+		}
+		else
+		{
+			self.helpLabel.text = NSLocalizedString(@"Parents: Tap here to add songs:", @"Prompt to parents when there are no songs and the configure button is visible.");
+			self.helpLabel.textAlignment = UITextAlignmentRight;
+		}
+		
+		[UIView beginAnimations:@"fade in" context:nil];
+		[UIView setAnimationDuration:0.4f];
+		self.helpLabel.alpha = 1;
+		[UIView commitAnimations];
+	}
+}
+
+- (void)setupSongButtonsiPhone
+{
 	for (UIButton* button in self.songButtons)
 	{
 		[button removeFromSuperview];
 	}
-	
-	NSInteger maxButtons = (NSInteger)floorf(self.buttonContainerView.frame.size.width / (CGFloat)(kButtonSize + kMinButtonSpacing));
+
+	NSInteger maxButtons = (NSInteger)floorf(self.buttonContainerView.frame.size.width / (CGFloat)(kiPhoneButtonSize + kiPhoneMinButtonSpacing));
 	NSInteger numButtons = [[ASMSongCollection sharedSongCollection] songCount];
 	
 #ifdef FAKE_FOR_SCREENSHOTS
@@ -82,11 +119,9 @@ enum {
 	{
 		numButtons = maxButtons;
 	}
-	NSInteger buttonXInc = (NSInteger)((self.buttonContainerView.frame.size.width - kButtonSize) / (numButtons - 1));
+	NSInteger buttonXInc = (NSInteger)((self.buttonContainerView.frame.size.width - kiPhoneButtonSize) / (numButtons - 1));
 	
 	NSMutableArray* buttons = [NSMutableArray arrayWithCapacity:numButtons];
-	
-	static BOOL sFirstRun = YES;
 	
 	for (NSInteger i = 0; i < numButtons; ++i)
 	{
@@ -94,11 +129,11 @@ enum {
 		
 		if (numButtons == 1)
 		{
-			button.frame = CGRectMake(self.buttonContainerView.frame.size.width / 2 - kButtonSize / 2, 0, kButtonSize, kButtonSize);
+			button.frame = CGRectMake(self.buttonContainerView.frame.size.width / 2 - kiPhoneButtonSize / 2, 0, kiPhoneButtonSize, kiPhoneButtonSize);
 		}
 		else
 		{
-			button.frame = CGRectMake(i * buttonXInc, 0, kButtonSize, kButtonSize);
+			button.frame = CGRectMake(i * buttonXInc, 0, kiPhoneButtonSize, kiPhoneButtonSize);
 		}
 		button.tag = i + 1;
 		[self songButtonChangedState:button];
@@ -115,59 +150,127 @@ enum {
 		
 		[buttons addObject:button];
 		
-		
 		NSArray* songs = [[ASMSongCollection sharedSongCollection] songs];
-		MPMediaItem* item = [songs objectAtIndex:i];
 		
-		NSString* artistName = [item valueForProperty:MPMediaItemPropertyArtist];
-		if (!artistName) artistName = NSLocalizedString(@"Uknown artist", @"assistive description for an artist with an unknown name.");
-		
-		NSString* songName = [item valueForProperty:MPMediaItemPropertyTitle];
-		if (!songName) songName = NSLocalizedString(@"Uknown song", @"assistive description for song with an unknown title.");
-		
-		NSString* assistiveDesc = [NSString stringWithFormat:NSLocalizedString(@"Play %1$@ by %2$@", @"Assistive description for song buttons. %1$@ is the song title, %2$@ is the artist's name"),
-								   songName,
-								   artistName];
-		button.accessibilityLabel = assistiveDesc;
-
-		[self.buttonContainerView addSubview:button];
-		
-		if (sFirstRun)
+		if (i < (NSInteger)[songs count])
 		{
-			button.alpha = 0;
-			[UIView beginAnimations:@"fade in buttons" context:nil];
-			[UIView setAnimationDuration:1];
-			button.alpha = 1;
-			[UIView commitAnimations];
+			MPMediaItem* item = [songs objectAtIndex:i];
+			
+			NSString* artistName = [item valueForProperty:MPMediaItemPropertyArtist];
+			if (!artistName) artistName = NSLocalizedString(@"Uknown artist", @"assistive description for an artist with an unknown name.");
+			
+			NSString* songName = [item valueForProperty:MPMediaItemPropertyTitle];
+			if (!songName) songName = NSLocalizedString(@"Uknown song", @"assistive description for song with an unknown title.");
+			
+			NSString* assistiveDesc = [NSString stringWithFormat:NSLocalizedString(@"Play %1$@ by %2$@", @"Assistive description for song buttons. %1$@ is the song title, %2$@ is the artist's name"),
+									   songName,
+									   artistName];
+			button.accessibilityLabel = assistiveDesc;
 		}
+		
+		[self.buttonContainerView addSubview:button];
 	}
 
 	self.songButtons = [[buttons copy] autorelease];
+	
+	[ASMSongCollection sharedSongCollection].playableSongCount = maxButtons;
+}
 
-	if (sFirstRun)
+- (void)setupSongButtonsiPad
+{
+	NSInteger maxButtonsWide = (NSInteger)floorf(self.buttonContainerView.frame.size.width / (CGFloat)(kiPadButtonSize + kiPadMinButtonSpacing));
+	NSInteger maxButtonsTall = (NSInteger)floorf(self.buttonContainerView.frame.size.height / (CGFloat)(kiPadButtonSize + kiPadMinButtonSpacing));
+	NSInteger maxButtons = maxButtonsWide * maxButtonsTall;
+	
+	NSInteger numButtons = [[ASMSongCollection sharedSongCollection] songCount];
+	
+#ifdef FAKE_FOR_SCREENSHOTS
+	numButtons = 12;
+#endif
+	
+	if (numButtons > maxButtons)
 	{
-		sFirstRun = NO;
+		numButtons = maxButtons;
 	}
-
-	self.helpLabel.text = @"";
-	if (0 == numButtons)
+	
+	NSInteger buttonYInc = (NSInteger)((self.buttonContainerView.frame.size.height - kiPadButtonSize) / (maxButtonsTall - 1));
+	
+	NSMutableArray* buttons = [NSMutableArray arrayWithCapacity:numButtons];
+	
+	NSInteger lastRow = 0;
+	CGFloat buttonY = 0;
+	CGFloat buttonX = 0;
+	for (NSInteger i = 0; i < numButtons; ++i)
 	{
-		if (self.flipViewButton.hidden)
+		NSInteger row = i / maxButtonsWide;
+		BOOL newLine = (i == 0);
+		
+		NSInteger rowButtonsWide = MIN(maxButtonsWide, numButtons - row * maxButtonsWide);
+		NSInteger buttonXInc = (NSInteger)((self.buttonContainerView.frame.size.width - kiPadButtonSize) / (rowButtonsWide - 1));
+		
+		if (row != lastRow)
 		{
-			self.helpLabel.text = NSLocalizedString(@"To add songs, enable configuration in the Settings app.", @"Prompt to parents when there are no songs and the configure button has been hidden.");
-			self.helpLabel.textAlignment = UITextAlignmentCenter;
+			newLine = YES;
+			buttonY+= buttonYInc;
+			buttonX = 0;
+			lastRow = row;
+		}
+		
+		UIButton* button = (UIButton*)[self.buttonContainerView viewWithTag:i + 1];
+		if ( nil == button )
+		{
+			button = [UIButton buttonWithType:UIButtonTypeCustom];
+		}
+		
+		if (newLine && (i == (numButtons - 1)))
+		{
+			// Only button on the last line, center it.
+			button.frame = CGRectMake(self.buttonContainerView.frame.size.width / 2 - kiPadButtonSize / 2, buttonY, kiPadButtonSize, kiPadButtonSize);
 		}
 		else
 		{
-			self.helpLabel.text = NSLocalizedString(@"Parents: Tap here to add songs:", @"Prompt to parents when there are no songs and the configure button is visible.");
-			self.helpLabel.textAlignment = UITextAlignmentRight;
+			button.frame = CGRectMake(buttonX, buttonY, kiPadButtonSize, kiPadButtonSize);
 		}
 		
-		[UIView beginAnimations:@"fade in" context:nil];
-		[UIView setAnimationDuration:1];
-		self.helpLabel.alpha = 1;
-		[UIView commitAnimations];
+		buttonX+= buttonXInc;
+		
+		button.tag = i + 1;
+		[self songButtonChangedState:button];
+		
+		button.layer.cornerRadius = button.frame.size.width / 2;
+		button.layer.borderWidth = 3;
+		
+		[button addTarget:self
+				   action:@selector(songButtonPressed:)
+		 forControlEvents:UIControlEventTouchUpInside];
+		[button addTarget:self
+				   action:@selector(songButtonChangedState:)
+		 forControlEvents:UIControlEventAllTouchEvents];
+		
+		[buttons addObject:button];
+		
+		NSArray* songs = [[ASMSongCollection sharedSongCollection] songs];
+		
+		if (i < (NSInteger)[songs count])
+		{
+			MPMediaItem* item = [songs objectAtIndex:i];
+			
+			NSString* artistName = [item valueForProperty:MPMediaItemPropertyArtist];
+			if (!artistName) artistName = NSLocalizedString(@"Uknown artist", @"assistive description for an artist with an unknown name.");
+			
+			NSString* songName = [item valueForProperty:MPMediaItemPropertyTitle];
+			if (!songName) songName = NSLocalizedString(@"Uknown song", @"assistive description for song with an unknown title.");
+			
+			NSString* assistiveDesc = [NSString stringWithFormat:NSLocalizedString(@"Play %1$@ by %2$@", @"Assistive description for song buttons. %1$@ is the song title, %2$@ is the artist's name"),
+									   songName,
+									   artistName];
+			button.accessibilityLabel = assistiveDesc;
+		}
+		
+		[self.buttonContainerView addSubview:button];
 	}
+	
+	self.songButtons = [[buttons copy] autorelease];
 	
 	[ASMSongCollection sharedSongCollection].playableSongCount = maxButtons;
 }
@@ -205,15 +308,19 @@ enum {
 	{
 		sFirstRun = NO;
 		self.flipViewButton.alpha = 0;
+		self.buttonContainerView.alpha = 0;
 		[UIView beginAnimations:@"fade in buttons" context:nil];
-		[UIView setAnimationDuration:1];
+		[UIView setAnimationDuration:0.4f];
 		self.flipViewButton.alpha = 1;
+		self.buttonContainerView.alpha = 1;
 		[UIView commitAnimations];
 	}
 	
 	self.albumArtworkView.alpha = 0;
 	self.songNameLabel.text = @"";
 	self.artistNameLabel.text = @"";
+	
+	[self setupSongButtons];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -387,10 +494,18 @@ enum {
 	}
 }
 
--(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
+-(void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
 {
+	[UIView beginAnimations:@"fade out" context:nil];
+	[UIView setAnimationDuration:duration];
+	
 	[self setupSongButtons];
 	
+	[UIView commitAnimations];
+}
+
+-(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
+{
 	if (self.flipsidePopoverController)
 	{
 		[self.flipsidePopoverController presentPopoverFromRect:self.flipViewButton.frame
@@ -398,7 +513,6 @@ enum {
 									  permittedArrowDirections:UIPopoverArrowDirectionAny
 													  animated:YES];
 	}
-
 }
 
 @end

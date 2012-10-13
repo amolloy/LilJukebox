@@ -47,6 +47,7 @@
 								<string key="NSFrame">{{690, 924}, {18, 19}}</string>
 								<reference key="NSSuperview" ref="248142279"/>
 								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
 								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
@@ -379,6 +380,7 @@
 					<object class="IBObjectRecord">
 						<int key="objectID">24</int>
 						<reference key="object" ref="243930210"/>
+						<array class="NSMutableArray" key="children"/>
 						<reference key="parent" ref="248142279"/>
 					</object>
 					<object class="IBObjectRecord">
@@ -422,7 +424,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">38</int>
+			<int key="maxID">49</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
