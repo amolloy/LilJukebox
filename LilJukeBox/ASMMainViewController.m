@@ -211,7 +211,9 @@ enum {
 		[UIView commitAnimations];
 	}
 	
-	[self setupSongButtons];
+	self.albumArtworkView.alpha = 0;
+	self.songNameLabel.text = @"";
+	self.artistNameLabel.text = @"";
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -373,7 +375,7 @@ enum {
 	}
 }
 
--(void)viewWillLayoutSubviews
+-(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
 {
 	[self setupSongButtons];
 }
