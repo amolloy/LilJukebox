@@ -77,6 +77,13 @@ enum
 	{
 		self.tableView.backgroundView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"WhiteLinen"]] autorelease];
 	}
+	
+	self.hideConfigSwitch = [[[UISwitch alloc] initWithFrame:CGRectZero] autorelease];
+	[self.hideConfigSwitch addTarget:self
+							  action:@selector(configSwitchChanged:)
+					forControlEvents:UIControlEventValueChanged];
+	
+	self.hideConfigSwitch.on = [[NSUserDefaults standardUserDefaults] boolForKey:kHideConfigUserDefaultsKey];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -235,16 +242,6 @@ enum
                 {
                     cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ConfigCellIdentifier] autorelease];
                 }
-                
-                if (nil == self.hideConfigSwitch)
-                {
-                    self.hideConfigSwitch = [[[UISwitch alloc] initWithFrame:CGRectZero] autorelease];
-                    [self.hideConfigSwitch addTarget:self
-                                              action:@selector(configSwitchChanged:)
-                                    forControlEvents:UIControlEventValueChanged];
-                }
-                
-                self.hideConfigSwitch.on = [[NSUserDefaults standardUserDefaults] boolForKey:kHideConfigUserDefaultsKey];
                 
                 cell.accessoryView = self.hideConfigSwitch;
                 cell.textLabel.text = NSLocalizedString(@"Hide Configuration Button", @"Hide Configuration Button");
