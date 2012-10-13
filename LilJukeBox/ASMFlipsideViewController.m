@@ -160,6 +160,17 @@ enum
 
 #pragma mark - Table view data source
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	CGFloat height = 44;
+	if (indexPath.section == kConfigurationSection && indexPath.row == 1)
+	{
+		height*= 2;
+	}
+	
+	return height;
+}
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return kNumSections;
@@ -241,6 +252,8 @@ enum
                 if (nil == cell)
                 {
                     cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ConfigDescCellIdentifier] autorelease];
+					cell.textLabel.lineBreakMode = UILineBreakModeWordWrap;
+					cell.textLabel.numberOfLines = 0;
                 }
                 
                 cell.textLabel.text = NSLocalizedString(@"To re-enable the configuration button, visit the Settings app.", @"How to re-enable the config button");
