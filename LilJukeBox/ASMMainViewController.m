@@ -218,7 +218,14 @@ enum {
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
-	return UIInterfaceOrientationIsLandscape(interfaceOrientation);
+	BOOL shouldRotate = YES;
+
+	if ([[UIDevice currentDevice] safeUserInterfaceIdiom] == UISafeUserInterfaceIdiomPhone)
+    {
+        shouldRotate = UIInterfaceOrientationIsLandscape(interfaceOrientation);
+    }
+
+	return shouldRotate;
 }
 
 #pragma mark - Flipside View Controller
