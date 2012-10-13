@@ -258,7 +258,7 @@ enum {
     [super dealloc];
 }
 
-- (IBAction)showInfo:(id)sender
+- (IBAction)showInfo:(UIButton*)sender
 {
     if ([[UIDevice currentDevice] safeUserInterfaceIdiom] == UISafeUserInterfaceIdiomPhone)
     {
@@ -282,6 +282,8 @@ enum {
             navController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
 
             self.flipsidePopoverController = [[[UIPopoverController alloc] initWithContentViewController:navController] autorelease];
+			
+			self.flipsidePopoverController.popoverContentSize = CGSizeMake(400, 568);
         }
         
         if ([self.flipsidePopoverController isPopoverVisible])
@@ -290,7 +292,10 @@ enum {
         }
         else
         {
-            [self.flipsidePopoverController presentPopoverFromBarButtonItem:sender permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+            [self.flipsidePopoverController presentPopoverFromRect:sender.frame
+															inView:sender.superview
+										  permittedArrowDirections:UIPopoverArrowDirectionAny
+														  animated:YES];
         }
     }
 }
@@ -385,6 +390,15 @@ enum {
 -(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
 {
 	[self setupSongButtons];
+	
+	if (self.flipsidePopoverController)
+	{
+		[self.flipsidePopoverController presentPopoverFromRect:self.flipViewButton.frame
+														inView:self.flipViewButton.superview
+									  permittedArrowDirections:UIPopoverArrowDirectionAny
+													  animated:YES];
+	}
+
 }
 
 @end
