@@ -34,10 +34,6 @@
     
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
 
-#if 1
-	self.mainViewController = [[[ASMMainViewController alloc] initWithNibName:@"ASMMainViewController_iPhone" bundle:nil] autorelease];
-#else
-    // Override point for customization after application launch.
     if (UISafeUserInterfaceIdiomPhone == [[UIDevice currentDevice] safeUserInterfaceIdiom])
     {
         self.mainViewController = [[[ASMMainViewController alloc] initWithNibName:@"ASMMainViewController_iPhone" bundle:nil] autorelease];
@@ -46,8 +42,7 @@
     {
         self.mainViewController = [[[ASMMainViewController alloc] initWithNibName:@"ASMMainViewController_iPad" bundle:nil] autorelease];
     }
-#endif
-    
+
     if ([self.window respondsToSelector:@selector(setRootViewController:)])
     {
         self.window.rootViewController = self.mainViewController;
