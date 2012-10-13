@@ -30,6 +30,7 @@ enum
 @property (retain, nonatomic) UIActionSheet* deleteActionSheet;
 @property (retain, nonatomic) UIBarButtonItem* trashButton;
 @property (retain, nonatomic) UIBarButtonItem* addButton;
+@property (retain, nonatomic) UIBarButtonItem* helpMessageItem;
 @property (retain, nonatomic) UISwitch* hideConfigSwitch;
 @property (retain, nonatomic) IBOutlet UIView *helpView;
 @property (retain, nonatomic) IBOutlet UILabel *helpLabel;
@@ -43,6 +44,7 @@ enum
 @synthesize deleteActionSheet;
 @synthesize trashButton;
 @synthesize addButton;
+@synthesize helpMessageItem;
 @synthesize hideConfigSwitch;
 @synthesize helpView;
 @synthesize helpLabel;
@@ -84,19 +86,26 @@ enum
     self.trashButton = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemTrash
                                                                       target:self
                                                                       action:@selector(deleteAllSongs:)] autorelease];
-    UIBarButtonItem* flexibleSpace = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
+    
+	UIBarButtonItem* flexibleSpace = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
                                                                                     target:nil
                                                                                     action:nil] autorelease];
+	
+	self.helpMessageItem = [[[UIBarButtonItem alloc] initWithTitle:@""
+															 style:UIBarButtonItemStylePlain
+															target:nil
+															action:nil] autorelease];
+	
     self.addButton = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
                                                                     target:self
                                                                     action:@selector(addSongs:)] autorelease];
     
-    NSArray* toolbarItems = [NSArray arrayWithObjects:self.trashButton, flexibleSpace, self.addButton, nil];
+    NSArray* toolbarItems = [NSArray arrayWithObjects:self.trashButton, flexibleSpace, self.helpMessageItem, self.addButton, nil];
     [self setToolbarItems:toolbarItems animated:NO];
     
     [self setupButtonStates];
 
-	self.helpLabel.text = NSLocalizedString(@"Tap the plus to select songs.", @"Prompt to press the + symbol to add songs");
+	self.helpLabel.text = NSLocalizedString(@"Tap the plus to select songs:", @"Prompt to press the + symbol to add songs");
 }
 
 - (UIImage*)imageForRow:(NSUInteger)row
@@ -224,7 +233,7 @@ enum
                 
                 if (nil == cell)
                 {
-                    cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:ConfigCellIdentifier] autorelease];
+                    cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ConfigCellIdentifier] autorelease];
                 }
                 
                 if (nil == self.hideConfigSwitch)
@@ -247,7 +256,7 @@ enum
                 
                 if (nil == cell)
                 {
-                    cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:ConfigDescCellIdentifier] autorelease];
+                    cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ConfigDescCellIdentifier] autorelease];
                 }
                 
                 cell.textLabel.text = NSLocalizedString(@"To re-enable the configuration button, visit the Settings app.", @"How to re-enable the config button");
@@ -357,6 +366,7 @@ enum
     {
         [[ASMSongCollection sharedSongCollection] removeAllSongs];
         [self.tableView reloadData];
+		[self setupButtonStates];
     }
     
     self.deleteActionSheet = nil;
@@ -393,6 +403,10 @@ enum
 		{
 			[self.tableView.backgroundView addSubview:self.helpView];
 		}
+		else
+		{
+			self.helpMessageItem.title = NSLocalizedString(@"Tap the plus to select songs:", @"Prompt to press the + symbol to add songs");
+		}
 		
 		CGRect helpViewFrame = self.helpView.frame;
 		helpViewFrame.origin = CGPointMake(CGRectGetMaxX(self.tableView.frame) - 40 - helpViewFrame.size.width,
@@ -407,6 +421,7 @@ enum
 	else
 	{
 		[self.helpView removeFromSuperview];
+		self.helpMessageItem.title = @"";
 	}
 }
 
@@ -420,6 +435,7 @@ enum
 	self.deleteActionSheet = nil;
 	self.trashButton = nil;
 	self.addButton = nil;
+	self.helpMessageItem = nil;
 	self.hideConfigSwitch = nil;
 	self.helpView = nil;
 	self.helpLabel = nil;
