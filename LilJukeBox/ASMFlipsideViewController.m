@@ -71,7 +71,10 @@ enum
     
     self.navigationController.toolbarHidden = NO;
 	
-	self.tableView.backgroundView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"WhiteLinen"]] autorelease];
+	if ([self.tableView respondsToSelector:@selector(setBackgroundView:)])
+	{
+		self.tableView.backgroundView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"WhiteLinen"]] autorelease];
+	}
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -376,7 +379,11 @@ enum
 	
 	if ([[ASMSongCollection sharedSongCollection] songCount] == 0)
 	{
-		[self.tableView.backgroundView addSubview:self.helpView];
+		if ([self.tableView respondsToSelector:@selector(setBackgroundView:)])
+		{
+			[self.tableView.backgroundView addSubview:self.helpView];
+		}
+		
 		CGRect helpViewFrame = self.helpView.frame;
 		helpViewFrame.origin = CGPointMake(CGRectGetMaxX(self.tableView.frame) - 40 - helpViewFrame.size.width,
 										   CGRectGetMaxY(self.tableView.frame) - helpViewFrame.size.height);
