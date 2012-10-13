@@ -119,10 +119,10 @@ enum {
 		NSArray* songs = [[ASMSongCollection sharedSongCollection] songs];
 		MPMediaItem* item = [songs objectAtIndex:i];
 		
-		NSString* artistName = [item valueForKey:MPMediaItemPropertyArtist];
+		NSString* artistName = [item valueForProperty:MPMediaItemPropertyArtist];
 		if (!artistName) artistName = NSLocalizedString(@"Uknown artist", @"assistive description for an artist with an unknown name.");
 		
-		NSString* songName = [item valueForKey:MPMediaItemPropertyTitle];
+		NSString* songName = [item valueForProperty:MPMediaItemPropertyTitle];
 		if (!songName) songName = NSLocalizedString(@"Uknown song", @"assistive description for song with an unknown title.");
 		
 		NSString* assistiveDesc = [NSString stringWithFormat:NSLocalizedString(@"Play %1$@ by %2$@", @"Assistive description for song buttons. %1$@ is the song title, %2$@ is the artist's name"),
@@ -311,7 +311,7 @@ enum {
 
 	BOOL showAlbumArtwork = [[NSUserDefaults standardUserDefaults] boolForKey:kShowAlbumArtworkKey];
 
-	MPMediaItemArtwork* artwork = [item valueForKey:MPMediaItemPropertyArtwork];
+	MPMediaItemArtwork* artwork = [item valueForProperty:MPMediaItemPropertyArtwork];
 	UIImage* artworkImage = [artwork imageWithSize:self.albumArtworkView.frame.size];
 	showAlbumArtwork&= artworkImage != nil;
 	
@@ -356,11 +356,11 @@ enum {
 		[UIView commitAnimations];
 	}
 	
-	NSString* artistName = [item valueForKey:MPMediaItemPropertyArtist];
+	NSString* artistName = [item valueForProperty:MPMediaItemPropertyArtist];
 	if (!artistName) artistName = @"";
 	self.artistNameLabel.text = artistName;
 	
-	NSString* songName = [item valueForKey:MPMediaItemPropertyTitle];
+	NSString* songName = [item valueForProperty:MPMediaItemPropertyTitle];
 	if (!songName) songName = @"";
 	self.songNameLabel.text = songName;
 	
