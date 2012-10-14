@@ -353,15 +353,16 @@ enum {
 
 - (void)dealloc
 {
-    [self.flipsidePopoverController release];
-    [self.songButtons release];
-	[self.containerView release];
-	[self.infoContainerView release];
-	[self.buttonContainerView release];
-	[self.albumArtworkView release];
-	[self.artistNameLabel release];
-	[self.songNameLabel release];
-	[self.helpLabel release];
+	self.flipsidePopoverController = nil;
+	self.songButtons = nil;
+	self.containerView = nil;
+	self.infoContainerView = nil;
+	self.buttonContainerView = nil;
+	self.albumArtworkView = nil;
+	self.artistNameLabel = nil;
+	self.songNameLabel = nil;
+	self.helpLabel = nil;
+
     [super dealloc];
 }
 
