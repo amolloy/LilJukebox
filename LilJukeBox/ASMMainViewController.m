@@ -11,6 +11,7 @@
 #import "ASMSongCollection.h"
 #import <MediaPlayer/MediaPlayer.h>
 #import <QuartzCore/QuartzCore.h>
+#import <AVFoundation/AVFoundation.h>
 
 NSString* kShowAlbumArtworkKey = @"ShowAlbumArtwork";
 NSString* kHideConfigUserDefaultsKey = @"HideConfig";
@@ -26,6 +27,8 @@ enum {
 //#define FAKE_FOR_SCREENSHOTS 1
 
 @interface ASMMainViewController ()
+
+@property (retain, nonatomic) MPMusicPlayerController* appMusicPlayer;
 
 @property (retain, nonatomic) IBOutlet UIButton *flipViewButton;
 @property (retain, nonatomic) NSArray* songButtons;
@@ -44,6 +47,7 @@ enum {
 
 @implementation ASMMainViewController
 
+@synthesize appMusicPlayer;
 @synthesize flipViewButton;
 @synthesize songButtons;
 @synthesize containerView;
@@ -296,6 +300,13 @@ enum {
 	self.albumArtworkView.alpha = 0;
 
 	self.helpLabel.alpha = 0;
+	
+	self.appMusicPlayer = [MPMusicPlayerController applicationMusicPlayer];
+	[[NSNotificationCenter defaultCenter] addObserver:self
+											 selector:@selector(musicPlayerStateDidChange:)
+												 name:MPMusicPlayerControllerPlaybackStateDidChangeNotification
+											   object:self.appMusicPlayer];
+	[self.appMusicPlayer beginGeneratingPlaybackNotifications];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -333,6 +344,20 @@ enum {
     }
 
 	return shouldRotate;
+}
+
+- (void)musicPlayerStateDidChange:(NSNotification*)notification
+{
+	if (MPMusicPlaybackStatePlaying == self.appMusicPlayer.playbackState)
+	{
+		[[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback
+											   error:nil];
+	}
+	else
+	{
+		[[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategorySoloAmbient
+											   error:nil];
+	}
 }
 
 #pragma mark - Flipside View Controller
@@ -426,10 +451,9 @@ enum {
     [self dismissModalViewControllerAnimated: YES];
 
     MPMediaItemCollection* collection = [MPMediaItemCollection collectionWithItems:[NSArray arrayWithObject:item]];
-    
-    MPMusicPlayerController* appMusicPlayer = [MPMusicPlayerController applicationMusicPlayer];
-    [appMusicPlayer setQueueWithItemCollection:collection];
-    [appMusicPlayer play];
+	
+    [self.appMusicPlayer setQueueWithItemCollection:collection];
+    [self.appMusicPlayer play];
 
 	BOOL showAlbumArtwork = [[NSUserDefaults standardUserDefaults] boolForKey:kShowAlbumArtworkKey];
 
