@@ -7,10 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0C33435508EC4EC4A55A31B2 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AEA1BEB62E04B6DAAA45E04 /* libPods.a */; };
 		B41107D3161FC39600658F8C /* WhiteLinen.png in Resources */ = {isa = PBXBuildFile; fileRef = B41107D1161FC39600658F8C /* WhiteLinen.png */; };
 		B41107D4161FC39600658F8C /* WhiteLinen@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B41107D2161FC39600658F8C /* WhiteLinen@2x.png */; };
 		B41107D8161FC5D900658F8C /* HelpArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = B41107D6161FC5D900658F8C /* HelpArrow.png */; };
 		B41107D9161FC5D900658F8C /* HelpArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B41107D7161FC5D900658F8C /* HelpArrow@2x.png */; };
+		B412660D162AFB75007232A0 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B412660C162AFB75007232A0 /* SystemConfiguration.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		B412660F162AFB7D007232A0 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B412660E162AFB7D007232A0 /* AVFoundation.framework */; };
 		B41B336B157FDF6000168F54 /* libSystem.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B41B336A157FDF6000168F54 /* libSystem.dylib */; settings = {ATTRIBUTES = (Weak, ); }; };
 		B41B3373157FE11200168F54 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B41B3372157FE11200168F54 /* libz.dylib */; };
 		B43002FE1629E189004B9E75 /* ASMMainViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = B431EA8D156B25220067E5C4 /* ASMMainViewController_iPad.xib */; };
@@ -34,16 +37,19 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3AEA1BEB62E04B6DAAA45E04 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		B41107D1161FC39600658F8C /* WhiteLinen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WhiteLinen.png; sourceTree = "<group>"; };
 		B41107D2161FC39600658F8C /* WhiteLinen@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WhiteLinen@2x.png"; sourceTree = "<group>"; };
 		B41107D6161FC5D900658F8C /* HelpArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HelpArrow.png; sourceTree = "<group>"; };
 		B41107D7161FC5D900658F8C /* HelpArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "HelpArrow@2x.png"; sourceTree = "<group>"; };
-		B41B336A157FDF6000168F54 /* libSystem.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libSystem.dylib; path = usr/lib/libSystem.dylib; sourceTree = SDKROOT; };
-		B41B3372157FE11200168F54 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		B412660C162AFB75007232A0 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		B412660E162AFB7D007232A0 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		B41B336A157FDF6000168F54 /* libSystem.dylib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "compiled.mach-o.dylib"; name = libSystem.dylib; path = usr/lib/libSystem.dylib; sourceTree = SDKROOT; };
+		B41B3372157FE11200168F54 /* libz.dylib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		B431EA6E156B25220067E5C4 /* liljukebox.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = liljukebox.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		B431EA72156B25220067E5C4 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		B431EA74156B25220067E5C4 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		B431EA76156B25220067E5C4 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		B431EA72156B25220067E5C4 /* UIKit.framework */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		B431EA74156B25220067E5C4 /* Foundation.framework */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		B431EA76156B25220067E5C4 /* CoreGraphics.framework */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		B431EA7A156B25220067E5C4 /* LilJukeBox-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "LilJukeBox-Info.plist"; sourceTree = "<group>"; };
 		B431EA7C156B25220067E5C4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B431EA7E156B25220067E5C4 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -54,7 +60,7 @@
 		B431EA85156B25220067E5C4 /* ASMMainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ASMMainViewController.m; sourceTree = "<group>"; };
 		B431EA8B156B25220067E5C4 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ASMMainViewController_iPhone.xib; sourceTree = "<group>"; };
 		B431EA8E156B25220067E5C4 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ASMMainViewController_iPad.xib; sourceTree = "<group>"; };
-		B438934D156B2B3E001D6B6D /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		B438934D156B2B3E001D6B6D /* MediaPlayer.framework */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		B4430843161CEA1D000DB146 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = ../Default.png; sourceTree = "<group>"; };
 		B4430845161CEA25000DB146 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "../Default@2x.png"; sourceTree = "<group>"; };
 		B4430847161CEA27000DB146 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "../Default-568h@2x.png"; sourceTree = "<group>"; };
@@ -66,6 +72,7 @@
 		B4DB0976156F1CDD0002FB99 /* ASMFlipsideViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASMFlipsideViewController.h; sourceTree = "<group>"; };
 		B4DB0977156F1CDD0002FB99 /* ASMFlipsideViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASMFlipsideViewController.m; sourceTree = "<group>"; };
 		B4DB097C156FBFCB0002FB99 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ASMFlipsideViewController.xib; sourceTree = "<group>"; };
+		E796482CA3C3476492D0274E /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,12 +80,15 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B412660F162AFB7D007232A0 /* AVFoundation.framework in Frameworks */,
+				B412660D162AFB75007232A0 /* SystemConfiguration.framework in Frameworks */,
 				B41B3373157FE11200168F54 /* libz.dylib in Frameworks */,
 				B41B336B157FDF6000168F54 /* libSystem.dylib in Frameworks */,
 				B438934E156B2B3E001D6B6D /* MediaPlayer.framework in Frameworks */,
 				B431EA73156B25220067E5C4 /* UIKit.framework in Frameworks */,
 				B431EA75156B25220067E5C4 /* Foundation.framework in Frameworks */,
 				B431EA77156B25220067E5C4 /* CoreGraphics.framework in Frameworks */,
+				0C33435508EC4EC4A55A31B2 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -100,6 +110,7 @@
 				B41B3368157FDF1000168F54 /* Third Party */,
 				B431EA71156B25220067E5C4 /* Frameworks */,
 				B431EA6F156B25220067E5C4 /* Products */,
+				E796482CA3C3476492D0274E /* Pods.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -114,12 +125,15 @@
 		B431EA71156B25220067E5C4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				B41B3372157FE11200168F54 /* libz.dylib */,
+				3AEA1BEB62E04B6DAAA45E04 /* libPods.a */,
 				B41B336A157FDF6000168F54 /* libSystem.dylib */,
-				B438934D156B2B3E001D6B6D /* MediaPlayer.framework */,
-				B431EA72156B25220067E5C4 /* UIKit.framework */,
-				B431EA74156B25220067E5C4 /* Foundation.framework */,
+				B41B3372157FE11200168F54 /* libz.dylib */,
+				B412660E162AFB7D007232A0 /* AVFoundation.framework */,
 				B431EA76156B25220067E5C4 /* CoreGraphics.framework */,
+				B431EA74156B25220067E5C4 /* Foundation.framework */,
+				B438934D156B2B3E001D6B6D /* MediaPlayer.framework */,
+				B412660C162AFB75007232A0 /* SystemConfiguration.framework */,
+				B431EA72156B25220067E5C4 /* UIKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -174,6 +188,7 @@
 				B431EA6A156B25220067E5C4 /* Sources */,
 				B431EA6B156B25220067E5C4 /* Frameworks */,
 				B431EA6C156B25220067E5C4 /* Resources */,
+				E56A3D79D53E42969C9BB022 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -232,6 +247,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		E56A3D79D53E42969C9BB022 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		B431EA6A156B25220067E5C4 /* Sources */ = {
@@ -322,6 +354,7 @@
 				GCC_WARN_UNUSED_VALUE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 3.1.3;
+				OTHER_CFLAGS = "-DCONFIGURATION_$(CONFIGURATION)";
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -358,7 +391,10 @@
 				GCC_WARN_UNUSED_VALUE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 3.1.3;
-				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				OTHER_CFLAGS = (
+					"-DNS_BLOCK_ASSERTIONS=1",
+					"-DCONFIGURATION_$(CONFIGURATION)",
+				);
 				PROVISIONING_PROFILE = "";
 				RUN_CLANG_STATIC_ANALYZER = YES;
 				SDKROOT = iphoneos;
@@ -369,6 +405,7 @@
 		};
 		B431EA96156B25220067E5C4 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E796482CA3C3476492D0274E /* Pods.xcconfig */;
 			buildSettings = {
 				CLANG_WARN_OBJC_IMPLICIT_ATOMIC_PROPERTIES = YES;
 				CLANG_WARN_SUSPICIOUS_IMPLICIT_CONVERSION = YES;
@@ -377,11 +414,6 @@
 				GCC_THUMB_SUPPORT = NO;
 				INFOPLIST_FILE = "LilJukeBox/LilJukeBox-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 3.1;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/../../ThirdParty/TestFlight\"",
-				);
-				OTHER_LDFLAGS = "-weak-lSystem";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
@@ -390,6 +422,7 @@
 		};
 		B431EA97156B25220067E5C4 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E796482CA3C3476492D0274E /* Pods.xcconfig */;
 			buildSettings = {
 				CLANG_WARN_OBJC_IMPLICIT_ATOMIC_PROPERTIES = YES;
 				CLANG_WARN_SUSPICIOUS_IMPLICIT_CONVERSION = YES;
@@ -398,18 +431,13 @@
 				GCC_THUMB_SUPPORT = NO;
 				INFOPLIST_FILE = "LilJukeBox/LilJukeBox-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 3.1;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/../../ThirdParty/TestFlight\"",
-				);
-				OTHER_LDFLAGS = "-weak-lSystem";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
 		};
-		B43C9152157FF52600DD5C60 /* Ad Hoc */ = {
+		B43C9152157FF52600DD5C60 /* AdHoc */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -439,17 +467,21 @@
 				GCC_WARN_UNUSED_VALUE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 3.1.3;
-				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				OTHER_CFLAGS = (
+					"-DNS_BLOCK_ASSERTIONS=1",
+					"-DCONFIGURATION_$(CONFIGURATION)",
+				);
 				PROVISIONING_PROFILE = "90A45B89-2E63-4A19-BF81-1D5E29895F77";
 				RUN_CLANG_STATIC_ANALYZER = YES;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 1;
 				VALIDATE_PRODUCT = YES;
 			};
-			name = "Ad Hoc";
+			name = AdHoc;
 		};
-		B43C9153157FF52600DD5C60 /* Ad Hoc */ = {
+		B43C9153157FF52600DD5C60 /* AdHoc */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E796482CA3C3476492D0274E /* Pods.xcconfig */;
 			buildSettings = {
 				CLANG_WARN_OBJC_IMPLICIT_ATOMIC_PROPERTIES = YES;
 				CLANG_WARN_SUSPICIOUS_IMPLICIT_CONVERSION = YES;
@@ -458,16 +490,70 @@
 				GCC_THUMB_SUPPORT = NO;
 				INFOPLIST_FILE = "LilJukeBox/LilJukeBox-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 3.1;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/../../ThirdParty/TestFlight\"",
-				);
-				OTHER_LDFLAGS = "-weak-lSystem";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
-			name = "Ad Hoc";
+			name = AdHoc;
+		};
+		B4DCF186162B01EC00790B80 /* AppStore */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = (
+					armv7,
+					armv6,
+				);
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_THUMB_SUPPORT = NO;
+				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_FIELD_INITIALIZERS = YES;
+				GCC_WARN_ABOUT_MISSING_NEWLINE = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_CHECK_SWITCH_STATEMENTS = YES;
+				GCC_WARN_INITIALIZER_NOT_FULLY_BRACKETED = YES;
+				GCC_WARN_MISSING_PARENTHESES = YES;
+				GCC_WARN_SHADOW = YES;
+				GCC_WARN_SIGN_COMPARE = YES;
+				GCC_WARN_TYPECHECK_CALLS_TO_PRINTF = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_LABEL = YES;
+				GCC_WARN_UNUSED_VALUE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 3.1.3;
+				OTHER_CFLAGS = (
+					"-DNS_BLOCK_ASSERTIONS=1",
+					"-DCONFIGURATION_$(CONFIGURATION)",
+				);
+				PROVISIONING_PROFILE = "90A45B89-2E63-4A19-BF81-1D5E29895F77";
+				RUN_CLANG_STATIC_ANALYZER = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 1;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = AppStore;
+		};
+		B4DCF187162B01EC00790B80 /* AppStore */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E796482CA3C3476492D0274E /* Pods.xcconfig */;
+			buildSettings = {
+				CLANG_WARN_OBJC_IMPLICIT_ATOMIC_PROPERTIES = YES;
+				CLANG_WARN_SUSPICIOUS_IMPLICIT_CONVERSION = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "LilJukeBox/LilJukeBox-Prefix.pch";
+				GCC_THUMB_SUPPORT = NO;
+				INFOPLIST_FILE = "LilJukeBox/LilJukeBox-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 3.1;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				WRAPPER_EXTENSION = app;
+			};
+			name = AppStore;
 		};
 /* End XCBuildConfiguration section */
 
@@ -477,7 +563,8 @@
 			buildConfigurations = (
 				B431EA93156B25220067E5C4 /* Debug */,
 				B431EA94156B25220067E5C4 /* Release */,
-				B43C9152157FF52600DD5C60 /* Ad Hoc */,
+				B43C9152157FF52600DD5C60 /* AdHoc */,
+				B4DCF186162B01EC00790B80 /* AppStore */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -487,7 +574,8 @@
 			buildConfigurations = (
 				B431EA96156B25220067E5C4 /* Debug */,
 				B431EA97156B25220067E5C4 /* Release */,
-				B43C9153157FF52600DD5C60 /* Ad Hoc */,
+				B43C9153157FF52600DD5C60 /* AdHoc */,
+				B4DCF187162B01EC00790B80 /* AppStore */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
