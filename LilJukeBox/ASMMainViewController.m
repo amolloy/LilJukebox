@@ -26,7 +26,7 @@ enum {
 
 //#define FAKE_FOR_SCREENSHOTS 1
 
-@interface ASMMainViewController ()
+@interface ASMMainViewController () <UIPopoverControllerDelegate>
 
 @property (retain, nonatomic) MPMusicPlayerController* appMusicPlayer;
 
@@ -75,6 +75,8 @@ enum {
 
 - (void)setupSongButtons
 {
+	self.flipViewButton.hidden = [[NSUserDefaults standardUserDefaults] boolForKey:kHideConfigUserDefaultsKey];
+
 	if ([[UIDevice currentDevice] safeUserInterfaceIdiom] == UISafeUserInterfaceIdiomPhone)
 	{
 		[self setupSongButtonsiPhone];
@@ -307,11 +309,15 @@ enum {
 												 name:MPMusicPlayerControllerPlaybackStateDidChangeNotification
 											   object:self.appMusicPlayer];
 	[self.appMusicPlayer beginGeneratingPlaybackNotifications];
+	
+	[[NSNotificationCenter defaultCenter] addObserver:self
+											 selector:@selector(setupSongButtons)
+												 name:UIApplicationDidBecomeActiveNotification
+											   object:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    self.flipViewButton.hidden = [[NSUserDefaults standardUserDefaults] boolForKey:kHideConfigUserDefaultsKey];
 	self.flipViewButton.accessibilityLabel = NSLocalizedString(@"Settings", @"Accessibility label for settings button, spoken aloud");
 	
 	static BOOL sFirstRun = YES;
@@ -417,6 +423,7 @@ enum {
             self.flipsidePopoverController = [[[UIPopoverController alloc] initWithContentViewController:navController] autorelease];
 			
 			self.flipsidePopoverController.popoverContentSize = CGSizeMake(400, 568);
+			self.flipsidePopoverController.delegate = self;
         }
         
         if ([self.flipsidePopoverController isPopoverVisible])
@@ -538,6 +545,12 @@ enum {
 									  permittedArrowDirections:UIPopoverArrowDirectionAny
 													  animated:YES];
 	}
+}
+
+#pragma mark UIPopoverViewControllerDelegate
+- (void)popoverControllerDidDismissPopover:(UIPopoverController *)popoverController
+{
+	[self setupSongButtons];
 }
 
 @end
