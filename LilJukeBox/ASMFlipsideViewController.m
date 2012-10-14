@@ -340,7 +340,13 @@ enum
         self.mediaPickerController = [[[MPMediaPickerController alloc] initWithMediaTypes:MPMediaTypeAnyAudio] autorelease];
         self.mediaPickerController.allowsPickingMultipleItems = YES;
         self.mediaPickerController.delegate = self;
-    }
+    
+		if ([self.mediaPickerController respondsToSelector:@selector(setModalPresentationStyle:)])
+		{
+			self.mediaPickerController.modalPresentationStyle = UIModalPresentationCurrentContext;
+			self.mediaPickerController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+		}
+	}
     
     [self.navigationController presentModalViewController:self.mediaPickerController animated:YES];
 }
