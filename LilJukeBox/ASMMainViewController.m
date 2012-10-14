@@ -538,7 +538,7 @@ enum {
 
 -(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
 {
-	if (self.flipsidePopoverController)
+	if (self.flipsidePopoverController.isPopoverVisible)
 	{
 		[self.flipsidePopoverController presentPopoverFromRect:self.flipViewButton.frame
 														inView:self.flipViewButton.superview
