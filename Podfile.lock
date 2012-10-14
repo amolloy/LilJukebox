@@ -1,0 +1,14 @@
+
+SPEC CHECKSUMS: 
+  HockeyKit: df5e71674550a3f8a4cb52dfa606c2af34dbfe12
+  QuincyKit: 3c1a3d8aff99ad03fc0afe302b1194eb6f2ddf69
+
+PODS: 
+- HockeyKit (2.0.7)
+- QuincyKit (2.1.9)
+
+COCOAPODS: 0.15.1
+
+DEPENDENCIES: 
+- HockeyKit
+- QuincyKit
