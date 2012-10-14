@@ -34,6 +34,8 @@
 	[BWQuincyManager sharedQuincyManager].appIdentifier = @"e9a8878814a9f377f152e04d2d7b9032";
 #endif
 	
+	[[NSUserDefaults standardUserDefaults] synchronize];
+	
     NSMutableDictionary* appDefaults = [NSMutableDictionary dictionaryWithCapacity:1];
     [appDefaults setObject:[NSNumber numberWithBool:NO] forKey:kHideConfigUserDefaultsKey];
 	[appDefaults setObject:[NSNumber numberWithBool:YES] forKey:kShowAlbumArtworkKey];
