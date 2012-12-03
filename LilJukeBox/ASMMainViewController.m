@@ -9,6 +9,7 @@
 #import "ASMMainViewController.h"
 #import "UIDevice+SafeUserInterfaceIdiom.h"
 #import "ASMSongCollection.h"
+#import "GradientView.h"
 #import <MediaPlayer/MediaPlayer.h>
 #import <QuartzCore/QuartzCore.h>
 #import <AVFoundation/AVFoundation.h>
@@ -32,8 +33,8 @@ enum {
 
 @property (retain, nonatomic) IBOutlet UIButton *flipViewButton;
 @property (retain, nonatomic) NSArray* songButtons;
-@property (retain, nonatomic) IBOutlet UIView *containerView;
-@property (retain, nonatomic) IBOutlet UIView *infoContainerView;
+@property (retain, nonatomic) IBOutlet GradientView *containerView;
+@property (retain, nonatomic) IBOutlet GradientView *infoContainerView;
 @property (retain, nonatomic) IBOutlet UIView *buttonContainerView;
 @property (retain, nonatomic) IBOutlet UIImageView *albumArtworkView;
 @property (retain, nonatomic) IBOutlet UILabel *artistNameLabel;
@@ -284,6 +285,26 @@ enum {
 - (void)viewDidLoad
 {
 	[super viewDidLoad];
+	
+	self.infoContainerView.topColor = [UIColor colorWithRed:102.0f/0xff
+													  green:255.0f/0xff
+													   blue:102.0f/0xff
+													  alpha:1];
+	self.infoContainerView.bottomColor = [UIColor colorWithRed:68.0f/0xff
+														 green:167.0f/0xff
+														  blue:69.0f/0xff
+														 alpha:1];
+	
+	self.containerView.topColor = [UIColor colorWithRed:77.0f/0xff
+												  green:77.0f/0xff
+												   blue:77.0f/0xff
+												  alpha:1];
+	
+	self.containerView.bottomColor = [UIColor colorWithRed:42.0f/0xff
+													 green:42.0f/0xff
+													  blue:42.0f/0xff
+													 alpha:1];
+
 	
 	self.containerView.layer.cornerRadius = 10;
 	self.containerView.layer.borderColor = [UIColor darkGrayColor].CGColor;
