@@ -14,6 +14,8 @@
 		B41107D9161FC5D900658F8C /* HelpArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B41107D7161FC5D900658F8C /* HelpArrow@2x.png */; };
 		B412660D162AFB75007232A0 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B412660C162AFB75007232A0 /* SystemConfiguration.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		B412660F162AFB7D007232A0 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B412660E162AFB7D007232A0 /* AVFoundation.framework */; };
+		B416EAA2166D5A5500323D11 /* GradientView.m in Sources */ = {isa = PBXBuildFile; fileRef = B416EAA1166D5A5500323D11 /* GradientView.m */; };
+		B416EAA4166D5B5A00323D11 /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B416EAA3166D5B5A00323D11 /* CoreImage.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		B41995B1162B417200AD884A /* Default-Portrait@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = B41995B0162B417200AD884A /* Default-Portrait@2x~ipad.png */; };
 		B41995B3162B417500AD884A /* Default-Portrait~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = B41995B2162B417500AD884A /* Default-Portrait~ipad.png */; };
 		B41995BA162B41E100AD884A /* Default-Landscape~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = B41995B9162B41E100AD884A /* Default-Landscape~ipad.png */; };
@@ -48,6 +50,9 @@
 		B41107D7161FC5D900658F8C /* HelpArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "HelpArrow@2x.png"; sourceTree = "<group>"; };
 		B412660C162AFB75007232A0 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		B412660E162AFB7D007232A0 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		B416EAA0166D5A5500323D11 /* GradientView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GradientView.h; sourceTree = "<group>"; };
+		B416EAA1166D5A5500323D11 /* GradientView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GradientView.m; sourceTree = "<group>"; };
+		B416EAA3166D5B5A00323D11 /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
 		B41995B0162B417200AD884A /* Default-Portrait@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-Portrait@2x~ipad.png"; path = "../Default-Portrait@2x~ipad.png"; sourceTree = "<group>"; };
 		B41995B2162B417500AD884A /* Default-Portrait~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-Portrait~ipad.png"; path = "../Default-Portrait~ipad.png"; sourceTree = "<group>"; };
 		B41995B9162B41E100AD884A /* Default-Landscape~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-Landscape~ipad.png"; path = "../Default-Landscape~ipad.png"; sourceTree = "<group>"; };
@@ -88,6 +93,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B416EAA4166D5B5A00323D11 /* CoreImage.framework in Frameworks */,
 				B412660F162AFB7D007232A0 /* AVFoundation.framework in Frameworks */,
 				B412660D162AFB75007232A0 /* SystemConfiguration.framework in Frameworks */,
 				B41B3373157FE11200168F54 /* libz.dylib in Frameworks */,
@@ -114,6 +120,7 @@
 		B431EA63156B25220067E5C4 = {
 			isa = PBXGroup;
 			children = (
+				B416EAA3166D5B5A00323D11 /* CoreImage.framework */,
 				B431EA78156B25220067E5C4 /* LilJukeBox */,
 				B41B3368157FDF1000168F54 /* Third Party */,
 				B431EA71156B25220067E5C4 /* Frameworks */,
@@ -158,6 +165,8 @@
 				B431EA85156B25220067E5C4 /* ASMMainViewController.m */,
 				B431EA8D156B25220067E5C4 /* ASMMainViewController_iPad.xib */,
 				B431EA8A156B25220067E5C4 /* ASMMainViewController_iPhone.xib */,
+				B416EAA0166D5A5500323D11 /* GradientView.h */,
+				B416EAA1166D5A5500323D11 /* GradientView.m */,
 				B47C08B91578524C0099A7E8 /* ASMSongCollection.h */,
 				B47C08BA1578524C0099A7E8 /* ASMSongCollection.m */,
 				B431EA79156B25220067E5C4 /* Supporting Files */,
@@ -292,6 +301,7 @@
 				B4DB0979156F1CDD0002FB99 /* ASMFlipsideViewController.m in Sources */,
 				B47C08BB1578524C0099A7E8 /* ASMSongCollection.m in Sources */,
 				B47C08BF1578F9190099A7E8 /* UIDevice+SafeUserInterfaceIdiom.m in Sources */,
+				B416EAA2166D5A5500323D11 /* GradientView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
