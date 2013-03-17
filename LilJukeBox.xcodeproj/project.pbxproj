@@ -85,7 +85,6 @@
 		B4DB0976156F1CDD0002FB99 /* ASMFlipsideViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASMFlipsideViewController.h; sourceTree = "<group>"; };
 		B4DB0977156F1CDD0002FB99 /* ASMFlipsideViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASMFlipsideViewController.m; sourceTree = "<group>"; };
 		B4DB097C156FBFCB0002FB99 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ASMFlipsideViewController.xib; sourceTree = "<group>"; };
-		E796482CA3C3476492D0274E /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,12 +119,10 @@
 		B431EA63156B25220067E5C4 = {
 			isa = PBXGroup;
 			children = (
-				B416EAA3166D5B5A00323D11 /* CoreImage.framework */,
 				B431EA78156B25220067E5C4 /* LilJukeBox */,
 				B41B3368157FDF1000168F54 /* Third Party */,
 				B431EA71156B25220067E5C4 /* Frameworks */,
 				B431EA6F156B25220067E5C4 /* Products */,
-				E796482CA3C3476492D0274E /* Pods.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -140,6 +137,7 @@
 		B431EA71156B25220067E5C4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B416EAA3166D5B5A00323D11 /* CoreImage.framework */,
 				3AEA1BEB62E04B6DAAA45E04 /* libPods.a */,
 				B41B336A157FDF6000168F54 /* libSystem.dylib */,
 				B41B3372157FE11200168F54 /* libz.dylib */,
@@ -209,7 +207,6 @@
 				B431EA6A156B25220067E5C4 /* Sources */,
 				B431EA6B156B25220067E5C4 /* Frameworks */,
 				B431EA6C156B25220067E5C4 /* Resources */,
-				E56A3D79D53E42969C9BB022 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -272,23 +269,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		E56A3D79D53E42969C9BB022 /* Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		B431EA6A156B25220067E5C4 /* Sources */ = {
@@ -379,7 +359,6 @@
 				GCC_WARN_UNUSED_LABEL = YES;
 				GCC_WARN_UNUSED_VALUE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 3.1.3;
 				OTHER_CFLAGS = "-DCONFIGURATION_$(CONFIGURATION)";
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
@@ -416,7 +395,6 @@
 				GCC_WARN_UNUSED_LABEL = YES;
 				GCC_WARN_UNUSED_VALUE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 3.1.3;
 				OTHER_CFLAGS = (
 					"-DNS_BLOCK_ASSERTIONS=1",
 					"-DCONFIGURATION_$(CONFIGURATION)",
@@ -431,7 +409,6 @@
 		};
 		B431EA96156B25220067E5C4 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E796482CA3C3476492D0274E /* Pods.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_OBJC_IMPLICIT_ATOMIC_PROPERTIES = YES;
@@ -449,7 +426,6 @@
 		};
 		B431EA97156B25220067E5C4 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E796482CA3C3476492D0274E /* Pods.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_OBJC_IMPLICIT_ATOMIC_PROPERTIES = YES;
@@ -494,7 +470,6 @@
 				GCC_WARN_UNUSED_LABEL = YES;
 				GCC_WARN_UNUSED_VALUE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 3.1.3;
 				OTHER_CFLAGS = (
 					"-DNS_BLOCK_ASSERTIONS=1",
 					"-DCONFIGURATION_$(CONFIGURATION)",
@@ -509,7 +484,6 @@
 		};
 		B43C9153157FF52600DD5C60 /* AdHoc */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E796482CA3C3476492D0274E /* Pods.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_OBJC_IMPLICIT_ATOMIC_PROPERTIES = YES;
@@ -556,7 +530,6 @@
 				GCC_WARN_UNUSED_LABEL = YES;
 				GCC_WARN_UNUSED_VALUE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 3.1.3;
 				OTHER_CFLAGS = (
 					"-DNS_BLOCK_ASSERTIONS=1",
 					"-DCONFIGURATION_$(CONFIGURATION)",
@@ -571,7 +544,6 @@
 		};
 		B4DCF187162B01EC00790B80 /* AppStore */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E796482CA3C3476492D0274E /* Pods.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_OBJC_IMPLICIT_ATOMIC_PROPERTIES = YES;

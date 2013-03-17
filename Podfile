@@ -1,6 +1,7 @@
-platform :ios, '3.1.3'
+platform :ios, '4.3'
 
-pod 'HockeyKit'
-pod 'QuincyKit'
+
+
+
 
 

@@ -10,8 +10,6 @@
 
 #import "ASMMainViewController.h"
 #import "UIDevice+SafeUserInterfaceIdiom.h"
-#import "BWHockeyManager.h"
-#import "BWQuincyManager.h"
 
 @implementation ASMAppDelegate
 
@@ -21,13 +19,6 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-#if !defined (CONFIGURATION_AppStore)
-	[BWHockeyManager sharedHockeyManager].updateURL = @"https://rink.hockeyapp.net/";
-	[BWHockeyManager sharedHockeyManager].appIdentifier = @"e9a8878814a9f377f152e04d2d7b9032";
-	
-	[BWQuincyManager sharedQuincyManager].appIdentifier = @"e9a8878814a9f377f152e04d2d7b9032";
-#endif
-	
 	[[NSUserDefaults standardUserDefaults] synchronize];
 	
     NSMutableDictionary* appDefaults = [NSMutableDictionary dictionaryWithCapacity:1];
