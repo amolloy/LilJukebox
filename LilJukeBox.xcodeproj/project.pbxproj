@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0C33435508EC4EC4A55A31B2 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AEA1BEB62E04B6DAAA45E04 /* libPods.a */; };
 		B41107D3161FC39600658F8C /* WhiteLinen.png in Resources */ = {isa = PBXBuildFile; fileRef = B41107D1161FC39600658F8C /* WhiteLinen.png */; };
 		B41107D4161FC39600658F8C /* WhiteLinen@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B41107D2161FC39600658F8C /* WhiteLinen@2x.png */; };
 		B41107D8161FC5D900658F8C /* HelpArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = B41107D6161FC5D900658F8C /* HelpArrow.png */; };
@@ -43,7 +42,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		3AEA1BEB62E04B6DAAA45E04 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		B41107D1161FC39600658F8C /* WhiteLinen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WhiteLinen.png; sourceTree = "<group>"; };
 		B41107D2161FC39600658F8C /* WhiteLinen@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WhiteLinen@2x.png"; sourceTree = "<group>"; };
 		B41107D6161FC5D900658F8C /* HelpArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HelpArrow.png; sourceTree = "<group>"; };
@@ -101,7 +99,6 @@
 				B431EA73156B25220067E5C4 /* UIKit.framework in Frameworks */,
 				B431EA75156B25220067E5C4 /* Foundation.framework in Frameworks */,
 				B431EA77156B25220067E5C4 /* CoreGraphics.framework in Frameworks */,
-				0C33435508EC4EC4A55A31B2 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -138,7 +135,6 @@
 			isa = PBXGroup;
 			children = (
 				B416EAA3166D5B5A00323D11 /* CoreImage.framework */,
-				3AEA1BEB62E04B6DAAA45E04 /* libPods.a */,
 				B41B336A157FDF6000168F54 /* libSystem.dylib */,
 				B41B3372157FE11200168F54 /* libz.dylib */,
 				B412660E162AFB7D007232A0 /* AVFoundation.framework */,
