@@ -27,13 +27,13 @@ enum
 - (void)setupButtonStates;
 - (UIImage*)imageForRow:(NSUInteger)row;
 
-@property (retain, nonatomic) UIActionSheet* deleteActionSheet;
-@property (retain, nonatomic) UIBarButtonItem* trashButton;
-@property (retain, nonatomic) UIBarButtonItem* addButton;
-@property (retain, nonatomic) UIBarButtonItem* helpMessageItem;
-@property (retain, nonatomic) UISwitch* hideConfigSwitch;
-@property (retain, nonatomic) IBOutlet UIView *helpView;
-@property (retain, nonatomic) IBOutlet UILabel *helpLabel;
+@property (strong, nonatomic) UIActionSheet* deleteActionSheet;
+@property (strong, nonatomic) UIBarButtonItem* trashButton;
+@property (strong, nonatomic) UIBarButtonItem* addButton;
+@property (strong, nonatomic) UIBarButtonItem* helpMessageItem;
+@property (strong, nonatomic) UISwitch* hideConfigSwitch;
+@property (strong, nonatomic) IBOutlet UIView *helpView;
+@property (strong, nonatomic) IBOutlet UILabel *helpLabel;
 
 @end
 
@@ -65,9 +65,9 @@ enum
 
     self.navigationItem.rightBarButtonItem = self.editButtonItem;
 
-    UIBarButtonItem* doneButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave
+    UIBarButtonItem* doneButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave
                                                                                      target:self
-                                                                                     action:@selector(done:)] autorelease];
+                                                                                     action:@selector(done:)];
     
     self.navigationItem.leftBarButtonItem = doneButtonItem;
     
@@ -75,10 +75,10 @@ enum
 	
 	if ([self.tableView respondsToSelector:@selector(setBackgroundView:)])
 	{
-		self.tableView.backgroundView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"WhiteLinen"]] autorelease];
+		self.tableView.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"WhiteLinen"]];
 	}
 	
-	self.hideConfigSwitch = [[[UISwitch alloc] initWithFrame:CGRectZero] autorelease];
+	self.hideConfigSwitch = [[UISwitch alloc] initWithFrame:CGRectZero];
 	[self.hideConfigSwitch addTarget:self
 							  action:@selector(configSwitchChanged:)
 					forControlEvents:UIControlEventValueChanged];
@@ -90,22 +90,22 @@ enum
 {
     [super viewWillAppear:animated];
     
-    self.trashButton = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemTrash
+    self.trashButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemTrash
                                                                       target:self
-                                                                      action:@selector(deleteAllSongs:)] autorelease];
+                                                                      action:@selector(deleteAllSongs:)];
     
-	UIBarButtonItem* flexibleSpace = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
+	UIBarButtonItem* flexibleSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
                                                                                     target:nil
-                                                                                    action:nil] autorelease];
+                                                                                    action:nil];
 	
-	self.helpMessageItem = [[[UIBarButtonItem alloc] initWithTitle:@""
+	self.helpMessageItem = [[UIBarButtonItem alloc] initWithTitle:@""
 															 style:UIBarButtonItemStylePlain
 															target:nil
-															action:nil] autorelease];
+															action:nil];
 	
-    self.addButton = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
+    self.addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
                                                                     target:self
-                                                                    action:@selector(addSongs:)] autorelease];
+                                                                    action:@selector(addSongs:)];
     
     NSArray* toolbarItems = [NSArray arrayWithObjects:self.trashButton, flexibleSpace, self.helpMessageItem, self.addButton, nil];
     [self setToolbarItems:toolbarItems animated:NO];
@@ -224,7 +224,7 @@ enum
             
             if (nil == cell)
             {
-                cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:SongCellIdentifier] autorelease];
+                cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:SongCellIdentifier];
             }
             
             MPMediaItem* item = [[[ASMSongCollection sharedSongCollection] songs] objectAtIndex:indexPath.row];
@@ -245,7 +245,7 @@ enum
                 
                 if (nil == cell)
                 {
-                    cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ConfigCellIdentifier] autorelease];
+                    cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ConfigCellIdentifier];
                 }
                 
                 cell.accessoryView = self.hideConfigSwitch;
@@ -258,7 +258,7 @@ enum
                 
                 if (nil == cell)
                 {
-                    cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ConfigDescCellIdentifier] autorelease];
+                    cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ConfigDescCellIdentifier];
 					cell.textLabel.lineBreakMode = UILineBreakModeWordWrap;
 					cell.textLabel.numberOfLines = 0;
                 }
@@ -337,7 +337,7 @@ enum
 {
     if (nil == self.mediaPickerController)
     {
-        self.mediaPickerController = [[[MPMediaPickerController alloc] initWithMediaTypes:MPMediaTypeAnyAudio] autorelease];
+        self.mediaPickerController = [[MPMediaPickerController alloc] initWithMediaTypes:MPMediaTypeAnyAudio];
         self.mediaPickerController.allowsPickingMultipleItems = YES;
         self.mediaPickerController.delegate = self;
     
@@ -353,11 +353,11 @@ enum
 
 - (void)deleteAllSongs:(id)sender
 {
-    self.deleteActionSheet = [[[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"Remove all songs, are you sure?", @"Prompt to delete all songs")
+    self.deleteActionSheet = [[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"Remove all songs, are you sure?", @"Prompt to delete all songs")
                                                              delegate:self
                                                     cancelButtonTitle:NSLocalizedString(@"No", @"Decline to remove all songs")
                                                destructiveButtonTitle:NSLocalizedString(@"Yes", @"Accept to remove all songs")
-                                                    otherButtonTitles:nil] autorelease];
+                                                    otherButtonTitles:nil];
 
     if ([self.deleteActionSheet respondsToSelector:@selector(showFromBarButtonItem:animated:)])
     {
@@ -442,14 +442,4 @@ enum
 	[self.tableView reloadData];
 }
 
-- (void)dealloc {
-	self.deleteActionSheet = nil;
-	self.trashButton = nil;
-	self.addButton = nil;
-	self.helpMessageItem = nil;
-	self.hideConfigSwitch = nil;
-	self.helpView = nil;
-	self.helpLabel = nil;
-	[super dealloc];
-}
 @end

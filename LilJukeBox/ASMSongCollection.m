@@ -34,7 +34,7 @@ static ASMSongCollection *sSharedSongCollection = nil;
 
 
 @interface ASMSongCollection ()
-@property (retain, nonatomic) NSArray* songs;
+@property (strong, nonatomic) NSArray* songs;
 
 - (void)updateUserDefaults;
 @end
@@ -49,7 +49,7 @@ static ASMSongCollection *sSharedSongCollection = nil;
 	static NSArray* sSongColors = nil;
 	if (nil == sSongColors)
 	{
-		sSongColors = [[NSArray arrayWithObjects:
+		sSongColors = [NSArray arrayWithObjects:
 						[UIColor crayonColorWithRedGreenBlue:0xECEABE],
 						[UIColor crayonColorWithRedGreenBlue:0xCDC5C2],
 						[UIColor crayonColorWithRedGreenBlue:0xB0B7C6],
@@ -62,7 +62,7 @@ static ASMSongCollection *sSharedSongCollection = nil;
 						[UIColor crayonColorWithRedGreenBlue:0xFFB653],
 						[UIColor crayonColorWithRedGreenBlue:0x9D81BA],
 						[UIColor crayonColorWithRedGreenBlue:0xE7C697],
-						nil] retain];
+						nil];
 	}
 	
 	return [sSongColors objectAtIndex:i];
@@ -116,11 +116,6 @@ static ASMSongCollection *sSharedSongCollection = nil;
     return self;
 }
 
-- (void)dealloc
-{
-    self.songs = nil;
-    [super dealloc];
-}
 
 - (void)setSongsWithCollection:(MPMediaItemCollection*)collection
 {
@@ -156,8 +151,7 @@ static ASMSongCollection *sSharedSongCollection = nil;
 {
     NSMutableArray* mutableSongs = [self.songs mutableCopy];
     [mutableSongs removeObjectAtIndex:idx];
-    self.songs = [[mutableSongs copy] autorelease];
-    [mutableSongs release];
+    self.songs = [mutableSongs copy];
     
     [self updateUserDefaults];
 }
@@ -168,7 +162,7 @@ static ASMSongCollection *sSharedSongCollection = nil;
     {
         NSMutableArray* mutableSongs = [self.songs mutableCopy];
         
-        id obj = [[mutableSongs objectAtIndex:srcIndex] retain];
+        id obj = [mutableSongs objectAtIndex:srcIndex];
         [mutableSongs removeObjectAtIndex:srcIndex];
         if (destIndex >= [mutableSongs count])
         {
@@ -178,10 +172,8 @@ static ASMSongCollection *sSharedSongCollection = nil;
         {
             [mutableSongs insertObject:obj atIndex:destIndex];
         }
-        [obj release];
         
-        self.songs = [[mutableSongs copy] autorelease];
-        [mutableSongs release];
+        self.songs = [mutableSongs copy];
 
         [self updateUserDefaults];
     }
@@ -211,30 +203,10 @@ static ASMSongCollection *sSharedSongCollection = nil;
 
 + (id)allocWithZone:(NSZone *)zone
 {
-    return [[self sharedSongCollection] retain];
+    return [self sharedSongCollection];
 }
 
 - (id)copyWithZone:(NSZone *)zone
-{
-    return self;
-}
-
-- (id)retain
-{
-    return self;
-}
-
-- (NSUInteger)retainCount
-{
-    return NSUIntegerMax;  //denotes an object that cannot be released
-}
-
-- (oneway void)release
-{
-    //do nothing
-}
-
-- (id)autorelease
 {
     return self;
 }

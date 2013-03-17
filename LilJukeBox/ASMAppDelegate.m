@@ -18,12 +18,6 @@
 @synthesize window = _window;
 @synthesize mainViewController = _mainViewController;
 
-- (void)dealloc
-{
-    [_window release];
-    [_mainViewController release];
-    [super dealloc];
-}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -41,15 +35,15 @@
 	[appDefaults setObject:[NSNumber numberWithBool:YES] forKey:kShowAlbumArtworkKey];
     [[NSUserDefaults standardUserDefaults] registerDefaults:appDefaults];
     
-    self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 
     if (UISafeUserInterfaceIdiomPhone == [[UIDevice currentDevice] safeUserInterfaceIdiom])
     {
-        self.mainViewController = [[[ASMMainViewController alloc] initWithNibName:@"ASMMainViewController_iPhone" bundle:nil] autorelease];
+        self.mainViewController = [[ASMMainViewController alloc] initWithNibName:@"ASMMainViewController_iPhone" bundle:nil];
     }
     else
     {
-        self.mainViewController = [[[ASMMainViewController alloc] initWithNibName:@"ASMMainViewController_iPad" bundle:nil] autorelease];
+        self.mainViewController = [[ASMMainViewController alloc] initWithNibName:@"ASMMainViewController_iPad" bundle:nil];
     }
 
     if ([self.window respondsToSelector:@selector(setRootViewController:)])

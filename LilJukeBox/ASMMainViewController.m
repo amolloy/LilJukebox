@@ -29,17 +29,17 @@ enum {
 
 @interface ASMMainViewController () <UIPopoverControllerDelegate>
 
-@property (retain, nonatomic) MPMusicPlayerController* appMusicPlayer;
+@property (strong, nonatomic) MPMusicPlayerController* appMusicPlayer;
 
-@property (retain, nonatomic) IBOutlet UIButton *flipViewButton;
-@property (retain, nonatomic) NSArray* songButtons;
-@property (retain, nonatomic) IBOutlet GradientView *containerView;
-@property (retain, nonatomic) IBOutlet GradientView *infoContainerView;
-@property (retain, nonatomic) IBOutlet UIView *buttonContainerView;
-@property (retain, nonatomic) IBOutlet UIImageView *albumArtworkView;
-@property (retain, nonatomic) IBOutlet UILabel *artistNameLabel;
-@property (retain, nonatomic) IBOutlet UILabel *songNameLabel;
-@property (retain, nonatomic) IBOutlet UILabel *helpLabel;
+@property (strong, nonatomic) IBOutlet UIButton *flipViewButton;
+@property (strong, nonatomic) NSArray* songButtons;
+@property (strong, nonatomic) IBOutlet GradientView *containerView;
+@property (strong, nonatomic) IBOutlet GradientView *infoContainerView;
+@property (strong, nonatomic) IBOutlet UIView *buttonContainerView;
+@property (strong, nonatomic) IBOutlet UIImageView *albumArtworkView;
+@property (strong, nonatomic) IBOutlet UILabel *artistNameLabel;
+@property (strong, nonatomic) IBOutlet UILabel *songNameLabel;
+@property (strong, nonatomic) IBOutlet UILabel *helpLabel;
 
 - (void)songButtonPressed:(UIButton *)sender;
 - (void)songButtonChangedState:(UIButton *)sender;
@@ -178,7 +178,7 @@ enum {
 		[self.buttonContainerView addSubview:button];
 	}
 
-	self.songButtons = [[buttons copy] autorelease];
+	self.songButtons = [buttons copy];
 	
 	[ASMSongCollection sharedSongCollection].playableSongCount = maxButtons;
 }
@@ -277,7 +277,7 @@ enum {
 		[self.buttonContainerView addSubview:button];
 	}
 	
-	self.songButtons = [[buttons copy] autorelease];
+	self.songButtons = [buttons copy];
 	
 	[ASMSongCollection sharedSongCollection].playableSongCount = maxButtons;
 }
@@ -403,30 +403,16 @@ enum {
 	[self setupSongButtons];
 }
 
-- (void)dealloc
-{
-	self.flipsidePopoverController = nil;
-	self.songButtons = nil;
-	self.containerView = nil;
-	self.infoContainerView = nil;
-	self.buttonContainerView = nil;
-	self.albumArtworkView = nil;
-	self.artistNameLabel = nil;
-	self.songNameLabel = nil;
-	self.helpLabel = nil;
-
-    [super dealloc];
-}
 
 - (IBAction)showInfo:(UIButton*)sender
 {
     if ([[UIDevice currentDevice] safeUserInterfaceIdiom] == UISafeUserInterfaceIdiomPhone)
     {
-        ASMFlipsideViewController *controller = [[[ASMFlipsideViewController alloc] initWithNibName:@"ASMFlipsideViewController" bundle:nil] autorelease];
+        ASMFlipsideViewController *controller = [[ASMFlipsideViewController alloc] initWithNibName:@"ASMFlipsideViewController" bundle:nil];
         controller.delegate = self;
         controller.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
         
-        UINavigationController *navController = [[[UINavigationController alloc] initWithRootViewController:controller] autorelease];
+        UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:controller];
         navController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
         
         [self presentModalViewController:navController animated:YES];
@@ -435,13 +421,13 @@ enum {
     {
         if (!self.flipsidePopoverController)
         {
-            ASMFlipsideViewController *controller = [[[ASMFlipsideViewController alloc] initWithNibName:@"ASMFlipsideViewController" bundle:nil] autorelease];
+            ASMFlipsideViewController *controller = [[ASMFlipsideViewController alloc] initWithNibName:@"ASMFlipsideViewController" bundle:nil];
             controller.delegate = self;
 
-            UINavigationController *navController = [[[UINavigationController alloc] initWithRootViewController:controller] autorelease];
+            UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:controller];
             navController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
 
-            self.flipsidePopoverController = [[[UIPopoverController alloc] initWithContentViewController:navController] autorelease];
+            self.flipsidePopoverController = [[UIPopoverController alloc] initWithContentViewController:navController];
 			
 			self.flipsidePopoverController.popoverContentSize = CGSizeMake(400, 568);
 			self.flipsidePopoverController.delegate = self;

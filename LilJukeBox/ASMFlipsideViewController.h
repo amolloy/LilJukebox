@@ -17,7 +17,7 @@
 
 @interface ASMFlipsideViewController : UITableViewController <MPMediaPickerControllerDelegate, UIActionSheetDelegate>
 
-@property (assign, nonatomic) id <ASMFlipsideViewControllerDelegate> delegate;
-@property (retain, nonatomic) MPMediaPickerController* mediaPickerController;
+@property (unsafe_unretained, nonatomic) id <ASMFlipsideViewControllerDelegate> delegate;
+@property (strong, nonatomic) MPMediaPickerController* mediaPickerController;
 
 @end

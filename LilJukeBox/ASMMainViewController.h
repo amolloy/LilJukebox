@@ -13,7 +13,7 @@ extern NSString* kHideConfigUserDefaultsKey;
 
 @interface ASMMainViewController : UIViewController <ASMFlipsideViewControllerDelegate>
 
-@property (retain, nonatomic) UIPopoverController* flipsidePopoverController;
+@property (strong, nonatomic) UIPopoverController* flipsidePopoverController;
 
 -(IBAction)showInfo:(id)sender;
 

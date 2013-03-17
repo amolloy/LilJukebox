@@ -12,7 +12,7 @@
 
 @interface ASMAppDelegate : UIResponder <UIApplicationDelegate> 
 
-@property (retain, nonatomic) UIWindow *window;
-@property (retain, nonatomic) ASMMainViewController *mainViewController;
+@property (strong, nonatomic) UIWindow *window;
+@property (strong, nonatomic) ASMMainViewController *mainViewController;
 
 @end
